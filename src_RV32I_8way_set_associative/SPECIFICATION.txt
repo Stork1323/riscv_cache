@@ -1,0 +1,39 @@
+*** SIMPLE CACHE ***
+
+    - Direct-mapped cache 
+    - Write-back using write allocate
+    - Block size is four word (16 bytes or 128 bits)
+    - Cache size is 16KiB, so it holds 1024 blocks
+    - 32-bit address
+    - The cache includes a valid bit and dirty bit per block 
+
+    ===>
+
+    - Cache index is 10 bits
+    - Block offset is 4 bits
+    - Tag size is 32 - (10 + 4) = 18 bits
+
+The signals between the processor to the cache are:
+    - 1-bit Read or Write signal
+    - 1-bit Valid signal, saying whether there is a cache operation or not
+    - 32-bit address 
+    - 32-bit data from cache to processor 
+    - 32-bit data from processor to cache
+    - 1-bit Ready signal, saying the cache operation is complete
+
+The interface between the memory and the cache has same fields as between the processor and the cache,
+except that the data fields are now 128 bits wide. Here are the signals:
+    - 1-bit Read or Write signal
+    - 1-bit Valid signal, saying whether there is a memory operation or not
+    - 32-bit address 
+    - 128-bit data from cache to memory 
+    - 128-bit data from memory to cache
+    - 1-bit Ready signal, saying the memory operation is complete
+
+
+/////////////
+128 bytes
+8 ways 
+4 sets
+
+=> Index = 2; Tag = 32 - 2 - 2 = 28
