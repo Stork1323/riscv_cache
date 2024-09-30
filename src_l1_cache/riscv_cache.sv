@@ -58,6 +58,7 @@ module riscv_cache(
 	logic Valid_cpu2cache_mem_w;
 
 	logic stall_by_dcache_w;
+	logic stall_by_icache_w;
 	
 	IF IF(
 		.clk_i(clk_i),
