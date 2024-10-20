@@ -4,7 +4,7 @@ module l2_cache_pLRU(
     input logic clk_i,
     input logic rst_ni,
     input logic valid_i,
-    input logic [INDEX-1:0] index_i,
+    input logic [INDEX_L2-1:0] index_i,
     input logic [INDEX_WAY-1:0] address_i,
     output logic [INDEX_WAY-1:0] address_o
 );
@@ -188,18 +188,18 @@ module l2_cache_pLRU_node(
     input logic clk_i,
     input logic rst_ni,
     input logic valid_i,
-    input logic [INDEX-1:0] index_i,
+    input logic [INDEX_L2-1:0] index_i,
     input logic value_i,
     output logic load_left_o,
     output logic load_right_o,
     output logic load_o
 );
 
-    logic [DEPTH-1:0] L_r;
+    logic [DEPTH_L2-1:0] L_r;
 
     always_ff @(posedge clk_i) begin
         if (~rst_ni) begin
-            L_r <= {DEPTH{1'b0}};
+            L_r <= {DEPTH_L2{1'b0}};
         end
         else if (valid_i) begin
             L_r[index_i] <= value_i;

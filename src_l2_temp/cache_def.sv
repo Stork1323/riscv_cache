@@ -5,6 +5,10 @@ package cache_def;
     parameter int TAGLSB = 6; // tag lsb : 4 bits offset (2 bit byte offset, 2 bit for 4 word), 2 bit index
     parameter int INDEX = 2; // No of block bits
     parameter int DEPTH = 4; // No of blocks
+    parameter int TAGMSB_L2 = 31; // tag msb
+    parameter int TAGLSB_L2 = 8; // tag lsb : 4 bits offset (2 bit byte offset, 2 bit for 4 word), 4 bit index
+    parameter int INDEX_L2 = 4; // number of block bits l2 cache
+    parameter int DEPTH_L2 = 16; // number of blocks l2 cache
     parameter int WAYS = 8; // No of ways
     parameter int DATA_WIDTH = 128; // No bits of cache line data
     parameter int INDEX_WAY = 3; // No bit of way address
@@ -17,11 +21,23 @@ package cache_def;
         logic [TAGMSB:TAGLSB] tag; // tag bits
     } cache_tag_type;
 
+    typedef struct packed {
+        logic valid; // valid bit
+        logic dirty; // dirty bit
+        logic [TAGMSB_L2:TAGLSB_L2] tag; // tag bits
+    } l2_cache_tag_type;
+
+
     // data structure for cache memory request 
     typedef struct {
         logic [INDEX-1:0] index;
         logic we; // write enable
     } cache_req_type;
+
+    typedef struct {
+        logic [INDEX_L2-1:0] index;
+        logic we; // write enable
+    } l2_cache_req_type;
 
     // 128-bit cache line data
     //typedef logic [127:0] cache_data_type;

@@ -22,14 +22,14 @@ module l2_cache(
     logic [INDEX_WAY-1:0] address_way_p2a;
 
     /* interface signals to cache tag memory */
-    cache_tag_type tag_read; // tag read result
-    cache_tag_type tag_write; // tag write data
-    cache_req_type tag_req; // tag request
+    l2_cache_tag_type tag_read; // tag read result
+    l2_cache_tag_type tag_write; // tag write data
+    l2_cache_req_type tag_req; // tag request
 
     /* interface signals to cache data memory */
     cache_data_type data_read; // cache line read data
     cache_data_type data_write; // cache line write data
-    cache_req_type data_req; // data request
+    l2_cache_req_type data_req; // data request
 
     logic full_w; // signal notices that set is full or not
 
@@ -39,7 +39,7 @@ module l2_cache(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(lru_valid),
-        .index_i(l1_cache_request_i.addr[INDEX+3:4]),
+        .index_i(l1_cache_request_i.addr[INDEX_L2+3:4]),
         .address_i(address_way_a2p),
         .address_o(address_way_p2a)
     );

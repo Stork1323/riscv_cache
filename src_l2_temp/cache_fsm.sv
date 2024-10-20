@@ -218,7 +218,8 @@ module cache_fsm(
                     miss1_w = 1'b1;
 
                     /* generate memory request on miss */
-                    v_mem_req.valid = '1;
+                    if (cpu_req_i.rw == 1'b0) v_mem_req.valid = '1;
+                    else v_mem_req.valid = 1'b0;
 
                     if (cpu_req_i.rw == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin
                         /* miss with dirty line */
@@ -260,9 +261,10 @@ module cache_fsm(
 
                     /* cache line is dirty if write */
                     tag_write.dirty = cpu_req_i.rw;
-                v_mem_req.valid = '1;
+                if (cpu_req_i.rw == 1'b0) v_mem_req.valid = '1;
+                else v_mem_req.valid = 1'b0;
                 /* memory controller has responded */
-                if (mem_data_i.ready) begin
+                if (mem_data_i.ready | (cpu_req_i.rw == 1'b1)) begin
                     data_write = mem_data_i.data;
                     /* update cache line data */
                     data_req.we = '1; //************

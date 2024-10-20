@@ -15,6 +15,7 @@ module MEM(
 	input logic reset_i,
 	/* valid signal when CPU access cache */
 	input logic Valid_cpu2cache_mem_i,
+	input logic stall_by_icache_i,
 	input mem_data_type d_cache_data_i,
 	output logic [31:0] alu_wb_o,
 	output logic [31:0] pc4_wb_o,
@@ -24,10 +25,10 @@ module MEM(
 	output logic [4:0] rsW_wb_o,
 	output logic [31:0] inst_wb_o,
 	output logic stall_by_dcache_o,
-	output mem_req_type d_cache_request_o
-	// output logic [31:0] No_acc_o,
-	// output logic [31:0] No_hit_o,
-	// output logic [31:0] No_miss_o
+	output mem_req_type d_cache_request_o,
+	output logic [31:0] no_acc_o,
+	output logic [31:0] no_hit_o,
+	output logic [31:0] no_miss_o
 	);
 	
 	logic [31:0] mem_w;
@@ -50,9 +51,9 @@ module MEM(
 	cache_data_type memory_data_w;
 
 	// counter of access, hit, miss cache
-	logic [31:0] no_acc_w;
-	logic [31:0] no_hit_w;
-	logic [31:0] no_miss_w;
+	// logic [31:0] no_acc_w;
+	// logic [31:0] no_hit_w;
+	// logic [31:0] no_miss_w;
 
 	
 	// lsu LSU_MEM(
@@ -88,9 +89,9 @@ module MEM(
     	.mem_data_i(mem_data_w),
     	.cpu_res_o(cpu_result_w),
     	.mem_req_o(mem_req_w),
-		.no_acc_o(no_acc_w),
-		.no_hit_o(no_hit_w),
-		.no_miss_o(no_miss_w)
+		.no_acc_o(no_acc_o),
+		.no_hit_o(no_hit_o),
+		.no_miss_o(no_miss_o)
 	);
 
 	assign mem_w = cpu_result_w.data;
@@ -140,7 +141,7 @@ module MEM(
 	assign cpu_req_w.addr = alu_mem_i;
 	assign cpu_req_w.data = rs2_mem_i;
 	assign cpu_req_w.rw = MemRW_mem_i;
-	assign cpu_req_w.valid = Valid_cpu2cache_mem_i;
+	assign cpu_req_w.valid = Valid_cpu2cache_mem_i & (~stall_by_icache_i);
 	//assign mem_data_w = {memory_data_w, Valid_memory2cache_w};
 	// assign mem_data_w.data = memory_data_w;
 	// assign mem_data_w.ready = Valid_memory2cache_w;

@@ -19,7 +19,11 @@ module IF(
 	output logic hit_d_o,
 	output logic stall_by_icache_o,
 	output logic [31:0] No_command_o,
-	output mem_req_type i_cache_request_o
+	output mem_req_type i_cache_request_o,
+	// counter of access, hit, miss cache
+	output logic [31:0] no_acc_o,
+	output logic [31:0] no_hit_o,
+	output logic [31:0] no_miss_o
 	);
 
 	logic [31:0] PC_mux_w, PC_mux1_w;
@@ -39,10 +43,7 @@ module IF(
 	mem_req_type mem_req_w;
 	mem_data_type mem_data_w;
 
-	// counter of access, hit, miss cache
-	logic [31:0] no_acc_w;
-	logic [31:0] no_hit_w;
-	logic [31:0] no_miss_w;
+	
 
 	cache_data_type inst_mem_w;
 
@@ -87,9 +88,9 @@ module IF(
 		.mem_data_i(mem_data_w),
 		.cpu_res_o(cpu_result_w),
 		.mem_req_o(mem_req_w),
-		.no_acc_o(no_acc_w),
-		.no_hit_o(no_hit_w),
-		.no_miss_o(no_miss_w),
+		.no_acc_o(no_acc_o),
+		.no_hit_o(no_hit_o),
+		.no_miss_o(no_miss_o),
 		.accessing_o(stall_by_icache_o)
 	);
 	/* ---------------- */

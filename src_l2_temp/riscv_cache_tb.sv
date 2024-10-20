@@ -21,7 +21,7 @@ module riscv_cache_tb();
 	// logic [31:0] No_acc_o;
 	// logic [31:0] No_hit_o;
 	// logic [31:0] No_miss_o;
-	logic [31:0] No_command_o;
+	//logic [31:0] No_command_o;
 	
 	riscv_cache dut(
 		.clk_i(clk_i),
@@ -38,8 +38,8 @@ module riscv_cache_tb();
 		.io_hex4_o(io_hex4_o),
 		.io_hex5_o(io_hex5_o),
 		.io_hex6_o(io_hex6_o),
-		.io_hex7_o(io_hex7_o),
-		.No_command_o(No_command_o)
+		.io_hex7_o(io_hex7_o)
+		//.No_command_o(No_command_o)
 		// .No_acc_o(No_acc_o),
 		// .No_hit_o(No_hit_o),
 		// .No_miss_o(No_miss_o)

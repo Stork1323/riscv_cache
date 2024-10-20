@@ -6,13 +6,13 @@ module l2_cache_controller(
     input logic rst_ni,
     input mem_req_type l1_cache_req_i,
     input mem_data_type mem_data_i,
-    input cache_tag_type tag_read_i,
+    input l2_cache_tag_type tag_read_i,
     input cache_data_type data_read_i,
     input logic full_i,
-    output cache_tag_type tag_write_o,
-    output cache_req_type tag_req_o,
+    output l2_cache_tag_type tag_write_o,
+    output l2_cache_req_type tag_req_o,
     output cache_data_type data_write_o,
-    output cache_req_type data_req_o,
+    output l2_cache_req_type data_req_o,
     output mem_data_type l2_cache_res_o,
     output mem_req_type mem_req_o,
     output logic [31:0] no_acc_o,
@@ -32,15 +32,15 @@ module l2_cache_controller(
     cache_state_type vstate, rstate;
 
     /* interface signals to cache tag memory */
-    cache_tag_type tag_read; // tag read result
-    cache_tag_type tag_write; // tag write data
-    cache_req_type tag_req; // tag request
+    l2_cache_tag_type tag_read; // tag read result
+    l2_cache_tag_type tag_write; // tag write data
+    l2_cache_req_type tag_req; // tag request
     assign tag_read = tag_read_i;
 
     /* interface signals to cache data memory */
     cache_data_type data_read; // cache line read data
     cache_data_type data_write; // cache line write data
-    cache_req_type data_req; // data request
+    l2_cache_req_type data_req; // data request
     assign data_read = data_read_i;
 
     /* temporary variable for cache controller result */
@@ -140,10 +140,10 @@ module l2_cache_controller(
         tag_req.we = '0;
 
         /* direct map index for tag */
-        tag_req.index = l1_cache_req_i.addr[INDEX+3:4];
+        tag_req.index = l1_cache_req_i.addr[INDEX_L2+3:4];
 
         /* direct map index for cache data */
-        data_req.index = l1_cache_req_i.addr[INDEX+3:4];
+        data_req.index = l1_cache_req_i.addr[INDEX_L2+3:4];
 
         /* modify correct word (32-bit) based on address */
         data_write = data_read;
@@ -182,7 +182,7 @@ module l2_cache_controller(
             end
             COMPARE_TAG: begin
                 /* cache hit (tag match and cache entry is valid) */
-                if (l1_cache_req_i.addr[TAGMSB:TAGLSB] == tag_read.tag && tag_read.valid) begin
+                if (l1_cache_req_i.addr[TAGMSB_L2:TAGLSB_L2] == tag_read.tag && tag_read.valid) begin
                     v_l2_cache_res.ready = '1;
 
                     /* write hit */
@@ -213,7 +213,7 @@ module l2_cache_controller(
                     if (l1_cache_req_i.rw == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin
                         /* miss with dirty line */
                         /* write back address */
-                        v_mem_req.addr = {tag_read.tag, l1_cache_req_i.addr[TAGLSB-1:0]};
+                        v_mem_req.addr = {tag_read.tag, l1_cache_req_i.addr[TAGLSB_L2-1:0]};
                         v_mem_req.rw = '1;
 
                         /* wait till write is completed */
@@ -246,7 +246,7 @@ module l2_cache_controller(
                     tag_write.valid = '1;
 
                     /* new tag */
-                    tag_write.tag = l1_cache_req_i.addr[TAGMSB:TAGLSB];
+                    tag_write.tag = l1_cache_req_i.addr[TAGMSB_L2:TAGLSB_L2];
 
                     /* cache line is dirty if write */
                     tag_write.dirty = l1_cache_req_i.rw;
