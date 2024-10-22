@@ -1,10 +1,10 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.8.0">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.0">
   <diagram name="Trang-1" id="qcFNsDO8frQkDNvJiyGB">
-    <mxGraphModel dx="1141" dy="585" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="3000" math="0" shadow="0">
+    <mxGraphModel dx="880" dy="468" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="3000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="SMQfsV_5SCFDkDIITy68-2" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#ff0000;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="SMQfsV_5SCFDkDIITy68-2" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#ff0000;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="965.48" y="719.14" width="248.37" height="248.37" as="geometry" />
         </mxCell>
         <mxCell id="7G_IvZ2n9mC5iAlq--vm-209" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;strokeWidth=2;fillColor=#fad7ac;strokeColor=#b46504;" parent="1" vertex="1">
@@ -2562,13 +2562,13 @@
         <mxCell id="5TUkcZ169qbWoOYFkI4N-4" value="&lt;b&gt;L1 cache result, mem result, i-cache data, d-cache data:&lt;/b&gt;&lt;div&gt;128 bit data&amp;nbsp;&lt;/div&gt;&lt;div&gt;1 bit ready&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=1;points=[];autosize=1;strokeColor=none;fillColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
           <mxGeometry x="47.160000000000196" y="918.38" width="340" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="SMQfsV_5SCFDkDIITy68-4" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;strokeColor=#ff0000;" edge="1" parent="1" source="SMQfsV_5SCFDkDIITy68-2" target="SMQfsV_5SCFDkDIITy68-2">
+        <mxCell id="SMQfsV_5SCFDkDIITy68-4" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;strokeColor=#ff0000;" parent="1" source="SMQfsV_5SCFDkDIITy68-2" target="SMQfsV_5SCFDkDIITy68-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="854.66" y="841.7" as="sourcePoint" />
             <mxPoint x="904.66" y="791.7" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SMQfsV_5SCFDkDIITy68-5" value="" style="endArrow=none;html=1;rounded=0;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;strokeColor=#ff0000;" edge="1" parent="1" source="SMQfsV_5SCFDkDIITy68-2" target="SMQfsV_5SCFDkDIITy68-2">
+        <mxCell id="SMQfsV_5SCFDkDIITy68-5" value="" style="endArrow=none;html=1;rounded=0;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;strokeColor=#ff0000;" parent="1" source="SMQfsV_5SCFDkDIITy68-2" target="SMQfsV_5SCFDkDIITy68-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="871.8199999999999" y="877" as="sourcePoint" />
             <mxPoint x="921.8199999999999" y="827" as="targetPoint" />
