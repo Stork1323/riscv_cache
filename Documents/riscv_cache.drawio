@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.1">
   <diagram name="Trang-1" id="qcFNsDO8frQkDNvJiyGB">
-    <mxGraphModel dx="943" dy="407" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="4000" math="0" shadow="0">
+    <mxGraphModel dx="1276" dy="551" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="4000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3169,6 +3169,9 @@
         </mxCell>
         <mxCell id="y0vBRIRnQT6MvKQbb2B_-118" value="Multiplexor" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1144.66" y="3500" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="y0vBRIRnQT6MvKQbb2B_-119" value="32" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="347.15999999999997" y="2930" width="40" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
