@@ -125,6 +125,8 @@ module cache_fsm(
     assign mem_req_o = v_mem_req;
 
     /* debuging */
+    /* fix case address request for L2 cache being changed when transfer to Writeback state */
+    logic [31:0] address_wb;
 
     /* Combinational block */
     always_comb begin
@@ -179,6 +181,7 @@ module cache_fsm(
         miss1_w = 1'b0;
         accessing_o = 1'b0;
 
+
         /* ------------------- Cache FSM --------------------- */
         case (rstate)
             IDLE: begin
@@ -217,11 +220,22 @@ module cache_fsm(
                     accessing_o = 1'b1;
                     miss1_w = 1'b1;
 
-                    /* generate memory request on miss */
-                    if (cpu_req_i.rw == 1'b0) v_mem_req.valid = '1;
-                    else v_mem_req.valid = 1'b0;
+                    /* generate new tag */
+                    tag_req.we = '1;
+                    tag_write.valid = '1;
+                    /* new tag */
+                    tag_write.tag = cpu_req_i.addr[TAGMSB:TAGLSB];
+                    /* cache line is dirty if write */
+                    tag_write.dirty = cpu_req_i.rw;
 
-                    if (cpu_req_i.rw == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin
+
+                    /* generate memory request on miss */
+                    // if (cpu_req_i.rw == 1'b0) v_mem_req.valid = '1;
+                    // else v_mem_req.valid = 1'b0;
+                    v_mem_req.valid = '1;
+
+                    // if (cpu_req_i.rw == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin
+                    if (full_w == 1'b1 && tag_read.dirty == 1'b1 && tag_read.valid == 1'b1) begin // fixing
                         /* miss with dirty line */
                         /* write back address */
                         v_mem_req.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
@@ -251,21 +265,19 @@ module cache_fsm(
             end
             /* wait for allocating a new cache line */
             ALLOCATE: begin
-                /* generate new tag */
-                accessing_o = 1'b1;
-                    tag_req.we = '1;
-                    tag_write.valid = '1;
+                    accessing_o = 1'b1;
 
-                    /* new tag */
-                    tag_write.tag = cpu_req_i.addr[TAGMSB:TAGLSB];
-
-                    /* cache line is dirty if write */
-                    tag_write.dirty = cpu_req_i.rw;
+                /* debuging */
+                v_mem_req.rw = '0;
+                /* -------- */
+                    
                 if (cpu_req_i.rw == 1'b0) v_mem_req.valid = '1;
                 else v_mem_req.valid = 1'b0;
                 /* memory controller has responded */
-                if (mem_data_i.ready | (cpu_req_i.rw == 1'b1)) begin
-                    data_write = mem_data_i.data;
+                if (mem_data_i.ready | (cpu_req_i.rw == 1'b1)) begin // fixing
+                //if (mem_data_i.ready) begin
+                    if (cpu_req_i.rw == 1'b0)
+                        data_write = mem_data_i.data;
                     /* update cache line data */
                     data_req.we = '1; //************
 
@@ -277,11 +289,19 @@ module cache_fsm(
             /* wait for writing back dirty cache line */
             WRITE_BACK: begin
                 accessing_o = 1'b1;
+
+                v_mem_req.valid = '1; // fixing
+                v_mem_req.rw = '1;
+
+                /* logic for fixing bottom lines code situation */
+                v_mem_req.addr = address_wb;
+                /* -------- */
+
                 /* write back is completed */
                 if (mem_data_i.ready) begin
                     /* issue new memory request (allocating a new line) */
                     v_mem_req.valid = '1;
-                    v_mem_req.rw = '0;
+                    // v_mem_req.rw = '0; // change to ALLOCATE state
 
                     vstate = ALLOCATE;
                 end
@@ -302,5 +322,14 @@ module cache_fsm(
     assign data_write_o = data_write;
     assign data_req_o = data_req;
     assign lru_valid_o = lru_valid;
+
+    /* fix case address request for L2 cache being changed when transfer to Writeback state */
+    always_ff @(posedge clk_i, negedge rst_ni) begin
+        if (~rst_ni)
+            address_wb <= 32'b0;
+        else if (rstate == COMPARE_TAG) 
+            address_wb <= {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
+    end
+    /* ------------- */
 
 endmodule

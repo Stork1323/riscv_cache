@@ -207,10 +207,21 @@ module l2_cache_controller(
                     accessing_o = 1'b1;
                     miss1_w = 1'b1;
 
+                    /* generate new tag */
+                    tag_req.we = '1;
+                    tag_write.valid = '1;
+
+                    /* new tag */
+                    tag_write.tag = l1_cache_req_i.addr[TAGMSB_L2:TAGLSB_L2];
+
+                    /* cache line is dirty if write */
+                    tag_write.dirty = l1_cache_req_i.rw;
+
                     /* generate memory request on miss */
                     v_mem_req.valid = '1;
 
-                    if (l1_cache_req_i.rw == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin
+                    //if (l1_cache_req_i.rw == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin
+                    if (tag_read.valid == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin // fixing
                         /* miss with dirty line */
                         /* write back address */
                         v_mem_req.addr = {tag_read.tag, l1_cache_req_i.addr[TAGLSB_L2-1:0]};
@@ -240,20 +251,14 @@ module l2_cache_controller(
             end
             /* wait for allocating a new cache line */
             ALLOCATE: begin
-                /* generate new tag */
+                
                 accessing_o = 1'b1;
-                    tag_req.we = '1;
-                    tag_write.valid = '1;
-
-                    /* new tag */
-                    tag_write.tag = l1_cache_req_i.addr[TAGMSB_L2:TAGLSB_L2];
-
-                    /* cache line is dirty if write */
-                    tag_write.dirty = l1_cache_req_i.rw;
+                    
 
                 /* memory controller has responded */
                 if (mem_data_i.ready) begin
-                    data_write = mem_data_i.data;
+                    if (l1_cache_req_i.rw == 1'b0)
+                        data_write = mem_data_i.data;
                     /* update cache line data */
                     data_req.we = '1; //************
 

@@ -35,12 +35,22 @@ module cache_arbiter(
 
     always_comb begin
         if (state == I_CACHE) begin
-            l1_cache_request_o = i_cache_request_i;
+            /* fix address request for L2 */
+            l1_cache_request_o.addr  = {i_cache_request_i.addr[31:4], 4'b0}; // fetch data from block 0
+            l1_cache_request_o.data  = i_cache_request_i.data;
+            l1_cache_request_o.rw    = i_cache_request_i.rw;
+            l1_cache_request_o.valid = i_cache_request_i.valid;
+            /* -------------------------- */
             i_cache_data_o = l1_cache_result_i;
             d_cache_data_o = '{0, 0};
         end
         else if (state == D_CACHE) begin
-            l1_cache_request_o = d_cache_request_i;
+            /* fix address request for L2 */
+            l1_cache_request_o.addr  = {d_cache_request_i.addr[31:4], 4'b0}; // fetch data from block 0
+            l1_cache_request_o.data  = d_cache_request_i.data;
+            l1_cache_request_o.rw    = d_cache_request_i.rw;
+            l1_cache_request_o.valid = d_cache_request_i.valid;
+            /* -------------------------- */
             i_cache_data_o = '{0, 0};
             d_cache_data_o = l1_cache_result_i;
         end

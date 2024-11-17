@@ -53,13 +53,13 @@ module riscv_cache_tb();
 	initial begin
 		clk_i <= 1'b0;
 		rst_ni <= 1'b0;
-		io_sw_i <= 100;
+		io_sw_i <= 17755;
 		
 		#100;
 		
 		rst_ni <= 1'b1;
 		
-		#15000;
+		#50000;
 		$finish;
 		
 	end

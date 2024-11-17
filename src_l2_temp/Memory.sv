@@ -59,22 +59,22 @@ module Memory(
 	logic [31:0] temp1, temp2, temp3, temp4;
 	
 	set_less_than_unsign SLTU0(
-		.rs1_i(mem_request_i.addr),
+		.rs1_i({2'b0, mem_request_i.addr[31:2]}),
 		.rs2_i(32'd768), // updated for memory (previous value was 256)
 		.rd_o(temp1)
 		);
 	set_less_than_unsign SLTU1(
-		.rs1_i(mem_request_i.addr),
+		.rs1_i({2'b0, mem_request_i.addr[31:2]}),
 		.rs2_i(32'd832), // updated for memory (previous value was 320)
 		.rd_o(temp2)
 		);
 	set_less_than_unsign SLTU2(
-		.rs1_i(mem_request_i.addr),
+		.rs1_i({2'b0, mem_request_i.addr[31:2]}),
 		.rs2_i(32'd896), // updated for memory (previous value was 384)
 		.rd_o(temp3)
 		);
 	set_less_than_unsign SLTU3(
-		.rs1_i(mem_request_i.addr),
+		.rs1_i({2'b0, mem_request_i.addr[31:2]}),
 		.rs2_i(32'd512),
 		.rd_o(temp4) // compare address for imem
 		);

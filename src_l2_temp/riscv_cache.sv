@@ -239,6 +239,7 @@ module riscv_cache(
 		.rst_ni(rst_ni),
 		.RegWEn_mem_i(RegWEn_mem_w),
 		.RegWEn_wb_i(RegWEn_wb_w),
+		.inst_d_i(inst_d_w),
 		.inst_ex_i(inst_ex_w),
 		.inst_mem_i(inst_mem_w),
 		.inst_wb_i(inst_wb_w),
