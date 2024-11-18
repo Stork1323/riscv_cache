@@ -44,13 +44,13 @@ module Memory(
 
 	/* dmem */
 
-	logic [31:0] dmem [512]; //2KB,  1KB for data memory, 256B for output peripherals, 256B for input peripherals, 512B for reserved
+	logic [31:0] dmem [1024]; //4KB,  1KB for data memory, 256B for output peripherals, 256B for input peripherals, 2.5KB for reserved
 	
 	/*
 			dmem[0:255] for data memory
 			dmem[256:319] for output peripherals
 			dmem[320:383] for input peripherals
-			dmem[384:511] for reserved
+			dmem[384:1023] for reserved
 	*/
 	
 	logic input_region;
