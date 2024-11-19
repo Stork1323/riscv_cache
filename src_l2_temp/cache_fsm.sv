@@ -235,7 +235,7 @@ module cache_fsm(
                     v_mem_req.valid = '1;
 
                     // if (cpu_req_i.rw == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin
-                    if (full_w == 1'b1 && tag_read.dirty == 1'b1 && tag_read.valid == 1'b1) begin // fixing
+                    if (tag_read.dirty == 1'b1 && tag_read.valid == 1'b1) begin // fixing
                         /* miss with dirty line */
                         /* write back address */
                         v_mem_req.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};

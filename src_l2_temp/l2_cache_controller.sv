@@ -221,7 +221,7 @@ module l2_cache_controller(
                     v_mem_req.valid = '1;
 
                     //if (l1_cache_req_i.rw == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin
-                    if (tag_read.valid == 1'b1 && full_w == 1'b1 && tag_read.dirty == 1'b1) begin // fixing
+                    if (tag_read.valid == 1'b1 && tag_read.dirty == 1'b1) begin // fixing
                         /* miss with dirty line */
                         /* write back address */
                         v_mem_req.addr = {tag_read.tag, l1_cache_req_i.addr[TAGLSB_L2-1:0]};
