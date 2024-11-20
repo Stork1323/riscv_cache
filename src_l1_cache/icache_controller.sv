@@ -253,6 +253,8 @@ module icache_controller(
                     /* cache line is dirty if write */
                     // tag_write.dirty = cpu_req_i.rw;
 
+                v_mem_req.valid = '1;
+
                 /* memory controller has responded */
                 if (mem_data_i.ready) begin
                     data_write = mem_data_i.data;

@@ -4,6 +4,7 @@ module Hazard_unit(
 	input logic rst_ni,
 	input logic RegWEn_mem_i,
 	input logic RegWEn_wb_i,
+	input logic [31:0] inst_d_i,
 	input logic [31:0] inst_ex_i,
 	input logic [31:0] inst_mem_i,
 	input logic [31:0] inst_wb_i,
@@ -34,17 +35,29 @@ module Hazard_unit(
 	assign lwStall = ((RegWEn_mem_i) & (inst_mem_i[11:7] != 5'b0) & 
 						  ((inst_ex_i[19:15] == inst_mem_i[11:7]) | (inst_ex_i[24:20] == inst_mem_i[11:7])) &
 						  (inst_mem_i[6:0] == `OP_Itype_load)) ? 1'b1 : 1'b0;
+
+
+	/* adding logic in order to fix case (addi x31, x0, 2047; lw x13, 1281(x31); sw x13, 1057(x31) => hazard in 3 instructions and have a lw) */
+	
+	logic lwStall_1;
+
+	assign lwStall_1 = ((RegWEn_mem_i) & (inst_mem_i[11:7] != 5'b0) & 
+						  ((inst_d_i[19:15] == inst_mem_i[11:7]) | (inst_d_i[24:20] == inst_mem_i[11:7])) &
+						  ((inst_d_i[19:15] == inst_ex_i[11:7]) | (inst_d_i[24:20] == inst_ex_i[11:7])) &
+						  (inst_ex_i[6:0] == `OP_Itype_load)) ? 1'b1 : 1'b0;
+
+	/* ------------------ */
 						  
 	logic nop;
 	assign nop = ((PC_taken_i == 2'b01) | (PC_taken_i == 2'b10)) ? 1'b1 : 1'b0;
 	
-	assign Stall_IF = lwStall;
-	assign Stall_ID = lwStall;
+	assign Stall_IF = lwStall | lwStall_1;
+	assign Stall_ID = lwStall | lwStall_1;
 	assign Stall_EX = lwStall;
 	assign Stall_MEM = 1'b0;
 	assign Stall_WB = 1'b0;
 	assign Flush_ID = nop;
-	assign Flush_EX = nop;
+	assign Flush_EX = nop | lwStall_1;
 	assign Flush_MEM = lwStall;
 	assign Flush_WB = 1'b0;
 	

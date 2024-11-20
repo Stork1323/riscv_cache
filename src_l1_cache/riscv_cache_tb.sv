@@ -38,8 +38,8 @@ module riscv_cache_tb();
 		.io_hex4_o(io_hex4_o),
 		.io_hex5_o(io_hex5_o),
 		.io_hex6_o(io_hex6_o),
-		.io_hex7_o(io_hex7_o),
-		.No_command_o(No_command_o)
+		.io_hex7_o(io_hex7_o)
+		//.No_command_o(No_command_o)
 		// .No_acc_o(No_acc_o),
 		// .No_hit_o(No_hit_o),
 		// .No_miss_o(No_miss_o)
@@ -53,13 +53,13 @@ module riscv_cache_tb();
 	initial begin
 		clk_i <= 1'b0;
 		rst_ni <= 1'b0;
-		io_sw_i <= 100;
+		io_sw_i <= 17755;
 		
 		#100;
 		
 		rst_ni <= 1'b1;
 		
-		#15000;
+		#50000;
 		$finish;
 		
 	end

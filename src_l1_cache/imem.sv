@@ -14,7 +14,7 @@ module imem( // A read-only memory for fetching instructions
 
 	initial begin
 		// ADDI x15, x0, 50    imm=000000110010, rs1=00000, funt3=000, rd=01111, opcode=0010011
-		$readmemh("C:/altera/projects/riscv_cache/memfile.txt", mem); 
+		$readmemh("C:/altera/projects/riscv_cache_one_level/memfile.txt", mem); 
 	end
 	
 endmodule

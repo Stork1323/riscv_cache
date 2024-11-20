@@ -14,8 +14,8 @@ module riscv_cache(
 	output logic [31:0] io_hex4_o,
 	output logic [31:0] io_hex5_o,
 	output logic [31:0] io_hex6_o,
-	output logic [31:0] io_hex7_o,
-	output logic [31:0] No_command_o
+	output logic [31:0] io_hex7_o
+	//output logic [31:0] No_command_o
 	// output logic [31:0] No_acc_o,
 	// output logic [31:0] No_hit_o,
 	// output logic [31:0] No_miss_o
@@ -59,6 +59,18 @@ module riscv_cache(
 
 	logic stall_by_dcache_w;
 	logic stall_by_icache_w;
+
+	/* evaluation */
+	logic [31:0] icache_no_acc_w, icache_no_hit_w, icache_no_miss_w, dcache_no_acc_w, dcache_no_hit_w, dcache_no_miss_w;
+	//logic [31:0] no_command_w;
+
+	subtractor_32bit Icache_hit(
+		.a_i(icache_no_acc_w),
+		.b_i(icache_no_miss_w),
+		.d_o(icache_no_hit_w),
+		.b_o()
+	);
+	/* ---------- */
 	
 	IF IF(
 		.clk_i(clk_i),
@@ -77,7 +89,10 @@ module riscv_cache(
 		.pc_bp_o(pc_bp_w),
 		.hit_d_o(hit_d_w),
 		.stall_by_icache_o(stall_by_icache_w),
-		.No_command_o(No_command_o)
+		.No_command_o(icache_no_acc_w),
+		.no_acc_o(),
+		.no_hit_o(),
+		.no_miss_o(icache_no_miss_w)
 		);
 		
 	ID ID(
@@ -162,6 +177,7 @@ module riscv_cache(
 		.enable_i(~(Stall_WB_w | stall_by_dcache_w | stall_by_icache_w)),
 		.reset_i(Flush_WB_w),
 		.Valid_cpu2cache_mem_i(Valid_cpu2cache_mem_w),
+		.stall_by_icache_i(stall_by_icache_w),
 		.alu_wb_o(alu_wb_w),
 		.pc4_wb_o(pc4_wb_w),
 		.mem_wb_o(mem_wb_w),
@@ -180,10 +196,10 @@ module riscv_cache(
 		.io_hex6_o(io_hex6_o),
 		.io_hex7_o(io_hex7_o),
 		.inst_wb_o(inst_wb_w),
-		.stall_by_dcache_o(stall_by_dcache_w)
-		// .No_acc_o(No_acc_o),
-		// .No_hit_o(No_hit_o),
-		// .No_miss_o(No_miss_o)
+		.stall_by_dcache_o(stall_by_dcache_w),
+		.no_acc_o(dcache_no_acc_w),
+		.no_hit_o(dcache_no_hit_w),
+		.no_miss_o(dcache_no_miss_w)
 		);
 		
 	WB WB(
@@ -204,6 +220,7 @@ module riscv_cache(
 		.rst_ni(rst_ni),
 		.RegWEn_mem_i(RegWEn_mem_w),
 		.RegWEn_wb_i(RegWEn_wb_w),
+		.inst_d_i(inst_d_w),
 		.inst_ex_i(inst_ex_w),
 		.inst_mem_i(inst_mem_w),
 		.inst_wb_i(inst_wb_w),

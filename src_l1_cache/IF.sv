@@ -15,6 +15,9 @@ module IF(
 	output logic [31:0] pc_bp_o,
 	output logic hit_d_o,
 	output logic stall_by_icache_o,
+	output logic [31:0] no_acc_o,
+	output logic [31:0] no_hit_o,
+	output logic [31:0] no_miss_o,
 	output logic [31:0] No_command_o
 	);
 
@@ -36,9 +39,9 @@ module IF(
 	mem_data_type mem_data_w;
 
 	// counter of access, hit, miss cache
-	logic [31:0] no_acc_w;
-	logic [31:0] no_hit_w;
-	logic [31:0] no_miss_w;
+	// logic [31:0] no_acc_w;
+	// logic [31:0] no_hit_w;
+	// logic [31:0] no_miss_w;
 
 	cache_data_type inst_mem_w;
 
@@ -83,15 +86,15 @@ module IF(
 		.mem_data_i(mem_data_w),
 		.cpu_res_o(cpu_result_w),
 		.mem_req_o(mem_req_w),
-		.no_acc_o(no_acc_w),
-		.no_hit_o(no_hit_w),
-		.no_miss_o(no_miss_w),
+		.no_acc_o(no_acc_o),
+		.no_hit_o(no_hit_o),
+		.no_miss_o(no_miss_o),
 		.accessing_o(stall_by_icache_o)
 	);
 	/* ---------------- */
 
 	imem IMEM_IF(
-		.addr_i(mem_req_w.addr),
+		.addr_i({mem_req_w.addr[31:4], 4'b0}),
 		.rst_ni(rst_ni),
 		.inst_o(inst_mem_w),
 		.Valid_memory2cache_o(Valid_memory2cache_w)

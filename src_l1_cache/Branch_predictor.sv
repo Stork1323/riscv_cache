@@ -38,7 +38,7 @@ module Branch_predictor(
 	logic predicted_bit;
 	
 	typedef struct packed {
-		logic [19:0] tag;
+		logic [24:0] tag;
 		logic valid;
 		logic [31:0] target_pc;
 		} BTB_t;
@@ -74,7 +74,7 @@ module Branch_predictor(
 	always_comb begin
 		//if ((pc_sel_w) | (BTB_r[pc_ex_i[6:2]].valid))
 		if (pc_sel_w)
-			BTB_temp_r = {pc_ex_i[31:12], 1'b1, alu_w};
+			BTB_temp_r = {pc_ex_i[31:7], 1'b1, alu_w};
 		//else BTB_temp_r = 53'b0;
 		else BTB_temp_r = BTB_r[pc_ex_i[6:2]];
 	end
@@ -108,38 +108,38 @@ module Branch_predictor(
 	
 	always_ff @(posedge clk_i) begin
 		if (~rst_ni) begin
-			BTB_r[0] <= 53'b0;
-			BTB_r[1] <= 53'b0;
-			BTB_r[2] <= 53'b0;
-			BTB_r[3] <= 53'b0;
-			BTB_r[4] <= 53'b0;
-			BTB_r[5] <= 53'b0;
-			BTB_r[6] <= 53'b0;
-			BTB_r[7] <= 53'b0;
-			BTB_r[8] <= 53'b0;
-			BTB_r[9] <= 53'b0;
-			BTB_r[10] <= 53'b0;
-			BTB_r[11] <= 53'b0;
-			BTB_r[12] <= 53'b0;
-			BTB_r[13] <= 53'b0;
-			BTB_r[14] <= 53'b0;
-			BTB_r[15] <= 53'b0;
-			BTB_r[16] <= 53'b0;
-			BTB_r[17] <= 53'b0;
-			BTB_r[18] <= 53'b0;
-			BTB_r[19] <= 53'b0;
-			BTB_r[20] <= 53'b0;
-			BTB_r[21] <= 53'b0;
-			BTB_r[22] <= 53'b0;
-			BTB_r[23] <= 53'b0;
-			BTB_r[24] <= 53'b0;
-			BTB_r[25] <= 53'b0;
-			BTB_r[26] <= 53'b0;
-			BTB_r[27] <= 53'b0;
-			BTB_r[28] <= 53'b0;
-			BTB_r[29] <= 53'b0;
-			BTB_r[30] <= 53'b0;
-			BTB_r[31] <= 53'b0;
+			BTB_r[0] <= '0;
+			BTB_r[1] <= '0;
+			BTB_r[2] <= '0;
+			BTB_r[3] <= '0;
+			BTB_r[4] <= '0;
+			BTB_r[5] <= '0;
+			BTB_r[6] <= '0;
+			BTB_r[7] <= '0;
+			BTB_r[8] <= '0;
+			BTB_r[9] <= '0;
+			BTB_r[10] <= '0;
+			BTB_r[11] <= '0;
+			BTB_r[12] <= '0;
+			BTB_r[13] <= '0;
+			BTB_r[14] <= '0;
+			BTB_r[15] <= '0;
+			BTB_r[16] <= '0;
+			BTB_r[17] <= '0;
+			BTB_r[18] <= '0;
+			BTB_r[19] <= '0;
+			BTB_r[20] <= '0;
+			BTB_r[21] <= '0;
+			BTB_r[22] <= '0;
+			BTB_r[23] <= '0;
+			BTB_r[24] <= '0;
+			BTB_r[25] <= '0;
+			BTB_r[26] <= '0;
+			BTB_r[27] <= '0;
+			BTB_r[28] <= '0;
+			BTB_r[29] <= '0;
+			BTB_r[30] <= '0;
+			BTB_r[31] <= '0;
 			predicted_2bit[0] <= ST;
 			predicted_2bit[1] <= ST;
 			predicted_2bit[2] <= ST;
@@ -182,7 +182,7 @@ module Branch_predictor(
 	end
 	
 	always_comb begin
-		if ((pc_i[31:12] == BTB_r[pc_i[6:2]].tag) & (BTB_r[pc_i[6:2]].valid))
+		if ((pc_i[31:7] == BTB_r[pc_i[6:2]].tag) & (BTB_r[pc_i[6:2]].valid))
 			hit_w = 1'b1;
 		else hit_w = 1'b0;
 		
