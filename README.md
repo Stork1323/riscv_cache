@@ -8,6 +8,7 @@ Cache is implemented with 8-way set associative architecture. The replacement po
 The detail info is in Documents/Report.docx
 The structure of this repos:
   - Documents: contains some report file, block diagram, code assembly test.
+  - src_pipeline_RV32I: source code for RV32I pipelined structure.
   - src_RV32I_direct_mapped: source code for RV32I has only Data cache with direct mapped structure.
   - src_RV32I_8way_set_associative: source code for RV32I has only Data cache with set associative structure (spec: 8 way).
   - src_l1_cache: source code for RV32I have Instruction cache and Data cache, two cache were designed with set associative structure (spec: 8 way).
