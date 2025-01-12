@@ -15,3 +15,4 @@ The structure of this repos:
   - src_l2_cache: source code for RV32I have 2 level cache system, contain Instruction cache (L1 i-cache), Data cache (L1 d-cache) and L2 cache (unified cache).
   - testbench: contains testbenchs for some modules.
   - benchmark: contains benchmark programs, source codes by c and assembly for testing risc-v core.
+  - src_optimized_cache: source code for optimized cache system (latest version).
