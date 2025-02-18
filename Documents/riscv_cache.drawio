@@ -4905,8 +4905,8 @@
         <mxCell id="pih4PCi26LsmrAAudEzF-147" value="&lt;b&gt;i-cache request, d-cache request, L1 cache request, mem request:&amp;nbsp;&lt;/b&gt;&lt;div&gt;32 bit address&lt;div&gt;128 bit data&lt;/div&gt;&lt;/div&gt;&lt;div&gt;1 bit read/write&lt;/div&gt;&lt;div&gt;1 bit valid&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=1;points=[];autosize=1;strokeColor=none;fillColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
           <mxGeometry x="892.16" y="5301" width="400" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="pih4PCi26LsmrAAudEzF-148" value="&lt;b&gt;L1 cache result, mem result, i-cache data, d-cache data, Victim result:&lt;/b&gt;&lt;div&gt;128 bit data&amp;nbsp;&lt;/div&gt;&lt;div&gt;1 bit ready&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=1;points=[];autosize=1;strokeColor=none;fillColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
-          <mxGeometry x="892.16" y="5391" width="420" height="60" as="geometry" />
+        <mxCell id="pih4PCi26LsmrAAudEzF-148" value="&lt;b&gt;L1 cache result, mem result, i-cache data, d-cache data:&lt;/b&gt;&lt;div&gt;128 bit data&amp;nbsp;&lt;/div&gt;&lt;div&gt;1 bit ready&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=1;points=[];autosize=1;strokeColor=none;fillColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="892.16" y="5391" width="340" height="60" as="geometry" />
         </mxCell>
         <mxCell id="pih4PCi26LsmrAAudEzF-149" value="Victim Cache" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
           <mxGeometry x="319.65999999999997" y="5420" width="120" height="60" as="geometry" />
@@ -5395,8 +5395,8 @@
         <mxCell id="EwJYAnJQEfonkhKUqAjG-4" value="&lt;b&gt;miss&lt;/b&gt;: victim cache miss" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="887.16" y="5456" width="150" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="EwJYAnJQEfonkhKUqAjG-6" value="&lt;b&gt;evict_data, inst_swap, data_swap:&lt;/b&gt;&lt;div&gt;32 bit address&lt;/div&gt;&lt;div&gt;128 bit data&lt;/div&gt;&lt;div&gt;1 bit valid&lt;/div&gt;&lt;div&gt;1 bit diry&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="894.66" y="5486" width="220" height="90" as="geometry" />
+        <mxCell id="EwJYAnJQEfonkhKUqAjG-6" value="&lt;b&gt;evict_data, inst_swap, data_swap, Victim result:&lt;/b&gt;&lt;div&gt;32 bit address&lt;/div&gt;&lt;div&gt;128 bit data&lt;/div&gt;&lt;div&gt;1 bit valid&lt;/div&gt;&lt;div&gt;1 bit diry&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="894.66" y="5486" width="300" height="90" as="geometry" />
         </mxCell>
         <mxCell id="x6NZ2VZ2D5n_-SIw17Xr-1" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="x6NZ2VZ2D5n_-SIw17Xr-2">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
