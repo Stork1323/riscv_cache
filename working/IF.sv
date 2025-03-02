@@ -12,6 +12,8 @@ module IF(
 	input logic [31:0] mispredicted_pc_i,
 	input logic [31:0] alu_pc_i,
 	input mem_data_type i_cache_data_i,
+	input evict_data_type inst_swap_i,
+	output cpu_req_type cpu_req_icache_o,
 	output evict_data_type evict_data_o,
 	output logic [31:0] pc_d_o,
 	output logic [31:0] inst_d_o,
@@ -87,6 +89,7 @@ module IF(
 		.rst_ni(rst_ni),
 		.cpu_req_i(cpu_req_w),
 		.mem_data_i(mem_data_w),
+		.inst_swap_i(inst_swap_i),
 		.evict_data_o(evict_data_o),
 		.cpu_res_o(cpu_result_w),
 		.mem_req_o(mem_req_w),
@@ -141,9 +144,12 @@ module IF(
 	assign cpu_req_w.addr = PC_w;
 	assign cpu_req_w.data = 32'b0;
 	assign cpu_req_w.rw = 1'b0;
-	assign cpu_req_w.valid = 1'b1;
+	//assign cpu_req_w.valid = 1'b1;
+	assign cpu_req_w.valid = enable_i;
 	// assign mem_data_w.data = inst_mem_w;
 	// assign mem_data_w.ready = Valid_memory2cache_w;
+
+	assign cpu_req_icache_o = cpu_req_w;
 	
 endmodule
 

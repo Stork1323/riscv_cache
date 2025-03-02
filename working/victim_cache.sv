@@ -1,11 +1,11 @@
-import victim_cache_def::*;
+import cache_def::*;
 
 module victim_cache(
     input logic clk_i,
     input logic rst_ni,
     input evict_data_type evict_data_i,
-    input mem_req_type l1_cache_request_i,
-    output mem_data_type victim_result_o,
+    input cpu_req_type cpu_req_i,
+    output evict_data_type victim_result_o,
     output logic [31:0] no_acc_o,
     output logic [31:0] no_hit_o,
     output logic [31:0] no_miss_o,
@@ -49,7 +49,7 @@ module victim_cache(
         .tag_req_i(tag_req),
         .tag_write_i(tag_write),
         .address_way_i(address_way_p2a),
-        .cpu_address_i(l1_cache_request_i.addr),
+        .cpu_address_i(cpu_req_i.addr),
         .address_way_o(address_way_a2p),
         .tag_read_o(tag_read),
         .full_o(full_w)
@@ -65,9 +65,9 @@ module victim_cache(
     victim_cache_controller cache_controller(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
-        //.cpu_req_i(cpu_req_i),
-        .l1_cache_request_i(l1_cache_request_i),
-        .evict_data_i(evict_data_i)
+        .cpu_req_i(cpu_req_i),
+        //.l1_cache_request_i(l1_cache_request_i),
+        .evict_data_i(evict_data_i),
         .tag_read_i(tag_read),
         .data_read_i(data_read),
         .full_i(full_w),
@@ -77,7 +77,7 @@ module victim_cache(
         .data_req_o(data_req),
         //.cpu_res_o(cpu_res_o),
         //.mem_req_o(),
-        .victim_result_o(victim_result_o)
+        .victim_result_o(victim_result_o),
         .no_acc_o(no_acc_o),
         .no_hit_o(no_hit_o),
         .no_miss_o(no_miss_o),

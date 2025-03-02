@@ -1,4 +1,4 @@
-import victim_cache_def::*;
+import cache_def::*;
 
 module victim_cache_tag(
     input logic clk_i,

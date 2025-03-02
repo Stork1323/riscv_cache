@@ -1,6 +1,6 @@
 import cache_def::*;
 
-module l2_cache_pLRU(
+module victim_cache_pLRU(
     input logic clk_i,
     input logic rst_ni,
     input logic valid_i,
@@ -184,7 +184,7 @@ module l2_cache_pLRU(
 
 endmodule
 
-module l2_cache_pLRU_node(
+module victim_cache_pLRU_node(
     input logic clk_i,
     input logic rst_ni,
     input logic valid_i,

@@ -17,6 +17,8 @@ module MEM(
 	input logic Valid_cpu2cache_mem_i,
 	input logic stall_by_icache_i,
 	input mem_data_type d_cache_data_i,
+	input evict_data_type data_swap_i,
+	output cpu_req_type cpu_req_dcache_o,
 	output evict_data_type evict_data_o,
 	output logic [31:0] alu_wb_o,
 	output logic [31:0] pc4_wb_o,
@@ -42,8 +44,6 @@ module MEM(
 
 	/* valid signal that memory response to cache */
 	logic Valid_memory2cache_w;
-
-	import cache_def::*;
 	cpu_req_type cpu_req_w;
 	cpu_result_type cpu_result_w;
 	mem_req_type mem_req_w;
@@ -88,6 +88,7 @@ module MEM(
     	.rst_ni(rst_ni),
     	.cpu_req_i(cpu_req_w),
     	.mem_data_i(mem_data_w),
+		.data_swap_i(data_swap_i),
 		.evict_data_o(evict_data_o),
     	.cpu_res_o(cpu_result_w),
     	.mem_req_o(mem_req_w),
@@ -167,5 +168,7 @@ module MEM(
 	// assign No_acc_o = no_acc_w;
 	// assign No_hit_o = no_hit_w;
 	// assign No_miss_o = no_miss_w;
+
+	assign cpu_req_dcache_o = cpu_req_w;
 	
 endmodule

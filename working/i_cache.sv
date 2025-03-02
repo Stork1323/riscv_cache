@@ -5,7 +5,8 @@ module i_cache(
     input logic rst_ni,
     input cpu_req_type cpu_req_i,
     input mem_data_type mem_data_i,
-    output evict_data_type evict_data_type,
+    input evict_data_type inst_swap_i, // instruction swap from victim cache
+    output evict_data_type evict_data_o,
     output cpu_result_type cpu_res_o,
     output mem_req_type mem_req_o,
     output logic [31:0] no_acc_o,
@@ -72,6 +73,7 @@ module i_cache(
         .tag_read_i(tag_read),
         .data_read_i(data_read),
         .full_i(full_w),
+        .inst_swap_i(inst_swap_i),
         .evict_data_o(evict_data_o),
         .tag_write_o(tag_write),
         .tag_req_o(tag_req),

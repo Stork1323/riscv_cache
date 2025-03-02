@@ -80,10 +80,12 @@ module riscv_cache(
 	//logic [31:0] no_command_w;
 
 	/* signals for victim cache */
-	evict_data_type vc_dcache_w, vc_icache_w, evict_data_w;
-	mem_data_type victim_result_w;
+	evict_data_type vc_dcache_w, vc_icache_w, evict_data_w, inst_swap_w, data_swap_w;
+	evict_data_type victim_result_w;
 	logic vc_miss_w;
 	logic [31:0] vc_no_acc_w, vc_no_hit_w, vc_no_miss_w;
+
+	cpu_req_type cpu_req_icache_w, cpu_req_dcache_w, cpu_request_w;
 
 	subtractor_32bit Icache_hit(
 		.a_i(icache_no_acc_w),
@@ -105,6 +107,8 @@ module riscv_cache(
 		.wrong_predicted_i(wrong_predicted_w),
 		.alu_pc_i(alu_pc_w),
 		.i_cache_data_i(i_cache_data_w),
+		.inst_swap_i(inst_swap_w),
+		.cpu_req_icache_o(cpu_req_icache_w),
 		.evict_data_o(vc_icache_w),
 		.pc_d_o(pc_d_w),
 		.inst_d_o(inst_d_w),
@@ -203,6 +207,8 @@ module riscv_cache(
 		.Valid_cpu2cache_mem_i(Valid_cpu2cache_mem_w),
 		.stall_by_icache_i(stall_by_icache_w),
 		.d_cache_data_i(d_cache_data_w),
+		.data_swap_i(data_swap_w),
+		.cpu_req_dcache_o(cpu_req_dcache_w),
 		.evict_data_o(vc_dcache_w),
 		.alu_wb_o(alu_wb_w),
 		.pc4_wb_o(pc4_wb_w),
@@ -289,6 +295,11 @@ module riscv_cache(
     	.l1_cache_result_i(l1_cache_result_w),
 		.ins_evict_data_i(vc_icache_w),
 		.data_evict_data_i(vc_dcache_w),
+		.inst_swap_o(inst_swap_w),
+		.data_swap_o(data_swap_w),
+		.cpu_req_icache_i(cpu_req_icache_w),
+		.cpu_req_dcache_i(cpu_req_dcache_w),
+		.cpu_request_o(cpu_request_w),
 		.victim_result_i(victim_result_w),
 		.vc_miss_i(vc_miss_w),
 		.evict_data_o(evict_data_w),
@@ -332,7 +343,8 @@ module riscv_cache(
     	.clk_i(clk_i),
     	.rst_ni(rst_ni),
     	.evict_data_i(evict_data_w),
-    	.l1_cache_request_i(l1_cache_request_w),
+    	//.l1_cache_request_i(l1_cache_request_w),
+		.cpu_req_i(cpu_request_w),
     	.victim_result_o(victim_result_w),
     	.no_acc_o(vc_no_acc_w),
     	.no_hit_o(vc_no_hit_w),

@@ -9,6 +9,7 @@ module cache_fsm(
     input cache_tag_type tag_read_i,
     input cache_data_type data_read_i,
     input logic full_i,
+    input evict_data_type data_swap_i,
     output evict_data_type evict_data_o,
     output cache_tag_type tag_write_o,
     output cache_req_type tag_req_o,
@@ -53,9 +54,6 @@ module cache_fsm(
     /* Request address from pLRU*/
     //logic [INDEX_WAY-1:0] request_address_w;
 
-    logic full_w; // signal notices that set is full or not
-    assign full_w = full_i;
-
     /* signal enable lru load */
     logic lru_valid;
 
@@ -78,6 +76,10 @@ module cache_fsm(
     logic miss1_w; // if cache miss miss1_w = 1 otherwise 0
 
     evict_data_type v_evict_data;
+
+    // fix bug: data write in victim cache before icache full
+    cache_tag_type st_tag, v_st_tag;
+    cache_data_type st_data, v_st_data;
 
     /* -------------------*/
 
@@ -186,10 +188,8 @@ module cache_fsm(
         miss1_w = 1'b0;
         accessing_o = 1'b0;
 
-        v_evict_data.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
-        v_evict_data.data = data_read;
-        v_evict_data.dirty = tag_read.dirty;
-        v_evict_data.valid = '0;
+        v_st_tag = '{0, 0, 0};
+		v_st_data = st_data;
 
         /* ------------------- Cache FSM --------------------- */
         case (rstate)
@@ -204,39 +204,59 @@ module cache_fsm(
             end
             COMPARE_TAG: begin
                 /* cache hit (tag match and cache entry is valid) */
-                if (cpu_req_i.addr[TAGMSB:TAGLSB] == tag_read.tag && tag_read.valid) begin
+                if ((cpu_req_i.addr[TAGMSB:TAGLSB] == tag_read.tag && tag_read.valid) | data_swap_i.valid) begin
                     v_cpu_res.ready = '1;
 
                     /* write hit */
-                    if (cpu_req_i.rw) begin
-                        /* read/modify cache line */
-                        //tag_req.we = '1;
-                        data_req.we = '1;
+                    // if (cpu_req_i.rw) begin
+                    //     /* read/modify cache line */
+                    //     tag_req.we = '1;
+                    //     data_req.we = '1;
 
-                        /* no change in tag */
-                        tag_write.tag = tag_read.tag;
-                        tag_write.valid = '1;
+                    //     /* no change in tag */
+                    //     tag_write.tag = tag_read.tag;
+                    //     tag_write.valid = '1;
 
-                        /*cache line is dirty */
-                        tag_write.dirty = '1;
-                    end
+                    //     /*cache line is dirty */
+                    //     tag_write.dirty = '1;
+                    // end
+                    //if (full_i == 1'b1) v_evict_data.valid = '1;
+                    
+                    case ({cpu_req_i.rw, data_swap_i.valid})
+                        2'b10, 2'b11: begin
+                            tag_req.we = '1;
+                            data_req.we = '1;
+                            tag_write.tag = tag_read.tag;
+                            tag_write.valid = '1; 
+                            tag_write.dirty = '1;
+                        end
+                        2'b01: begin
+                            tag_req.we = '1;
+                            data_req.we = '1;
+                            tag_write.tag = data_swap_i.addr[TAGMSB:TAGLSB];
+                            tag_write.valid = '1; 
+                            tag_write.dirty = data_swap_i.dirty;
+                            data_write = data_swap_i.data;
+                        end
+                        default: begin
+                            tag_req.we = '0;
+                            tag_write = '{0, 0, 0};
+                            data_req.we = '0;
+                        end
+                    endcase
                     lru_valid = 1'b1;
                     vstate = IDLE;
                     accessing_o = 1'b0;
+
                 end
                 /* cache miss */
                 else begin
+
+                    v_st_tag = tag_read;
+                    v_st_data = data_read;
+
                     accessing_o = 1'b1;
                     miss1_w = 1'b1;
-
-                    /* generate new tag */
-                    tag_req.we = '1;
-                    tag_write.valid = '1;
-                    /* new tag */
-                    tag_write.tag = cpu_req_i.addr[TAGMSB:TAGLSB];
-                    /* cache line is dirty if write */
-                    tag_write.dirty = cpu_req_i.rw;
-
 
                     /* generate memory request on miss */
                     // if (cpu_req_i.rw == 1'b0) v_mem_req.valid = '1;
@@ -270,11 +290,20 @@ module cache_fsm(
                     //     /* wait till write is completed */
                     //     vstate = WRITE_BACK;
                     // end
+                    
                 end
             end
             /* wait for allocating a new cache line */
             ALLOCATE: begin
-                    accessing_o = 1'b1;
+                /* generate new tag */
+                tag_req.we = '1;
+                tag_write.valid = '1;
+                /* new tag */
+                tag_write.tag = cpu_req_i.addr[TAGMSB:TAGLSB];
+                /* cache line is dirty if write */
+                tag_write.dirty = cpu_req_i.rw;
+
+                accessing_o = 1'b1;
 
                 /* debuging */
                 v_mem_req.rw = '0;
@@ -294,8 +323,6 @@ module cache_fsm(
                     //second_compare = 1'b1;
                     vstate = COMPARE_TAG;
                 end
-
-                v_evict_data.valid = '1;
             end
             /* wait for writing back dirty cache line */
             WRITE_BACK: begin
@@ -342,5 +369,37 @@ module cache_fsm(
             address_wb <= {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
     end
     /* ------------- */
+
+    // fix bug: data write in victim cache before icache full
+    //logic st_tag, v_st_tag;
+    always @(posedge clk_i or negedge rst_ni) begin
+        if (!rst_ni) begin
+            st_tag <= '{0, 0, 0};
+            st_data <= '0;
+        end
+        else begin
+            st_tag <= v_st_tag;
+            st_data <= v_st_data;
+        end
+    end
+    //assign v_tag = (st_tag.tag == tag_read.tag) ? tag_read : st_tag;
+
+    always_comb begin
+        if (st_tag.valid == 1'b1 | data_swap_i.valid) begin
+            v_evict_data.valid = '1;
+            v_evict_data.data = st_data;
+            v_evict_data.addr = {st_tag.tag, cpu_req_i.addr[TAGLSB-1:0]};
+            v_evict_data.dirty = tag_read.dirty;
+        end
+        // else if (data_swap_i.valid) begin
+        //     v_evict_data.valid = '1;
+        //     v_evict_data.data = data_read;
+        //     v_evict_data.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
+        //     v_evict_data.dirty = tag_read.dirty;
+        // end
+        else begin
+            v_evict_data = '{0, 0, 0, 0};
+        end
+    end
 
 endmodule

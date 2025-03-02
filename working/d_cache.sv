@@ -5,6 +5,7 @@ module d_cache(
     input logic rst_ni,
     input cpu_req_type cpu_req_i,
     input mem_data_type mem_data_i,
+    input evict_data_type data_swap_i,
     output evict_data_type evict_data_o,
     output cpu_result_type cpu_res_o,
     output mem_req_type mem_req_o,
@@ -71,7 +72,8 @@ module d_cache(
         .tag_read_i(tag_read),
         .data_read_i(data_read),
         .full_i(full_w),
-        .evict_data_type(evict_data_o)
+        .data_swap_i(data_swap_i),
+        .evict_data_o(evict_data_o),
         .tag_write_o(tag_write),
         .tag_req_o(tag_req),
         .data_write_o(data_write),

@@ -1,22 +1,22 @@
 /* cache finite state machine */
-import victim_cache_def::*;
+import cache_def::*;
 
 module victim_cache_controller(
     input logic clk_i,
     input logic rst_ni,
-    //input cpu_req_type cpu_req_i,
-    input mem_req_type l1_cache_request_i,
-    input cache_tag_type tag_read_i,
+    input cpu_req_type cpu_req_i,
+    //input mem_req_type l1_cache_request_i,
+    input vc_cache_tag_type tag_read_i,
     input cache_data_type data_read_i,
     input logic full_i,
     input evict_data_type evict_data_i,
     output logic vc_miss_o,
-    output cache_tag_type tag_write_o,
-    output cache_req_type tag_req_o,
+    output vc_cache_tag_type tag_write_o,
+    output vc_cache_req_type tag_req_o,
     output cache_data_type data_write_o,
-    output cache_req_type data_req_o,
+    output vc_cache_req_type data_req_o,
     //output cpu_result_type cpu_res_o,
-    output mem_data_type victim_result_o
+    output evict_data_type victim_result_o,
     //output mem_req_type mem_req_o,
     output logic [31:0] no_acc_o,
     output logic [31:0] no_hit_o,
@@ -29,9 +29,9 @@ module victim_cache_controller(
         IDLE,
         COMPARE_TAG,
         UPDATE_VC
-    } cache_state_type;
+    } vc_state_type;
 
-    cache_state_type vstate, rstate;
+    vc_state_type vstate, rstate;
 
     /* interface signals to cache tag memory */
     vc_cache_tag_type tag_read; // tag read result
@@ -42,11 +42,11 @@ module victim_cache_controller(
     /* interface signals to cache data memory */
     cache_data_type data_read; // cache line read data
     cache_data_type data_write; // cache line write data
-    cache_req_type data_req; // data request
+    vc_cache_req_type data_req; // data request
     assign data_read = data_read_i;
 
     /* temporary variable for cache controller result */
-    mem_data_type v_vc_res;
+    evict_data_type v_vc_res;
 
     /* temporary variable for memory controller request */
     // mem_req_type v_mem_req;
@@ -79,6 +79,8 @@ module victim_cache_controller(
     logic miss1_w; // if cache miss miss1_w = 1 otherwise 0
 
     logic v_vc_miss; // victim cache miss signal
+
+    evict_data_type r_evict_data;
 
     /* -------------------*/
 
@@ -135,7 +137,7 @@ module victim_cache_controller(
         /* default values for all signals */
         /* no state change by default */
         vstate = rstate;
-        v_vc_res = '{0, 0};
+        v_vc_res = '{0, 0, 0, 0};
         tag_write = '{0, 0, 0};
 
         /* read current cache line by default */
@@ -145,25 +147,26 @@ module victim_cache_controller(
         data_write = evict_data_i.data;
 
 		v_vc_res.data = data_read;
+        v_vc_res.addr = cpu_req_i.addr;
 
         lru_valid = 1'b0; // default vaule of signal load lru
         acc1_w = 1'b0; // default value of access count incr
         //hit1_w = 1'b0;
         miss1_w = 1'b0;
         accessing_o = 1'b0;
-
+		v_vc_miss = 1'b1;
 
         /* ------------------- Cache FSM --------------------- */
         case (rstate)
             IDLE: begin
-                if (l1_cache_request_i.valid) begin
-                    vstate = COMPARE_TAG;
-                    acc1_w = 1'b1;
-                end
-                else if (evict_data_i.valid) begin
-                    vstate = UPDATE_VC;
-                end
-                unique case ({l1_cache_request_i.valid}, {evict_data_i.valid})
+                // if (l1_cache_request_i.valid) begin
+                    // vstate = COMPARE_TAG;
+                    // acc1_w = 1'b1;
+                // end
+                // else if (evict_data_i.valid) begin
+                    // vstate = UPDATE_VC;
+                // end
+                unique case ({cpu_req_i.valid, evict_data_i.valid})
                     2'b01, 2'b11: begin
                             vstate = UPDATE_VC;
                             acc1_w = 1'b0;
@@ -172,7 +175,7 @@ module victim_cache_controller(
                             vstate = COMPARE_TAG;
                             acc1_w = 1'b1;
                     end
-                    2'b00, default: begin
+                    default: begin
                             vstate = IDLE;
                             acc1_w = 1'b0;
                     end
@@ -180,8 +183,9 @@ module victim_cache_controller(
             end
             COMPARE_TAG: begin
                 /* cache hit (tag match and cache entry is valid) */
-                if (l1_cache_request_i.addr[TAGMSB_VC:TAGLSB_VC] == tag_read.tag && tag_read.valid) begin
-                    v_vc_res.ready = '1;
+                if (cpu_req_i.addr[TAGMSB_VC:TAGLSB_VC] == tag_read.tag && tag_read.valid) begin
+                    v_vc_res.valid = '1;
+                    v_vc_res.dirty = tag_read.dirty;
                     tag_req.we = '1;
                     data_req.we = '1;
 
@@ -201,17 +205,20 @@ module victim_cache_controller(
                     accessing_o = 1'b1;
                     miss1_w = 1'b1;
                     v_vc_miss = 1'b1;
-                    v_vc_res.ready = '1;
+                    v_vc_res.valid = '0;
                     vstate = IDLE;
                 end
             end
-            SWAP: begin
-                v_vc_res.ready = '1;
+            UPDATE_VC: begin
+                v_vc_res.valid = '0;
                 tag_req.we = '1;
                 data_req.we = '1;
-                tag_write.tag = evict_data_i.addr[TAGMSB_VC:TAGLSB_VC];
+                //tag_write.tag = evict_data_i.addr[TAGMSB_VC:TAGLSB_VC];
+                tag_write.tag = r_evict_data.addr[TAGMSB_VC:TAGLSB_VC];
                 tag_write.valid = '1;
-                tag_write.dirty = evict_data_i.dirty;
+                //tag_write.dirty = evict_data_i.dirty;
+                tag_write.dirty = r_evict_data.dirty;
+                data_write = r_evict_data.data;
                 lru_valid = 1'b1;
                 vstate = IDLE;
                 
@@ -232,5 +239,11 @@ module victim_cache_controller(
     assign data_write_o = data_write;
     assign data_req_o = data_req;
     assign lru_valid_o = lru_valid;
+
+    /* reg to store evict data */
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+        if (!rst_ni) r_evict_data <= '{0, 0, 0, 0};
+        else r_evict_data <= evict_data_i;
+    end
 
 endmodule
