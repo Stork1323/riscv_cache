@@ -123,31 +123,6 @@ module cache_arbiter(
         endcase
     end
 
-    /* debuging */
-    // cpu_req_type cpu_req_r;
-    // always_ff @(posedge clk_i, negedge rst_ni) begin
-    //     if (!rst_ni) begin
-    //         cpu_req_r <= '{0, 0, 0, 0};
-    //     end
-    //     else begin
-    //         cpu_req_r <= cpu_req_icache_i;
-    //     end
-    // end
-    logic debug_r;
-    always_ff @(posedge clk_i) begin
-        if (cpu_req_dcache_i.valid) begin
-            debug_r <= 1'b0;
-        end
-        else if (cpu_req_icache_i.valid) begin
-            debug_r <= 1'b1;
-        end
-        else begin
-            debug_r <= 1'b1;
-        end
-    end
-    /*----------*/
-
-
     always_comb begin
         case ({cpu_req_icache_i.valid, cpu_req_dcache_i.valid})
             2'b10, 2'b11: begin 
@@ -161,14 +136,7 @@ module cache_arbiter(
                 data_swap_o = victim_result_i;
             end
             default: begin
-                if (debug_r == 1'b0) cpu_request_o.addr = cpu_req_dcache_i.addr;
-                else if (debug_r == 1'b1) cpu_request_o.addr = cpu_req_icache_i.addr;
-                else cpu_request_o.addr = '0;
-                //cpu_request_o.addr = cpu_req_r.addr; // debuging
-                cpu_request_o.valid = '0;
-                cpu_request_o.data = '0;
-                cpu_request_o.rw = '0;
-                //cpu_request_o = '{0, 0, 0, 0};
+                cpu_request_o = '{0, 0, 0, 0};
                 inst_swap_o = '{0, 0, 0, 0};
                 data_swap_o = '{0, 0, 0, 0};
             end
