@@ -5,8 +5,8 @@ module l2_cache_pLRU(
     input logic rst_ni,
     input logic valid_i,
     input logic [INDEX_L2-1:0] index_i,
-    input logic [INDEX_WAY-1:0] address_i,
-    output logic [INDEX_WAY-1:0] address_o
+    input logic [INDEX_WAY_L2-1:0] address_i,
+    output logic [INDEX_WAY_L2-1:0] address_o
 );
 
     /* pseudo LRU tree 8 ways
@@ -39,7 +39,7 @@ module l2_cache_pLRU(
 
     logic L0, L1, L2, L3, L4, L5, L6;
     logic L1_w,  L2_w,  L3_w,  L4_w,  L5_w,  L6_w; // signal notices that a node need to change
-    logic [INDEX_WAY-1:0] pLRU;
+    logic [INDEX_WAY_L2-1:0] pLRU;
 
     /*
     always_comb begin

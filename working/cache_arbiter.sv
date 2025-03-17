@@ -145,20 +145,43 @@ module cache_arbiter(
             debug_r <= 1'b1;
         end
     end
+    logic delay_valid_icache_req; // the signal delay 1 cycle of icache_req_valid
+    logic delay_valid_dcache_req; // the signal delay 1 cycle of dcache_req_valid
+    always_ff @(posedge clk_i) begin
+        delay_valid_icache_req <= cpu_req_icache_i.valid;
+        delay_valid_dcache_req <= cpu_req_dcache_i.valid;
+    end
+
     /*----------*/
 
+    always_comb begin
+        case ({delay_valid_icache_req, delay_valid_dcache_req})
+            2'b10, 2'b11: begin
+                inst_swap_o = victim_result_i;
+                data_swap_o = '{0, 0, 0, 0};
+            end
+            2'b01: begin
+                inst_swap_o = '{0, 0, 0, 0};
+                data_swap_o = victim_result_i;
+            end
+            default: begin
+                inst_swap_o = '{0, 0, 0, 0};
+                data_swap_o = '{0, 0, 0, 0};
+            end
+        endcase
+    end
 
     always_comb begin
         case ({cpu_req_icache_i.valid, cpu_req_dcache_i.valid})
             2'b10, 2'b11: begin 
                 cpu_request_o = cpu_req_icache_i;
-                inst_swap_o = victim_result_i;
-                data_swap_o = '{0, 0, 0, 0};
+                // inst_swap_o = victim_result_i;
+                // data_swap_o = '{0, 0, 0, 0};
             end
             2'b01: begin
                 cpu_request_o = cpu_req_dcache_i;
-                inst_swap_o = '{0, 0, 0, 0};
-                data_swap_o = victim_result_i;
+                // inst_swap_o = '{0, 0, 0, 0};
+                // data_swap_o = victim_result_i;
             end
             default: begin
                 if (debug_r == 1'b0) cpu_request_o.addr = cpu_req_dcache_i.addr;
@@ -168,9 +191,9 @@ module cache_arbiter(
                 cpu_request_o.valid = '0;
                 cpu_request_o.data = '0;
                 cpu_request_o.rw = '0;
-                //cpu_request_o = '{0, 0, 0, 0};
-                inst_swap_o = '{0, 0, 0, 0};
-                data_swap_o = '{0, 0, 0, 0};
+                // cpu_request_o = '{0, 0, 0, 0};
+                // inst_swap_o = '{0, 0, 0, 0};
+                // data_swap_o = '{0, 0, 0, 0};
             end
         endcase
     end

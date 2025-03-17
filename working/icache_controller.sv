@@ -10,6 +10,7 @@ module icache_controller(
     input cache_data_type data_read_i,
     input logic full_i,
     input evict_data_type inst_swap_i,
+    input logic vc_miss_i,
     output evict_data_type evict_data_o,
     output cache_tag_type tag_write_o,
     output cache_req_type tag_req_o,
@@ -85,6 +86,7 @@ module icache_controller(
     cache_data_type st_data, v_st_data;
 
     /* -------------------*/
+    logic accessing_w;
 
     /* count for additional variables */
     adder_32bit A_access (
@@ -150,10 +152,10 @@ module icache_controller(
         tag_req.we = '0;
 
         /* direct map index for tag */
-        tag_req.index = cpu_req_i.addr[INDEX+3:4];
+        tag_req.index = cpu_req_i.addr[INDEX_L1+3:4];
 
         /* direct map index for cache data */
-        data_req.index = cpu_req_i.addr[INDEX+3:4];
+        data_req.index = cpu_req_i.addr[INDEX_L1+3:4];
 
         /* modify correct word (32-bit) based on address */
         data_write = data_read;
@@ -187,9 +189,9 @@ module icache_controller(
         acc1_w = 1'b0; // default value of access count incr
         //hit1_w = 1'b0;
         miss1_w = 1'b0;
-        accessing_o = 1'b0;
+        accessing_w = 1'b0;
 
-       
+       v_evict_data.valid = 1'b0;
 
         v_st_tag = '{0, 0, 0};
 		v_st_data = st_data;
@@ -202,13 +204,13 @@ module icache_controller(
                 if (rst_ni) begin
                     vstate = COMPARE_TAG;
                     acc1_w = 1'b1;
-                    accessing_o = 1'b1;
+                    accessing_w = 1'b1;
                 end
                  //v_st_tag = '0;
             end
             COMPARE_TAG: begin
                 /* cache hit (tag match and cache entry is valid) */
-                if ((cpu_req_i.addr[TAGMSB:TAGLSB] == tag_read.tag && tag_read.valid) | inst_swap_i.valid) begin
+                if ((cpu_req_i.addr[TAGMSB_L1:TAGLSB_L1] == tag_read.tag && tag_read.valid) | inst_swap_i.valid) begin
                     v_cpu_res.ready = '1;
                     
                     // if (st_tag.valid == 1'b1) begin
@@ -223,20 +225,26 @@ module icache_controller(
 
                     /* write hit */
                     if (inst_swap_i.valid) begin
+                        if (tag_read.valid) v_evict_data.valid = 1'b1;
                         /* read/modify cache line */
                         tag_req.we = '1;
                         data_req.we = '1;
 
                         /* no change in tag */
-                        tag_write.tag = inst_swap_i.addr[TAGMSB:TAGLSB];
+                        tag_write.tag = inst_swap_i.addr[TAGMSB_L1:TAGLSB_L1];
                         tag_write.valid = '1;
                         data_write = inst_swap_i.data;
 
                         /*cache line is dirty */
                         tag_write.dirty = inst_swap_i.dirty;
+                        lru_valid = 1'b1;
+
+                        //if (vc_miss_i == 1'b0) accessing_w = 1'b1;
                     end
+                    //else accessing_w = 1'b0;
+                    accessing_w = 1'b0;
                     vstate = COMPARE_TAG;
-                    accessing_o = 1'b0;
+                    
                     
                 end
                 /* cache miss */
@@ -244,7 +252,7 @@ module icache_controller(
                     v_st_tag = tag_read;
                     v_st_data = data_read;
 
-                    accessing_o = 1'b1;
+                    accessing_w = 1'b1;
                     miss1_w = 1'b1;
                     
                     /* generate memory request on miss */
@@ -253,7 +261,7 @@ module icache_controller(
                     if (cpu_req_i.rw == 1'b1 && full_i == 1'b1 && tag_read.dirty == 1'b1) begin
                         /* miss with dirty line */
                         /* write back address */
-                        v_mem_req.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
+                        v_mem_req.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB_L1-1:0]};
                         v_mem_req.rw = '1;
 
                         /* wait till write is completed */
@@ -266,13 +274,14 @@ module icache_controller(
             end
             /* wait for allocating a new cache line */
             ALLOCATE: begin
+                // if (tag_read.valid) v_evict_data.valid = 1'b1;
+                // /* generate new tag */
+                //     tag_req.we = '1;
+                //     tag_write.valid = '1;
+                //     tag_write.tag = cpu_req_i.addr[TAGMSB_L1:TAGLSB_L1];
+                //     tag_write.dirty = cpu_req_i.rw;
                 /* generate new tag */
-                    tag_req.we = '1;
-                    tag_write.valid = '1;
-                    tag_write.tag = cpu_req_i.addr[TAGMSB:TAGLSB];
-                    tag_write.dirty = cpu_req_i.rw;
-                /* generate new tag */
-                 accessing_o = 1'b1;
+                 accessing_w = 1'b1;
                 //     tag_req.we = '1;
                 //     tag_write.valid = '1;
 
@@ -294,6 +303,13 @@ module icache_controller(
                     //second_compare = 1'b1;
                     vstate = COMPARE_TAG;
                     lru_valid = 1'b1;
+
+                    if (tag_read.valid) v_evict_data.valid = 1'b1;
+                /* generate new tag */
+                    tag_req.we = '1;
+                    tag_write.valid = '1;
+                    tag_write.tag = cpu_req_i.addr[TAGMSB_L1:TAGLSB_L1];
+                    tag_write.dirty = cpu_req_i.rw;
                 end
 
                 // if (tag_read.valid == 1'b1) begin
@@ -305,7 +321,7 @@ module icache_controller(
             end
             /* wait for writing back dirty cache line */
             WRITE_BACK: begin
-                accessing_o = 1'b1;
+                accessing_w = 1'b1;
                 /* write back is completed */
                 if (mem_data_i.ready) begin
                     /* issue new memory request (allocating a new line) */
@@ -347,21 +363,25 @@ module icache_controller(
     //assign v_tag = (st_tag.tag == tag_read.tag) ? tag_read : st_tag;
 
     always_comb begin
-        if (st_tag.valid == 1'b1 | inst_swap_i.valid) begin
-            v_evict_data.valid = '1;
-            v_evict_data.data = st_data;
-            v_evict_data.addr = {st_tag.tag, cpu_req_i.addr[TAGLSB-1:0]};
+        if ((tag_read.valid == 1'b1) | inst_swap_i.valid) begin
+            
+            v_evict_data.data = data_read;
+            v_evict_data.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB_L1-1:0]};
             v_evict_data.dirty = tag_read.dirty;
         end
         // else if (inst_swap_i.valid) begin
         //     v_evict_data.valid = '1;
-        //     v_evict_data.data = data_read;
-        //     v_evict_data.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
-        //     v_evict_data.dirty = tag_read.dirty;
+            // v_evict_data.data = data_read;
+            // v_evict_data.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
+            // v_evict_data.dirty = tag_read.dirty;
         // end
         else begin
-            v_evict_data = '{0, 0, 0, 0};
+           v_evict_data.data = '0;
+            v_evict_data.addr = '0;
+            v_evict_data.dirty = '0;
         end
     end
+
+    assign accessing_o = accessing_w | (~vc_miss_i);
 
 endmodule

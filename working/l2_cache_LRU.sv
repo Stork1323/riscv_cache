@@ -5,32 +5,30 @@ module l2_cache_LRU(
     input logic rst_ni,
     input logic valid_i,
     input logic [INDEX_L2-1:0] index_i,
-    input logic [INDEX_WAY-1:0] address_i,
-    output logic [INDEX_WAY-1:0] address_o
+    input logic [INDEX_WAY_L2-1:0] address_i,
+    output logic [INDEX_WAY_L2-1:0] address_o
 );
 
     /* Info: this LRU module use for 8 way set-associative cache */
 
-    logic  [INDEX_WAY-1:0] age_bits_b0_w; // age bits for block 0
-    logic  [INDEX_WAY-1:0] age_bits_b1_w; // age bits for block 1
-    logic  [INDEX_WAY-1:0] age_bits_b2_w; // age bits for block 2
-    logic  [INDEX_WAY-1:0] age_bits_b3_w; // age bits for block 3
-    logic  [INDEX_WAY-1:0] age_bits_b4_w; // age bits for block 4
-    logic  [INDEX_WAY-1:0] age_bits_b5_w; // age bits for block 5
-    logic  [INDEX_WAY-1:0] age_bits_b6_w; // age bits for block 6
-    logic  [INDEX_WAY-1:0] age_bits_b7_w; // age bits for block 7
+    logic  [INDEX_WAY_L2-1:0] age_bits_b0_w; // age bits for block 0
+    logic  [INDEX_WAY_L2-1:0] age_bits_b1_w; // age bits for block 1
+    logic  [INDEX_WAY_L2-1:0] age_bits_b2_w; // age bits for block 2
+    logic  [INDEX_WAY_L2-1:0] age_bits_b3_w; // age bits for block 3
+    logic  [INDEX_WAY_L2-1:0] age_bits_b4_w; // age bits for block 4
+    logic  [INDEX_WAY_L2-1:0] age_bits_b5_w; // age bits for block 5
+    logic  [INDEX_WAY_L2-1:0] age_bits_b6_w; // age bits for block 6
+    logic  [INDEX_WAY_L2-1:0] age_bits_b7_w; // age bits for block 7
     
-
-    logic [INDEX_WAY-1:0] age_bits_b0_r [DEPTH_L2];
-    logic [INDEX_WAY-1:0] age_bits_b1_r [DEPTH_L2];
-    logic [INDEX_WAY-1:0] age_bits_b2_r [DEPTH_L2];
-    logic [INDEX_WAY-1:0] age_bits_b3_r [DEPTH_L2];
-    logic [INDEX_WAY-1:0] age_bits_b4_r [DEPTH_L2];
-    logic [INDEX_WAY-1:0] age_bits_b5_r [DEPTH_L2];
-    logic [INDEX_WAY-1:0] age_bits_b6_r [DEPTH_L2];
-    logic [INDEX_WAY-1:0] age_bits_b7_r [DEPTH_L2];
+    logic [INDEX_WAY_L2-1:0] age_bits_b0_r [DEPTH_L2];
+    logic [INDEX_WAY_L2-1:0] age_bits_b1_r [DEPTH_L2];
+    logic [INDEX_WAY_L2-1:0] age_bits_b2_r [DEPTH_L2];
+    logic [INDEX_WAY_L2-1:0] age_bits_b3_r [DEPTH_L2];
+    logic [INDEX_WAY_L2-1:0] age_bits_b4_r [DEPTH_L2];
+    logic [INDEX_WAY_L2-1:0] age_bits_b5_r [DEPTH_L2];
+    logic [INDEX_WAY_L2-1:0] age_bits_b6_r [DEPTH_L2];
+    logic [INDEX_WAY_L2-1:0] age_bits_b7_r [DEPTH_L2];
     
-
     logic sel_way_b0; // select way bit of block 0 is or of all bits in age_bits_b0
     logic sel_way_b1; // select way bit of block 1 is or of all bits in age_bits_b1
     logic sel_way_b2; // select way bit of block 2 is or of all bits in age_bits_b2

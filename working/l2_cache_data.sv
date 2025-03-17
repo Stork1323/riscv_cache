@@ -4,16 +4,16 @@ module l2_cache_data(
     input logic clk_i,
     input l2_cache_req_type data_req_i,
     input cache_data_type data_write_i,
-    input logic [INDEX_WAY-1:0] address_way_tag2data_i,
+    input logic [INDEX_WAY_L2-1:0] address_way_tag2data_i,
     output cache_data_type data_read_o
 );
 
     //logic [WAYS*DATA_WIDTH-1:0] data_mem[0:DEPTH-1];
-    cache_data_type data_mem[0:DEPTH_L2-1][0:WAYS-1];
+    cache_data_type data_mem[0:DEPTH_L2-1][0:WAYS_L2-1];
 
     initial begin
         for (int i = 0; i < DEPTH_L2; i++)
-            for (int j = 0; j < WAYS; j++)
+            for (int j = 0; j < WAYS_L2; j++)
                 data_mem[i][j] = '0;
     end
 

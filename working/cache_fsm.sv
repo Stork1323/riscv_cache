@@ -149,10 +149,10 @@ module cache_fsm(
         tag_req.we = '0;
 
         /* direct map index for tag */
-        tag_req.index = cpu_req_i.addr[INDEX+3:4];
+        tag_req.index = cpu_req_i.addr[INDEX_L1+3:4];
 
         /* direct map index for cache data */
-        data_req.index = cpu_req_i.addr[INDEX+3:4];
+        data_req.index = cpu_req_i.addr[INDEX_L1+3:4];
 
         /* modify correct word (32-bit) based on address */
         data_write = data_read;
@@ -204,7 +204,7 @@ module cache_fsm(
             end
             COMPARE_TAG: begin
                 /* cache hit (tag match and cache entry is valid) */
-                if ((cpu_req_i.addr[TAGMSB:TAGLSB] == tag_read.tag && tag_read.valid) | data_swap_i.valid) begin
+                if ((cpu_req_i.addr[TAGMSB_L1:TAGLSB_L1] == tag_read.tag && tag_read.valid) | data_swap_i.valid) begin
                     v_cpu_res.ready = '1;
 
                     /* write hit */
@@ -233,7 +233,7 @@ module cache_fsm(
                         2'b01: begin
                             tag_req.we = '1;
                             data_req.we = '1;
-                            tag_write.tag = data_swap_i.addr[TAGMSB:TAGLSB];
+                            tag_write.tag = data_swap_i.addr[TAGMSB_L1:TAGLSB_L1];
                             tag_write.valid = '1; 
                             tag_write.dirty = data_swap_i.dirty;
                             data_write = data_swap_i.data;
@@ -267,7 +267,7 @@ module cache_fsm(
                     if (tag_read.dirty == 1'b1 && tag_read.valid == 1'b1) begin // fixing
                         /* miss with dirty line */
                         /* write back address */
-                        v_mem_req.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
+                        v_mem_req.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB_L1-1:0]};
                         v_mem_req.rw = '1;
 
                         /* wait till write is completed */
@@ -299,7 +299,7 @@ module cache_fsm(
                 tag_req.we = '1;
                 tag_write.valid = '1;
                 /* new tag */
-                tag_write.tag = cpu_req_i.addr[TAGMSB:TAGLSB];
+                tag_write.tag = cpu_req_i.addr[TAGMSB_L1:TAGLSB_L1];
                 /* cache line is dirty if write */
                 tag_write.dirty = cpu_req_i.rw;
 
@@ -366,7 +366,7 @@ module cache_fsm(
         if (~rst_ni)
             address_wb <= 32'b0;
         else if (rstate == COMPARE_TAG) 
-            address_wb <= {tag_read.tag, cpu_req_i.addr[TAGLSB-1:0]};
+            address_wb <= {tag_read.tag, cpu_req_i.addr[TAGLSB_L1-1:0]};
     end
     /* ------------- */
 
@@ -388,7 +388,7 @@ module cache_fsm(
         if (st_tag.valid == 1'b1 | data_swap_i.valid) begin
             v_evict_data.valid = '1;
             v_evict_data.data = st_data;
-            v_evict_data.addr = {st_tag.tag, cpu_req_i.addr[TAGLSB-1:0]};
+            v_evict_data.addr = {st_tag.tag, cpu_req_i.addr[TAGLSB_L1-1:0]};
             v_evict_data.dirty = tag_read.dirty;
         end
         // else if (data_swap_i.valid) begin

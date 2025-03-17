@@ -2,11 +2,12 @@ package cache_def;
     // data structure for cache tag and data
 
     /* parameters for L1 cache */
-    parameter int TAGMSB = 31; // tag msb
-    parameter int TAGLSB = 6; // tag lsb : 4 bits offset (2 bit byte offset, 2 bit for 4 word), 2 bit index
-    parameter int INDEX = 2; // Number of block bits
-    parameter int DEPTH = 4; // Number of blocks
-    parameter int WAYS = 8; // Number of ways
+    parameter int TAGMSB_L1 = 31; // tag msb
+    parameter int TAGLSB_L1 = 6; // tag lsb : 4 bits offset (2 bit byte offset, 2 bit for 4 word), 2 bit index
+    parameter int INDEX_L1 = 2; // Number of block bits
+    parameter int DEPTH_L1 = 4; // Number of blocks
+    parameter int WAYS_L1 = 4; // Number of ways
+    parameter int INDEX_WAY_L1 = 2; // Number bit of way address
     /*-----------*/
     /* parameters for L2 cache */
     parameter int TAGMSB_L2 = 31; // tag msb
@@ -14,6 +15,7 @@ package cache_def;
     parameter int INDEX_L2 = 4; // number of block bits l2 cache
     parameter int DEPTH_L2 = 16; // number of blocks l2 cache
     parameter int WAYS_L2 = 8; // Number of ways
+    parameter int INDEX_WAY_L2 = 3; // Number bit of way address
     /*----------*/
     /* parameters for victim cache */
     parameter int TAGMSB_VC = 31; // tag msb
@@ -25,14 +27,13 @@ package cache_def;
     /*----------*/
     
     parameter int DATA_WIDTH = 128; // Number bits of cache line data
-    parameter int INDEX_WAY = 3; // Number bit of way address
-    parameter int NO_TAG_TYPE = 2+(TAGMSB-TAGLSB+1); // number bits of cache tag type, include 1 valid bit, 1 dirty bit, tag bits
+    parameter int NO_TAG_TYPE = 2+(TAGMSB_L1-TAGLSB_L1+1); // number bits of cache tag type, include 1 valid bit, 1 dirty bit, tag bits
 
     // data structure for cache tag
     typedef struct packed {
         logic valid; // valid bit
         logic dirty; // dirty bit
-        logic [TAGMSB:TAGLSB] tag; // tag bits
+        logic [TAGMSB_L1:TAGLSB_L1] tag; // tag bits
     } cache_tag_type;
 
     typedef struct packed {
@@ -50,7 +51,7 @@ package cache_def;
 
     // data structure for cache memory request 
     typedef struct {
-        logic [INDEX-1:0] index;
+        logic [INDEX_L1-1:0] index;
         logic we; // write enable
     } cache_req_type;
 

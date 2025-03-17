@@ -5,21 +5,21 @@ module l2_cache_tag(
     input logic clk_i,
     input l2_cache_req_type tag_req_i,
     input l2_cache_tag_type tag_write_i,
-    input logic [INDEX_WAY-1:0] address_way_i,
+    input logic [INDEX_WAY_L2-1:0] address_way_i,
     input logic [TAGMSB_L2:0] cpu_address_i,
-    output logic [INDEX_WAY-1:0] address_way_o,
+    output logic [INDEX_WAY_L2-1:0] address_way_o,
     output l2_cache_tag_type tag_read_o,
     output logic full_o // signal notices that set is full or not
 );
 
     //logic [NO_TAG_TYPE*WAYS-1:0] tag_mem[0:DEPTH-1];
-    l2_cache_tag_type tag_mem[0:DEPTH_L2-1][0:WAYS-1];
+    l2_cache_tag_type tag_mem[0:DEPTH_L2-1][0:WAYS_L2-1];
 
     // hit signal of ways
-    logic hit[0:WAYS-1];
+    logic hit[0:WAYS_L2-1];
 
     // signal from comparation from tags
-    logic pre_hit[0:WAYS-1];
+    logic pre_hit[0:WAYS_L2-1];
 
 
     // temporary variable for tag_read_o
@@ -27,12 +27,12 @@ module l2_cache_tag(
 
     //
     //logic [INDEX_WAY-1:0] address_temp;
-    logic [INDEX_WAY-1:0] way_w;
-    logic [INDEX_WAY-1:0] address_way_w;
+    logic [INDEX_WAY_L2-1:0] way_w;
+    logic [INDEX_WAY_L2-1:0] address_way_w;
 
     initial begin
         for (int i = 0; i < DEPTH_L2; i++)
-            for (int j = 0; j < WAYS; j++)
+            for (int j = 0; j < WAYS_L2; j++)
                 tag_mem[i][j] = '0;
     end
 

@@ -132,104 +132,147 @@ module victim_cache_controller(
 
     assign vc_miss_o = v_vc_miss;
 
+    /* debug for cpu request valid not trigger when compare between cpu req address and tag read */
+    logic delay_cpu_req_valid;
+    always_ff @(posedge clk_i) begin
+        delay_cpu_req_valid <= cpu_req_i.valid;
+    end
+
     /* Combinational block */
-    always_comb begin
-        /* default values for all signals */
-        /* no state change by default */
-        vstate = rstate;
-        v_vc_res = '{0, 0, 0, 0};
-        tag_write = '{0, 0, 0};
+    // always_comb begin
+    //     /* default values for all signals */
+    //     /* no state change by default */
+    //     vstate = rstate;
+    //     v_vc_res = '{0, 0, 0, 0};
+    //     tag_write = '{0, 0, 0};
 
-        /* read current cache line by default */
-        data_req.we = '0;
-        /* read tag by default */
-        tag_req.we = '0;
-        data_write = evict_data_i.data;
+    //     /* read current cache line by default */
+    //     data_req.we = '0;
+    //     /* read tag by default */
+    //     tag_req.we = '0;
+    //     data_write = evict_data_i.data;
 
-		v_vc_res.data = data_read;
-        v_vc_res.addr = cpu_req_i.addr;
+	// 	v_vc_res.data = data_read;
+    //     v_vc_res.addr = cpu_req_i.addr;
 
-        lru_valid = 1'b0; // default vaule of signal load lru
-        acc1_w = 1'b0; // default value of access count incr
-        //hit1_w = 1'b0;
-        miss1_w = 1'b0;
-        accessing_o = 1'b0;
-		v_vc_miss = 1'b1;
+    //     lru_valid = 1'b0; // default vaule of signal load lru
+    //     acc1_w = 1'b0; // default value of access count incr
+    //     //hit1_w = 1'b0;
+    //     miss1_w = 1'b0;
+    //     accessing_o = 1'b0;
+	// 	v_vc_miss = 1'b1;
 
-        /* ------------------- Cache FSM --------------------- */
-        case (rstate)
-            IDLE: begin
-                // if (l1_cache_request_i.valid) begin
-                    // vstate = COMPARE_TAG;
-                    // acc1_w = 1'b1;
-                // end
-                // else if (evict_data_i.valid) begin
-                    // vstate = UPDATE_VC;
-                // end
-                unique case ({cpu_req_i.valid, evict_data_i.valid})
-                    2'b01, 2'b11: begin
-                            vstate = UPDATE_VC;
-                            acc1_w = 1'b0;
-                    end
-                    2'b10: begin
-                            vstate = COMPARE_TAG;
-                            acc1_w = 1'b1;
-                    end
-                    default: begin
-                            vstate = IDLE;
-                            acc1_w = 1'b0;
-                    end
-                endcase
-            end
-            COMPARE_TAG: begin
-                /* cache hit (tag match and cache entry is valid) */
-                if (cpu_req_i.addr[TAGMSB_VC:TAGLSB_VC] == tag_read.tag && tag_read.valid) begin
-                    v_vc_res.valid = '1;
-                    v_vc_res.dirty = tag_read.dirty;
-                    tag_req.we = '1;
-                    data_req.we = '1;
+    //     /* ------------------- Cache FSM --------------------- */
+    //     case (rstate)
+    //         // IDLE: begin
+    //         //     // if (l1_cache_request_i.valid) begin
+    //         //         // vstate = COMPARE_TAG;
+    //         //         // acc1_w = 1'b1;
+    //         //     // end
+    //         //     // else if (evict_data_i.valid) begin
+    //         //         // vstate = UPDATE_VC;
+    //         //     // end
+    //         //     unique case ({cpu_req_i.valid, evict_data_i.valid})
+    //         //         2'b01, 2'b11: begin
+    //         //                 vstate = UPDATE_VC;
+    //         //                 acc1_w = 1'b0;
+    //         //         end
+    //         //         2'b10: begin
+    //         //                 vstate = COMPARE_TAG;
+    //         //                 acc1_w = 1'b1;
+    //         //         end
+    //         //         default: begin
+    //         //                 vstate = IDLE;
+    //         //                 acc1_w = 1'b0;
+    //         //         end
+    //         //     endcase
+    //         // end
+    //         COMPARE_TAG: begin
+    //             /* cache hit (tag match and cache entry is valid) */
+    //             if (evict_data_i.valid) begin
+    //                 vstate = UPDATE_VC;
+    //             end
+    //             //else if (cpu_req_i.valid) begin
+    //             else if (delay_cpu_req_valid) begin
+    //                 if (cpu_req_i.addr[TAGMSB_VC:TAGLSB_VC] == tag_read.tag && tag_read.valid) begin
+    //                     v_vc_res.valid = '1;
+    //                     v_vc_res.dirty = tag_read.dirty;
+    //                     tag_req.we = '1;
+    //                     data_req.we = '1;
 
-                    tag_write.tag = evict_data_i.addr[TAGMSB_VC:TAGLSB_VC];
-                    tag_write.valid = '1;
+    //                     tag_write.tag = evict_data_i.addr[TAGMSB_VC:TAGLSB_VC];
+    //                     tag_write.valid = '1;
 
-                    /*cache line is dirty */
-                    tag_write.dirty = evict_data_i.dirty;
-                    //end
-                    lru_valid = 1'b1;
-                    vstate = IDLE;
-                    accessing_o = 1'b1;
-                    v_vc_miss = 1'b0;
-                end
-                /* cache miss */
-                else begin
-                    accessing_o = 1'b1;
-                    miss1_w = 1'b1;
-                    v_vc_miss = 1'b1;
-                    v_vc_res.valid = '0;
-                    vstate = IDLE;
-                end
-            end
-            UPDATE_VC: begin
-                v_vc_res.valid = '0;
-                tag_req.we = '1;
-                data_req.we = '1;
-                //tag_write.tag = evict_data_i.addr[TAGMSB_VC:TAGLSB_VC];
-                tag_write.tag = r_evict_data.addr[TAGMSB_VC:TAGLSB_VC];
-                tag_write.valid = '1;
-                //tag_write.dirty = evict_data_i.dirty;
-                tag_write.dirty = r_evict_data.dirty;
-                data_write = r_evict_data.data;
-                lru_valid = 1'b1;
-                vstate = IDLE;
+    //                     /*cache line is dirty */
+    //                     tag_write.dirty = evict_data_i.dirty;
+    //                     //end
+    //                     lru_valid = 1'b1;
+    //                     vstate = COMPARE_TAG;
+    //                     accessing_o = 1'b1;
+    //                     v_vc_miss = 1'b0;
+    //                 end
+    //                 /* cache miss */
+    //                 else begin
+    //                     accessing_o = 1'b1;
+    //                     miss1_w = 1'b1;
+    //                     v_vc_miss = 1'b1;
+    //                     v_vc_res.valid = '0;
+    //                     vstate = COMPARE_TAG;
+    //                 end
+    //             end
+    //             else vstate = COMPARE_TAG;
+    //         end
+    //         UPDATE_VC: begin
+    //             v_vc_res.valid = '0;
+    //             tag_req.we = '1;
+    //             data_req.we = '1;
+    //             //tag_write.tag = evict_data_i.addr[TAGMSB_VC:TAGLSB_VC];
+    //             tag_write.tag = r_evict_data.addr[TAGMSB_VC:TAGLSB_VC];
+    //             tag_write.valid = '1;
+    //             //tag_write.dirty = evict_data_i.dirty;
+    //             tag_write.dirty = r_evict_data.dirty;
+    //             data_write = r_evict_data.data;
+    //             lru_valid = 1'b1;
+    //             vstate = COMPARE_TAG;
                 
-            end
-        endcase
+    //         end
+    //         default: vstate = COMPARE_TAG;
+    //     endcase
+    // end
+
+    always_comb begin
+        v_vc_res.data = data_read;
+        v_vc_res.addr = cpu_req_i.addr;
+        if (delay_cpu_req_valid && (cpu_req_i.addr[TAGMSB_VC:TAGLSB_VC] == tag_read.tag) && tag_read.valid) begin
+            v_vc_res.valid = '1;
+            v_vc_res.dirty = tag_read.dirty;
+            v_vc_miss = 1'b0;
+        end else begin
+            v_vc_res.valid = '0;
+            v_vc_res.dirty = '0;
+            v_vc_miss = 1'b1;
+        end
+        if (evict_data_i.valid) begin
+            tag_req.we = '1;
+            data_req.we = '1;
+            tag_write.valid = '1;
+            tag_write.tag = evict_data_i.addr[TAGMSB_VC:TAGLSB_VC];
+            tag_write.dirty = evict_data_i.dirty;
+            data_write = evict_data_i.data;
+            lru_valid = 1'b1;
+        end else begin
+            tag_req.we = '0;
+            data_req.we = '0;
+            tag_write = '{0, 0, 0};
+            data_write = '0;
+            lru_valid = '0;
+        end
     end
 
 
     always_ff @(posedge clk_i, negedge rst_ni) begin
         if (~rst_ni)
-            rstate <= IDLE;
+            rstate <= COMPARE_TAG;
         else
             rstate <= vstate;
     end 

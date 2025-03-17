@@ -6,6 +6,7 @@ module i_cache(
     input cpu_req_type cpu_req_i,
     input mem_data_type mem_data_i,
     input evict_data_type inst_swap_i, // instruction swap from victim cache
+    input logic vc_miss_i,
     output evict_data_type evict_data_o,
     output cpu_result_type cpu_res_o,
     output mem_req_type mem_req_o,
@@ -19,10 +20,10 @@ module i_cache(
     logic lru_valid;
 
     /* address of ways from cache array to pLRU */
-    logic [INDEX_WAY-1:0] address_way_a2p;
+    logic [INDEX_WAY_L1-1:0] address_way_a2p;
 
     /* address of ways from pLRU to cache array */
-    logic [INDEX_WAY-1:0] address_way_p2a;
+    logic [INDEX_WAY_L1-1:0] address_way_p2a;
 
     /* interface signals to cache tag memory */
     cache_tag_type tag_read; // tag read result
@@ -42,7 +43,7 @@ module i_cache(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(lru_valid),
-        .index_i(cpu_req_i.addr[INDEX+3:4]),
+        .index_i(cpu_req_i.addr[INDEX_L1+3:4]),
         .address_i(address_way_a2p),
         .address_o(address_way_p2a)
     );
@@ -74,6 +75,7 @@ module i_cache(
         .data_read_i(data_read),
         .full_i(full_w),
         .inst_swap_i(inst_swap_i),
+        .vc_miss_i(vc_miss_i),
         .evict_data_o(evict_data_o),
         .tag_write_o(tag_write),
         .tag_req_o(tag_req),

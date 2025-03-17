@@ -16,10 +16,10 @@ module l2_cache(
     logic lru_valid;
 
     /* address of ways from cache array to pLRU */
-    logic [INDEX_WAY-1:0] address_way_a2p;
+    logic [INDEX_WAY_L2-1:0] address_way_a2p;
 
     /* address of ways from pLRU to cache array */
-    logic [INDEX_WAY-1:0] address_way_p2a;
+    logic [INDEX_WAY_L2-1:0] address_way_p2a;
 
     /* interface signals to cache tag memory */
     l2_cache_tag_type tag_read; // tag read result

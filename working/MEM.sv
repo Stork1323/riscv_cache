@@ -18,6 +18,7 @@ module MEM(
 	input logic stall_by_icache_i,
 	input mem_data_type d_cache_data_i,
 	input evict_data_type data_swap_i,
+	input vc_miss_i,
 	output cpu_req_type cpu_req_dcache_o,
 	output evict_data_type evict_data_o,
 	output logic [31:0] alu_wb_o,

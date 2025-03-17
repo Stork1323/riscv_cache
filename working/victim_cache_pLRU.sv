@@ -4,9 +4,9 @@ module victim_cache_pLRU(
     input logic clk_i,
     input logic rst_ni,
     input logic valid_i,
-    input logic [INDEX_L2-1:0] index_i,
-    input logic [INDEX_WAY-1:0] address_i,
-    output logic [INDEX_WAY-1:0] address_o
+    input logic [INDEX_VC-1:0] index_i,
+    input logic [INDEX_WAY_VC-1:0] address_i,
+    output logic [INDEX_WAY_VC-1:0] address_o
 );
 
     /* pseudo LRU tree 8 ways
@@ -39,7 +39,7 @@ module victim_cache_pLRU(
 
     logic L0, L1, L2, L3, L4, L5, L6;
     logic L1_w,  L2_w,  L3_w,  L4_w,  L5_w,  L6_w; // signal notices that a node need to change
-    logic [INDEX_WAY-1:0] pLRU;
+    logic [INDEX_WAY_VC-1:0] pLRU;
 
     /*
     always_comb begin
@@ -188,18 +188,18 @@ module victim_cache_pLRU_node(
     input logic clk_i,
     input logic rst_ni,
     input logic valid_i,
-    input logic [INDEX_L2-1:0] index_i,
+    input logic [INDEX_VC-1:0] index_i,
     input logic value_i,
     output logic load_left_o,
     output logic load_right_o,
     output logic load_o
 );
 
-    logic [DEPTH_L2-1:0] L_r;
+    logic [DEPTH_VC-1:0] L_r;
 
     always_ff @(posedge clk_i) begin
         if (~rst_ni) begin
-            L_r <= {DEPTH_L2{1'b0}};
+            L_r <= {DEPTH_VC{1'b0}};
         end
         else if (valid_i) begin
             L_r[index_i] <= value_i;
