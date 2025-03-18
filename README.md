@@ -1,5 +1,6 @@
 # riscv_cache
-![image](https://github.com/user-attachments/assets/ca53c4bf-d9b6-4a93-9b8a-75b567b322a8)
+![image](https://github.com/user-attachments/assets/6103d0bb-ad7f-46bb-85dc-6b58c9b0a40e)
+
 
 The name of topic is Design and Optimization of a Two-level Cache System for RISC-V Architecture.
 This repos design RV32I with detailed code using SystemVerilog.
