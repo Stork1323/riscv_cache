@@ -12,7 +12,11 @@
 # 8 : 0x00
 # 9 : 0x10
 
-# Address of data memory: from 2048->6144 (step=4)
+# Address of data memory: from 2048->6140 (step=4)
+    # 2048 -> 3068 : data
+    # 3072 -> 3324 : output peripherals
+    # 3328 -> 3580 : input peripherals
+    # 3584 -> 6140 : data (reserved)
 
 addi x1, x0, 1
 addi x2, x0, 2
