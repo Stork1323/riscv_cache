@@ -90,6 +90,7 @@ module MEM(
     	.cpu_req_i(cpu_req_w),
     	.mem_data_i(mem_data_w),
 		.data_swap_i(data_swap_i),
+		.vc_miss_i(vc_miss_i),
 		.evict_data_o(evict_data_o),
     	.cpu_res_o(cpu_result_w),
     	.mem_req_o(mem_req_w),
@@ -151,7 +152,7 @@ module MEM(
 	// assign mem_data_w.ready = Valid_memory2cache_w;
 
 	/* control stall for previous stages */
-	assign stall_by_dcache_o = (Valid_cpu2cache_mem_i&(~cpu_result_w.ready)) ? 1'b1 : 1'b0;
+	assign stall_by_dcache_o = ((Valid_cpu2cache_mem_i&(~cpu_result_w.ready)) ? 1'b1 : 1'b0) | (~vc_miss_i);
 	
 	// logic cpu_result_ready_d, cpu_result_ready_r;
 	// assign cpu_result_ready_d = cpu_result_w.ready;

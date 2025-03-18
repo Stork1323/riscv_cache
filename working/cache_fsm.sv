@@ -10,6 +10,7 @@ module cache_fsm(
     input cache_data_type data_read_i,
     input logic full_i,
     input evict_data_type data_swap_i,
+    input logic vc_miss_i,
     output evict_data_type evict_data_o,
     output cache_tag_type tag_write_o,
     output cache_req_type tag_req_o,
@@ -187,6 +188,8 @@ module cache_fsm(
         //hit1_w = 1'b0;
         miss1_w = 1'b0;
         accessing_o = 1'b0;
+        
+        v_evict_data.valid = 1'b0;
 
         v_st_tag = '{0, 0, 0};
 		v_st_data = st_data;
@@ -244,6 +247,7 @@ module cache_fsm(
                             data_req.we = '0;
                         end
                     endcase
+                    if (data_swap_i.valid && tag_read.valid) v_evict_data.valid = 1'b1;
                     lru_valid = 1'b1;
                     vstate = IDLE;
                     accessing_o = 1'b0;
@@ -295,13 +299,7 @@ module cache_fsm(
             end
             /* wait for allocating a new cache line */
             ALLOCATE: begin
-                /* generate new tag */
-                tag_req.we = '1;
-                tag_write.valid = '1;
-                /* new tag */
-                tag_write.tag = cpu_req_i.addr[TAGMSB_L1:TAGLSB_L1];
-                /* cache line is dirty if write */
-                tag_write.dirty = cpu_req_i.rw;
+                
 
                 accessing_o = 1'b1;
 
@@ -321,6 +319,14 @@ module cache_fsm(
 
                     /* re-compare tag for write miss (need modify correct word) */
                     //second_compare = 1'b1;
+                    if (tag_read.valid) v_evict_data.valid = 1'b1;
+                    /* generate new tag */
+                    tag_req.we = '1;
+                    tag_write.valid = '1;
+                    /* new tag */
+                    tag_write.tag = cpu_req_i.addr[TAGMSB_L1:TAGLSB_L1];
+                    /* cache line is dirty if write */
+                    tag_write.dirty = cpu_req_i.rw;
                     vstate = COMPARE_TAG;
                 end
             end
@@ -385,10 +391,9 @@ module cache_fsm(
     //assign v_tag = (st_tag.tag == tag_read.tag) ? tag_read : st_tag;
 
     always_comb begin
-        if (st_tag.valid == 1'b1 | data_swap_i.valid) begin
-            v_evict_data.valid = '1;
-            v_evict_data.data = st_data;
-            v_evict_data.addr = {st_tag.tag, cpu_req_i.addr[TAGLSB_L1-1:0]};
+        if (tag_read.valid == 1'b1 | data_swap_i.valid) begin
+            v_evict_data.data = data_read;
+            v_evict_data.addr = {tag_read.tag, cpu_req_i.addr[TAGLSB_L1-1:0]};
             v_evict_data.dirty = tag_read.dirty;
         end
         // else if (data_swap_i.valid) begin
@@ -398,7 +403,9 @@ module cache_fsm(
         //     v_evict_data.dirty = tag_read.dirty;
         // end
         else begin
-            v_evict_data = '{0, 0, 0, 0};
+           v_evict_data.data = '0;
+            v_evict_data.addr = '0;
+            v_evict_data.dirty = '0;
         end
     end
 

@@ -247,11 +247,11 @@ module victim_cache_controller(
             v_vc_res.valid = '1;
             v_vc_res.dirty = tag_read.dirty;
             v_vc_miss = 1'b0;
-        end else begin
+        end //else begin
             v_vc_res.valid = '0;
             v_vc_res.dirty = '0;
             v_vc_miss = 1'b1;
-        end
+        //end
         if (evict_data_i.valid) begin
             tag_req.we = '1;
             data_req.we = '1;
@@ -260,13 +260,13 @@ module victim_cache_controller(
             tag_write.dirty = evict_data_i.dirty;
             data_write = evict_data_i.data;
             lru_valid = 1'b1;
-        end else begin
+        end //else begin
             tag_req.we = '0;
             data_req.we = '0;
             tag_write = '{0, 0, 0};
             data_write = '0;
             lru_valid = '0;
-        end
+        //end
     end
 
 
