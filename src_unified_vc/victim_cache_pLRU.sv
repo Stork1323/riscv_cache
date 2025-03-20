@@ -89,7 +89,7 @@ module victim_cache_pLRU(
     //     end
     // end
 
-    l2_cache_pLRU_node NODE_L0(
+    victim_cache_pLRU_node NODE_L0(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(valid_i),
@@ -100,7 +100,7 @@ module victim_cache_pLRU(
         .load_o(L0)
     );
 
-    l2_cache_pLRU_node NODE_L1(
+    victim_cache_pLRU_node NODE_L1(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(L1_w),
@@ -111,7 +111,7 @@ module victim_cache_pLRU(
         .load_o(L1)
     );
 
-    l2_cache_pLRU_node NODE_L2(
+    victim_cache_pLRU_node NODE_L2(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(L2_w),
@@ -122,7 +122,7 @@ module victim_cache_pLRU(
         .load_o(L2)
     );
 
-    l2_cache_pLRU_node NODE_L3(
+    victim_cache_pLRU_node NODE_L3(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(L3_w),
@@ -133,7 +133,7 @@ module victim_cache_pLRU(
         .load_o(L3)
     );
 
-    l2_cache_pLRU_node NODE_L4(
+    victim_cache_pLRU_node NODE_L4(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(L4_w),
@@ -144,7 +144,7 @@ module victim_cache_pLRU(
         .load_o(L4)
     );
 
-    l2_cache_pLRU_node NODE_L5(
+    victim_cache_pLRU_node NODE_L5(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(L5_w),
@@ -155,7 +155,7 @@ module victim_cache_pLRU(
         .load_o(L5)
     );
 
-    l2_cache_pLRU_node NODE_L6(
+    victim_cache_pLRU_node NODE_L6(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(L6_w),

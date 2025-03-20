@@ -12,10 +12,10 @@ module IF(
 	input logic [31:0] mispredicted_pc_i,
 	input logic [31:0] alu_pc_i,
 	input mem_data_type i_cache_data_i,
-	input evict_data_type inst_swap_i,
-	input logic vc_miss_i,
-	output cpu_req_type cpu_req_icache_o,
-	output evict_data_type evict_data_o,
+	//input evict_data_type inst_swap_i,
+	//input logic vc_miss_i,
+	//output cpu_req_type cpu_req_icache_o,
+	//output evict_data_type evict_data_o,
 	output logic [31:0] pc_d_o,
 	output logic [31:0] inst_d_o,
 	output logic [31:0] pc4_d_o,
@@ -52,6 +52,10 @@ module IF(
 	cache_data_type inst_mem_w;
 
 	logic Valid_memory2cache_w;
+
+	evict_data_type evict_data_w;
+	evict_data_type victim_result_w;
+  logic vc_miss_w;
 
 	mux2to1_32bit MUX_IF(
 		.a_i(PC_add4_w), 
@@ -90,9 +94,9 @@ module IF(
 		.rst_ni(rst_ni),
 		.cpu_req_i(cpu_req_w),
 		.mem_data_i(mem_data_w),
-		.inst_swap_i(inst_swap_i),
-		.vc_miss_i(vc_miss_i),
-		.evict_data_o(evict_data_o),
+		.inst_swap_i(victim_result_w),
+		.vc_miss_i(vc_miss_w),
+		.evict_data_o(evict_data_w),
 		.cpu_res_o(cpu_result_w),
 		.mem_req_o(mem_req_w),
 		.no_acc_o(no_acc_o),
@@ -101,6 +105,21 @@ module IF(
 		.accessing_o(stall_by_icache_o)
 	);
 	/* ---------------- */
+
+  /* add victim cache for connecting instruction cache */
+	i_victim_cache I_VICTIM_CACHE(
+    	.clk_i(clk_i),
+    	.rst_ni(rst_ni),
+    	.evict_data_i(evict_data_w),
+    	//.l1_cache_request_i(l1_cache_request_w),
+		  .cpu_req_i(cpu_req_w),
+    	.victim_result_o(victim_result_w),
+    	.no_acc_o(),
+    	.no_hit_o(),
+    	.no_miss_o(),
+    	.vc_miss_o(vc_miss_w)
+  );
+  /* ------------------------------------------------- */
 
 	// imem IMEM_IF(
 	// 	.addr_i(mem_req_w.addr),
@@ -151,7 +170,7 @@ module IF(
 	// assign mem_data_w.data = inst_mem_w;
 	// assign mem_data_w.ready = Valid_memory2cache_w;
 
-	assign cpu_req_icache_o = cpu_req_w;
+	//assign cpu_req_icache_o = cpu_req_w;
 	
 endmodule
 

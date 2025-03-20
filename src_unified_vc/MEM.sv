@@ -17,10 +17,10 @@ module MEM(
 	input logic Valid_cpu2cache_mem_i,
 	input logic stall_by_icache_i,
 	input mem_data_type d_cache_data_i,
-	input evict_data_type data_swap_i,
-	input vc_miss_i,
-	output cpu_req_type cpu_req_dcache_o,
-	output evict_data_type evict_data_o,
+	//input evict_data_type data_swap_i,
+	//input vc_miss_i,
+	//output cpu_req_type cpu_req_dcache_o,
+	//output evict_data_type evict_data_o,
 	output logic [31:0] alu_wb_o,
 	output logic [31:0] pc4_wb_o,
 	output logic [31:0] mem_wb_o,
@@ -52,6 +52,10 @@ module MEM(
 
 	cache_data_type memory_data_w;
 
+	evict_data_type evict_data_w;
+	evict_data_type victim_result_w;
+  logic vc_miss_w;
+  
 	// counter of access, hit, miss cache
 	// logic [31:0] no_acc_w;
 	// logic [31:0] no_hit_w;
@@ -89,15 +93,30 @@ module MEM(
     	.rst_ni(rst_ni),
     	.cpu_req_i(cpu_req_w),
     	.mem_data_i(mem_data_w),
-		.data_swap_i(data_swap_i),
-		.vc_miss_i(vc_miss_i),
-		.evict_data_o(evict_data_o),
+		.data_swap_i(victim_result_w),
+		.vc_miss_i(vc_miss_w),
+		.evict_data_o(evict_data_w),
     	.cpu_res_o(cpu_result_w),
     	.mem_req_o(mem_req_w),
 		.no_acc_o(no_acc_o),
 		.no_hit_o(no_hit_o),
 		.no_miss_o(no_miss_o)
 	);
+
+  /* add victim cache for connecting with data cache */
+	d_victim_cache D_VICTIM_CACHE(
+    	.clk_i(clk_i),
+    	.rst_ni(rst_ni),
+    	.evict_data_i(evict_data_w),
+    	//.l1_cache_request_i(l1_cache_request_w),
+		  .cpu_req_i(cpu_req_w),
+    	.victim_result_o(victim_result_w),
+    	.no_acc_o(),
+    	.no_hit_o(),
+    	.no_miss_o(),
+    	.vc_miss_o(vc_miss_w)
+);
+  /* ----------------------------------------------- */
 
 	assign mem_w = cpu_result_w.data;
 
@@ -152,7 +171,7 @@ module MEM(
 	// assign mem_data_w.ready = Valid_memory2cache_w;
 
 	/* control stall for previous stages */
-	assign stall_by_dcache_o = ((Valid_cpu2cache_mem_i&(~cpu_result_w.ready)) ? 1'b1 : 1'b0) | (~vc_miss_i);
+	assign stall_by_dcache_o = ((Valid_cpu2cache_mem_i&(~cpu_result_w.ready)) ? 1'b1 : 1'b0);// | (~vc_miss_w);
 	
 	// logic cpu_result_ready_d, cpu_result_ready_r;
 	// assign cpu_result_ready_d = cpu_result_w.ready;
@@ -171,6 +190,6 @@ module MEM(
 	// assign No_hit_o = no_hit_w;
 	// assign No_miss_o = no_miss_w;
 
-	assign cpu_req_dcache_o = cpu_req_w;
+	//assign cpu_req_dcache_o = cpu_req_w;
 	
 endmodule
