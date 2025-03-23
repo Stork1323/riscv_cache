@@ -133,7 +133,7 @@ module cache_arbiter(
     //         cpu_req_r <= cpu_req_icache_i;
     //     end
     // end
-    logic debug_r = 1'b1;
+    logic debug_r;
     always_ff @(posedge clk_i) begin
         if (cpu_req_dcache_i.valid) begin
             debug_r <= 1'b0;
@@ -147,14 +147,9 @@ module cache_arbiter(
     end
     logic delay_valid_icache_req; // the signal delay 1 cycle of icache_req_valid
     logic delay_valid_dcache_req; // the signal delay 1 cycle of dcache_req_valid
-    always_ff @(posedge clk_i, negedge rst_ni) begin
-      if (!rst_ni) begin
-        delay_valid_icache_req <= '0;
-        delay_valid_dcache_req <= '0;
-      end else begin
+    always_ff @(posedge clk_i) begin
         delay_valid_icache_req <= cpu_req_icache_i.valid;
         delay_valid_dcache_req <= cpu_req_dcache_i.valid;
-      end
     end
 
     /*----------*/

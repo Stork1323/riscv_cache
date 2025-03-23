@@ -1,7 +1,5 @@
 
-import cache_def::*;
-
-module riscv_cache(
+module pipeline(
 	input logic clk_i,
 	input logic rst_ni,
 	input logic [31:0] io_sw_i,
@@ -17,10 +15,6 @@ module riscv_cache(
 	output logic [31:0] io_hex5_o,
 	output logic [31:0] io_hex6_o,
 	output logic [31:0] io_hex7_o
-	//output logic [31:0] No_command_o
-	// output logic [31:0] No_acc_o,
-	// output logic [31:0] No_hit_o,
-	// output logic [31:0] No_miss_o
 	);
 	
 	logic BrEq_w, BrLt_w, RegWEn_w;
@@ -58,70 +52,23 @@ module riscv_cache(
 	/* valid signal when CPU access cache */
 	logic Valid_cpu2cache_ex_w;
 	logic Valid_cpu2cache_mem_w;
-
-	logic stall_by_dcache_w;
-	logic stall_by_icache_w;
-
-	/* declare variables for cache */
-	mem_data_type i_cache_data_w;
-	mem_req_type i_cache_request_w;
-	mem_data_type d_cache_data_w;
-	mem_req_type d_cache_request_w;
-
-	mem_data_type l1_cache_result_w;
-	mem_req_type l1_cache_request_w;
-
-	mem_data_type mem_result_w;
-	mem_req_type mem_request_w;
-	/* --------------------------- */
-
-	/* evaluation */
-	logic [31:0] icache_no_acc_w, icache_no_hit_w, icache_no_miss_w, dcache_no_acc_w, dcache_no_hit_w, dcache_no_miss_w, l2cache_no_acc_w, l2cache_no_hit_w, l2cache_no_miss_w;
-	//logic [31:0] no_command_w;
-
-	/* signals for victim cache */
-	evict_data_type vc_dcache_w, vc_icache_w, evict_data_w, inst_swap_w, data_swap_w;
-	evict_data_type victim_result_w;
-	logic vc_miss_w;
-	logic [31:0] vc_no_acc_w, vc_no_hit_w, vc_no_miss_w;
-
-	cpu_req_type cpu_req_icache_w, cpu_req_dcache_w, cpu_request_w;
-
-	subtractor_32bit Icache_hit(
-		.a_i(icache_no_acc_w),
-		.b_i(icache_no_miss_w),
-		.d_o(icache_no_hit_w),
-		.b_o()
-	);
-	/* ---------- */
 	
 	IF IF(
 		.clk_i(clk_i),
 		.rst_ni(rst_ni),
 		.hit_i(hit_w),
 		.predicted_pc_i(predicted_pc_w),
-		.enable_pc_i(~(Stall_IF_w | stall_by_dcache_w | stall_by_icache_w)),
-		.enable_i(~(Stall_ID_w | stall_by_dcache_w  | stall_by_icache_w)),
+		.enable_pc_i(~Stall_IF_w),
+		.enable_i(~Stall_ID_w),
 		.reset_i(Flush_ID_w),
 		.mispredicted_pc_i(pc4_ex_w),
 		.wrong_predicted_i(wrong_predicted_w),
 		.alu_pc_i(alu_pc_w),
-		.i_cache_data_i(i_cache_data_w),
-		.inst_swap_i(inst_swap_w),
-		.vc_miss_i(vc_miss_w),
-		.cpu_req_icache_o(cpu_req_icache_w),
-		.evict_data_o(vc_icache_w),
 		.pc_d_o(pc_d_w),
 		.inst_d_o(inst_d_w),
 		.pc4_d_o(pc4_d_w),
 		.pc_bp_o(pc_bp_w),
-		.hit_d_o(hit_d_w),
-		.stall_by_icache_o(stall_by_icache_w),
-		.No_command_o(icache_no_acc_w),
-		.i_cache_request_o(i_cache_request_w),
-		.no_acc_o(),
-		.no_hit_o(),
-		.no_miss_o(icache_no_miss_w)
+		.hit_d_o(hit_d_w)
 		);
 		
 	ID ID(
@@ -133,7 +80,7 @@ module riscv_cache(
 		.pc4_d_i(pc4_d_w),
 		.RegWEn_i(RegWEn_wb_w),
 		.rsW_i(rsW_wb_w),
-		.enable_i(~(Stall_EX_w | stall_by_dcache_w  | stall_by_icache_w)),
+		.enable_i(~Stall_EX_w),
 		.reset_i(Flush_EX_w),
 		.hit_d_i(hit_d_w),
 		.rs1_ex_o(rs1_ex_w),
@@ -174,7 +121,7 @@ module riscv_cache(
 		.Bsel_haz_i(Bsel_haz_w),
 		.inst_ex_i(inst_ex_w),
 		.data_wb_i(data_wb_w),
-		.enable_i(~(Stall_MEM_w | stall_by_dcache_w  | stall_by_icache_w)),
+		.enable_i(~Stall_MEM_w),
 		.reset_i(Flush_MEM_w),
 		.Valid_cpu2cache_ex_i(Valid_cpu2cache_ex_w),
 		.alu_mem_o(alu_mem_w),
@@ -201,40 +148,29 @@ module riscv_cache(
 		.WBSel_mem_i(WBSel_mem_w),
 		.RegWEn_mem_i(RegWEn_mem_w),
 		.rsW_mem_i(rsW_mem_w),
-		//.io_sw_i(io_sw_i),
+		.io_sw_i(io_sw_i),
 		.inst_mem_i(inst_mem_w),
-		.enable_i(~(Stall_WB_w | stall_by_dcache_w | stall_by_icache_w)),
+		.enable_i(~Stall_WB_w),
 		.reset_i(Flush_WB_w),
 		.Valid_cpu2cache_mem_i(Valid_cpu2cache_mem_w),
-		.stall_by_icache_i(stall_by_icache_w),
-		.d_cache_data_i(d_cache_data_w),
-		.data_swap_i(data_swap_w),
-		.vc_miss_i(vc_miss_w),
-		.cpu_req_dcache_o(cpu_req_dcache_w),
-		.evict_data_o(vc_dcache_w),
 		.alu_wb_o(alu_wb_w),
 		.pc4_wb_o(pc4_wb_w),
 		.mem_wb_o(mem_wb_w),
 		.WBSel_wb_o(WBSel_wb_w),
 		.RegWEn_wb_o(RegWEn_wb_w),
 		.rsW_wb_o(rsW_wb_w),
-		// .io_lcd_o(io_lcd_o),
-		// .io_ledg_o(io_ledg_o),
-		// .io_ledr_o(io_ledr_o),
-		// .io_hex0_o(io_hex0_o),
-		// .io_hex1_o(io_hex1_o),
-		// .io_hex2_o(io_hex2_o),
-		// .io_hex3_o(io_hex3_o),
-		// .io_hex4_o(io_hex4_o),
-		// .io_hex5_o(io_hex5_o),
-		// .io_hex6_o(io_hex6_o),
-		// .io_hex7_o(io_hex7_o),
-		.inst_wb_o(inst_wb_w),
-		.stall_by_dcache_o(stall_by_dcache_w),
-		.d_cache_request_o(d_cache_request_w),
-		.no_acc_o(dcache_no_acc_w),
-		.no_hit_o(dcache_no_hit_w),
-		.no_miss_o(dcache_no_miss_w)
+		.io_lcd_o(io_lcd_o),
+		.io_ledg_o(io_ledg_o),
+		.io_ledr_o(io_ledr_o),
+		.io_hex0_o(io_hex0_o),
+		.io_hex1_o(io_hex1_o),
+		.io_hex2_o(io_hex2_o),
+		.io_hex3_o(io_hex3_o),
+		.io_hex4_o(io_hex4_o),
+		.io_hex5_o(io_hex5_o),
+		.io_hex6_o(io_hex6_o),
+		.io_hex7_o(io_hex7_o),
+		.inst_wb_o(inst_wb_w)
 		);
 		
 	WB WB(
@@ -255,7 +191,6 @@ module riscv_cache(
 		.rst_ni(rst_ni),
 		.RegWEn_mem_i(RegWEn_mem_w),
 		.RegWEn_wb_i(RegWEn_wb_w),
-		.inst_d_i(inst_d_w),
 		.inst_ex_i(inst_ex_w),
 		.inst_mem_i(inst_mem_w),
 		.inst_wb_i(inst_wb_w),
@@ -283,77 +218,12 @@ module riscv_cache(
 		.pc_i(pc_bp_w),
 		.pc_ex_i(pc_ex_w),
 		.hit_ex_i(hit_ex_w),
-		.enable_i(~(stall_by_dcache_w  | stall_by_icache_w)),
 		.hit_o(hit_w),
 		.predicted_pc_o(predicted_pc_w),
 		.wrong_predicted_o(wrong_predicted_w),
 		.alu_pc_o(alu_pc_w)
 		);
-
-	cache_arbiter Arbiter(
-   		.clk_i(clk_i),
-   		.rst_ni(rst_ni),
-    	.i_cache_request_i(i_cache_request_w),
-    	.d_cache_request_i(d_cache_request_w),
-    	.l1_cache_result_i(l1_cache_result_w),
-		.ins_evict_data_i(vc_icache_w),
-		.data_evict_data_i(vc_dcache_w),
-		.inst_swap_o(inst_swap_w),
-		.data_swap_o(data_swap_w),
-		.cpu_req_icache_i(cpu_req_icache_w),
-		.cpu_req_dcache_i(cpu_req_dcache_w),
-		.cpu_request_o(cpu_request_w),
-		.victim_result_i(victim_result_w),
-		.vc_miss_i(vc_miss_w),
-		.evict_data_o(evict_data_w),
-    	.i_cache_data_o(i_cache_data_w),
-    	.d_cache_data_o(d_cache_data_w),
-    	.l1_cache_request_o(l1_cache_request_w)
-		);
-	
-	l2_cache L2_CACHE(
-		.clk_i(clk_i),
-		.rst_ni(rst_ni),
-		.l1_cache_request_i(l1_cache_request_w),
-		.mem_result_i(mem_result_w),
-		.l1_cache_result_o(l1_cache_result_w),
-		.mem_req_o(mem_request_w),
-		.no_acc_o(l2cache_no_acc_w),
-		.no_hit_o(l2cache_no_hit_w),
-		.no_miss_o(l2cache_no_miss_w)
-		);
-
-	Memory MEMORY(
-		.clk_i(clk_i),
-		.rst_ni(rst_ni),
-		.mem_request_i(mem_request_w),
-		.io_sw_i(io_sw_i),
-		.io_lcd_o(io_lcd_o),
-		.io_ledr_o(io_ledr_o),
-		.io_ledg_o(io_ledg_o),
-		.io_hex0_o(io_hex0_o),
-		.io_hex1_o(io_hex1_o),
-		.io_hex2_o(io_hex2_o),
-		.io_hex3_o(io_hex3_o),
-		.io_hex4_o(io_hex4_o),
-		.io_hex5_o(io_hex5_o),
-		.io_hex6_o(io_hex6_o),
-		.io_hex7_o(io_hex7_o),
-		.mem_result_o(mem_result_w)
-		);	
-
-	victim_cache VICTIM_CACHE(
-    	.clk_i(clk_i),
-    	.rst_ni(rst_ni),
-    	.evict_data_i(evict_data_w),
-    	//.l1_cache_request_i(l1_cache_request_w),
-		.cpu_req_i(cpu_request_w),
-    	.victim_result_o(victim_result_w),
-    	.no_acc_o(vc_no_acc_w),
-    	.no_hit_o(vc_no_hit_w),
-    	.no_miss_o(vc_no_miss_w),
-    	.vc_miss_o(vc_miss_w)
-);
+		
 	
 endmodule
 

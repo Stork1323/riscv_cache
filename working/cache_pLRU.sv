@@ -1,12 +1,12 @@
 import cache_def::*;
 
-module victim_cache_pLRU(
+module cache_pLRU(
     input logic clk_i,
     input logic rst_ni,
     input logic valid_i,
-    input logic [INDEX_VC-1:0] index_i,
-    input logic [INDEX_WAY_VC-1:0] address_i,
-    output logic [INDEX_WAY_VC-1:0] address_o
+    input logic [INDEX_L1-1:0] index_i,
+    input logic [INDEX_WAY_L1-1:0] address_i,
+    output logic [INDEX_WAY_L1-1:0] address_o
 );
 
     /* pseudo LRU tree 8 ways
@@ -37,9 +37,11 @@ module victim_cache_pLRU(
     ex: address = 3'b100 => L0 = 1 -> L2 = 0 -> L5 = 0
     -------------------- */
 
-    logic L0, L1, L2, L3, L4, L5, L6;
+    //logic L0, L1, L2, L3, L4, L5, L6;
+    logic L0, L1, L2;
     logic L1_w,  L2_w,  L3_w,  L4_w,  L5_w,  L6_w; // signal notices that a node need to change
-    logic [INDEX_WAY_VC-1:0] pLRU;
+    //logic L1_w, L2_w, L3_w;
+    logic [INDEX_WAY_L1-1:0] pLRU;
 
     /*
     always_comb begin
@@ -89,117 +91,122 @@ module victim_cache_pLRU(
     //     end
     // end
 
-    l2_cache_pLRU_node NODE_L0(
+    cache_pLRU_node NODE_L0(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(valid_i),
         .index_i(index_i),
-        .value_i(address_i[2]),
+        .value_i(address_i[1]),
         .load_left_o(L1_w),
         .load_right_o(L2_w),
         .load_o(L0)
     );
 
-    l2_cache_pLRU_node NODE_L1(
+    cache_pLRU_node NODE_L1(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(L1_w),
         .index_i(index_i),
-        .value_i(address_i[1]),
+        .value_i(address_i[0]),
         .load_left_o(L3_w),
         .load_right_o(L4_w),
         .load_o(L1)
     );
 
-    l2_cache_pLRU_node NODE_L2(
+    cache_pLRU_node NODE_L2(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(L2_w),
         .index_i(index_i),
-        .value_i(address_i[1]),
+        .value_i(address_i[0]),
         .load_left_o(L5_w),
         .load_right_o(L6_w),
         .load_o(L2)
     );
 
-    l2_cache_pLRU_node NODE_L3(
-        .clk_i(clk_i),
-        .rst_ni(rst_ni),
-        .valid_i(L3_w),
-        .index_i(index_i),
-        .value_i(address_i[0]),
-        .load_left_o(),
-        .load_right_o(),
-        .load_o(L3)
-    );
+    // cache_pLRU_node NODE_L3(
+    //     .clk_i(clk_i),
+    //     .rst_ni(rst_ni),
+    //     .valid_i(L3_w),
+    //     .index_i(index_i),
+    //     .value_i(address_i[0]),
+    //     .load_left_o(),
+    //     .load_right_o(),
+    //     .load_o(L3)
+    // );
 
-    l2_cache_pLRU_node NODE_L4(
-        .clk_i(clk_i),
-        .rst_ni(rst_ni),
-        .valid_i(L4_w),
-        .index_i(index_i),
-        .value_i(address_i[0]),
-        .load_left_o(),
-        .load_right_o(),
-        .load_o(L4)
-    );
+    // cache_pLRU_node NODE_L4(
+    //     .clk_i(clk_i),
+    //     .rst_ni(rst_ni),
+    //     .valid_i(L4_w),
+    //     .index_i(index_i),
+    //     .value_i(address_i[0]),
+    //     .load_left_o(),
+    //     .load_right_o(),
+    //     .load_o(L4)
+    // );
 
-    l2_cache_pLRU_node NODE_L5(
-        .clk_i(clk_i),
-        .rst_ni(rst_ni),
-        .valid_i(L5_w),
-        .index_i(index_i),
-        .value_i(address_i[0]),
-        .load_left_o(),
-        .load_right_o(),
-        .load_o(L5)
-    );
+    // cache_pLRU_node NODE_L5(
+    //     .clk_i(clk_i),
+    //     .rst_ni(rst_ni),
+    //     .valid_i(L5_w),
+    //     .index_i(index_i),
+    //     .value_i(address_i[0]),
+    //     .load_left_o(),
+    //     .load_right_o(),
+    //     .load_o(L5)
+    // );
 
-    l2_cache_pLRU_node NODE_L6(
-        .clk_i(clk_i),
-        .rst_ni(rst_ni),
-        .valid_i(L6_w),
-        .index_i(index_i),
-        .value_i(address_i[0]),
-        .load_left_o(),
-        .load_right_o(),
-        .load_o(L6)
-    );
+    // cache_pLRU_node NODE_L6(
+    //     .clk_i(clk_i),
+    //     .rst_ni(rst_ni),
+    //     .valid_i(L6_w),
+    //     .index_i(index_i),
+    //     .value_i(address_i[0]),
+    //     .load_left_o(),
+    //     .load_right_o(),
+    //     .load_o(L6)
+    // );
 
     
+    // always_comb begin
+    //     pLRU[2] = (~L0);
+    //     if (~pLRU[2]) pLRU[1] = (~L1);
+    //     else pLRU[1] = (~L2);
+    //     case ({pLRU[2],pLRU[1]})
+    //         2'b00: pLRU[0] = (~L3);
+    //         2'b01: pLRU[0] = (~L4);
+    //         2'b10: pLRU[0] = (~L5);
+    //         2'b11: pLRU[0] = (~L6);
+    //         default: pLRU[0] = 1'b0;
+    //     endcase
+    // end
     always_comb begin
-        pLRU[2] = (~L0);
-        if (~pLRU[2]) pLRU[1] = (~L1);
-        else pLRU[1] = (~L2);
-        case ({pLRU[2],pLRU[1]})
-            2'b00: pLRU[0] = (~L3);
-            2'b01: pLRU[0] = (~L4);
-            2'b10: pLRU[0] = (~L5);
-            2'b11: pLRU[0] = (~L6);
-            default: pLRU[0] = 1'b0;
-        endcase
+        pLRU[1] = (~L0);
+        if (~pLRU[1]) pLRU[0] = (~L1);
+        else pLRU[0] = (~L2);
     end
 
     assign address_o = pLRU;
 
 endmodule
 
-module victim_cache_pLRU_node(
+module cache_pLRU_node(
     input logic clk_i,
     input logic rst_ni,
     input logic valid_i,
-    input logic [INDEX_VC-1:0] index_i,
+    input logic [INDEX_L1-1:0] index_i,
     input logic value_i,
     output logic load_left_o,
     output logic load_right_o,
     output logic load_o
 );
 
-    logic [DEPTH_VC-1:0] L_r;
+    logic [DEPTH_L1-1:0] L_r;
 
     always_ff @(posedge clk_i) begin
         if (~rst_ni) begin
-            L_r <= {DEPTH_VC{1'b0}};
+            L_r <= {DEPTH_L1{1'b0}};
         end
         else if (valid_i) begin
             L_r[index_i] <= value_i;
