@@ -6,16 +6,6 @@ module cache_arbiter(
     input mem_req_type i_cache_request_i,
     input mem_req_type d_cache_request_i,
     input mem_data_type l1_cache_result_i,
-    input evict_data_type ins_evict_data_i, // evicted data from instruction cache
-    input evict_data_type data_evict_data_i, // evicted data from data cache
-    output evict_data_type inst_swap_o, // swap value for icache and vcache
-    output evict_data_type data_swap_o, // swap value for dcache and vcache
-    input cpu_req_type cpu_req_icache_i, // CPU request for icache and vcache
-    input cpu_req_type cpu_req_dcache_i, // CPU request for dcache and vcache
-    output cpu_req_type cpu_request_o, // CPU request for vcache
-    input evict_data_type victim_result_i,
-    input logic vc_miss_i, // miss signal of victim cache
-    output evict_data_type evict_data_o,
     output mem_data_type i_cache_data_o,
     output mem_data_type d_cache_data_o,
     output mem_req_type l1_cache_request_o
@@ -80,31 +70,4 @@ module cache_arbiter(
         end
     end
 
-    always_comb begin
-        case ({ins_evict_data_i.valid, data_evict_data_i.valid})
-            2'b10, 2'b11: evict_data_o = ins_evict_data_i;
-            2'b01: evict_data_o = data_evict_data_i;
-            default: evict_data_o = '{0, 0, 0, 0};
-        endcase
-    end
-
-    always_comb begin
-        case ({cpu_req_icache_i.valid, cpu_req_dcache_i.valid})
-            2'b10, 2'b11: begin 
-                cpu_request_o = cpu_req_icache_i;
-                inst_swap_o = victim_result_i;
-                data_swap_o = '{0, 0, 0, 0};
-            end
-            2'b01: begin
-                cpu_request_o = cpu_req_dcache_i;
-                inst_swap_o = '{0, 0, 0, 0};
-                data_swap_o = victim_result_i;
-            end
-            default: begin
-                cpu_request_o = '{0, 0, 0, 0};
-                inst_swap_o = '{0, 0, 0, 0};
-                data_swap_o = '{0, 0, 0, 0};
-            end
-        endcase
-    end
 endmodule
