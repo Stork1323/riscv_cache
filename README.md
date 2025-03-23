@@ -17,3 +17,8 @@ The structure of this repos:
   - testbench: contains testbenchs for some modules.
   - benchmark: contains benchmark programs, source codes by c and assembly for testing risc-v core.
   - src_optimized_cache: source code for optimized cache system (latest version).
+  - src_two_level_4ways: 4 ways L1 cache, 8 ways L2 cache.
+  - src_optimized_cache_add_LRU: using LRU replacement policy instead of pLRU.
+  - src_unifird_vc: 4 ways L1 cache, 8 ways L2 cache, 8 ways unified victim cache.
+  - src_separate_vc: 4 ways L1 cache, 8 ways L2 cache, 8 ways separate (instruction victim cache & data victim cache) victim cache.
+  - assembly_test: assembly program use for performance evaluation.
