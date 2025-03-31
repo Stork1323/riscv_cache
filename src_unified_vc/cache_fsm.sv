@@ -200,7 +200,7 @@ module cache_fsm(
                 //second_compare = 1'b0;
                 //tag_write = '{0, 0, 0};
                 /* if there is a CPU reqest, then compare cache tag */
-                if (cpu_req_i.valid) begin
+                if (cpu_req_i.valid && vc_miss_i) begin
                     vstate = COMPARE_TAG;
                     acc1_w = 1'b1;
                 end

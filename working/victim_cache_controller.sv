@@ -1,4 +1,5 @@
 /* cache finite state machine */
+`timescale 1ns/1ns
 import cache_def::*;
 
 module victim_cache_controller(

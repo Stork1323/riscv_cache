@@ -59,7 +59,7 @@ module riscv_cache_tb();
 		
 		rst_ni <= 1'b1;
 		
-		#80000;
+		#3000000;
 		$finish;
 		
 	end

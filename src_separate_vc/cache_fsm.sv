@@ -83,7 +83,15 @@ module cache_fsm(
     cache_data_type st_data, v_st_data;
 
     /* -------------------*/
-
+    logic [31:0] vc_hit;
+    always_ff @(posedge clk_i, negedge rst_ni) begin
+            if (!rst_ni) begin
+              vc_hit <= 32'b0;
+            end
+            else if (vc_miss_i) begin
+              vc_hit <= vc_hit + 32'b1;
+            end
+    end
     /* count for additional variables */
     adder_32bit A_access (
             .a_i(no_acc_old_w),

@@ -50,7 +50,7 @@ module pipeline_tb();
 		
 		rst_ni <= 1'b1;
 		
-		#20000;
+		#3000000;
 		$finish;
 		
 	end

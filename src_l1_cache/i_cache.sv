@@ -36,7 +36,7 @@ module i_cache(
 
 
     /* choose address */
-    cache_pLRU LRU(
+    cache_LRU LRU(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(lru_valid),

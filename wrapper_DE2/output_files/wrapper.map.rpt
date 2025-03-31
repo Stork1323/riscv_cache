@@ -1,0 +1,1604 @@
+Analysis & Synthesis report for wrapper
+Sat Nov 30 14:59:00 2024
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "pipeline:CPU|MEM:MEM|adder_32bit:Incr_command"
+ 12. Port Connectivity Checks: "pipeline:CPU|MEM:MEM|lsu:LSU_MEM|set_less_than_unsign:SLTU2"
+ 13. Port Connectivity Checks: "pipeline:CPU|MEM:MEM|lsu:LSU_MEM|set_less_than_unsign:SLTU1"
+ 14. Port Connectivity Checks: "pipeline:CPU|MEM:MEM|lsu:LSU_MEM|set_less_than_unsign:SLTU0"
+ 15. Port Connectivity Checks: "pipeline:CPU|MEM:MEM"
+ 16. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M31"
+ 17. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M30"
+ 18. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M29"
+ 19. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M28"
+ 20. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M27"
+ 21. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M26"
+ 22. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M25"
+ 23. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M24"
+ 24. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M23"
+ 25. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M22"
+ 26. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M21"
+ 27. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M20"
+ 28. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M19"
+ 29. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M18"
+ 30. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M17"
+ 31. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M16"
+ 32. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M15"
+ 33. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M14"
+ 34. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M13"
+ 35. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M12"
+ 36. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M11"
+ 37. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M10"
+ 38. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M9"
+ 39. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M8"
+ 40. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M7"
+ 41. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M6"
+ 42. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M5"
+ 43. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M4"
+ 44. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M3"
+ 45. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M2"
+ 46. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M1"
+ 47. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M0"
+ 48. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M31"
+ 49. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M30"
+ 50. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M29"
+ 51. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M28"
+ 52. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M27"
+ 53. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M26"
+ 54. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M25"
+ 55. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M24"
+ 56. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M23"
+ 57. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M22"
+ 58. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M21"
+ 59. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M20"
+ 60. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M19"
+ 61. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M18"
+ 62. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M17"
+ 63. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M16"
+ 64. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M15"
+ 65. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M14"
+ 66. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M13"
+ 67. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M12"
+ 68. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M11"
+ 69. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M10"
+ 70. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M9"
+ 71. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M8"
+ 72. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M7"
+ 73. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M6"
+ 74. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M5"
+ 75. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M4"
+ 76. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M3"
+ 77. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M2"
+ 78. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M1"
+ 79. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M0"
+ 80. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0"
+ 81. Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0"
+ 82. Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than_unsign:SLTU|subtractor_32bit:S0"
+ 83. Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than_unsign:SLTU"
+ 84. Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S0"
+ 85. Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0"
+ 86. Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT"
+ 87. Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_equal:SE"
+ 88. Port Connectivity Checks: "pipeline:CPU|IF:IF|adder_32bit:ADD4_IF"
+ 89. Port Connectivity Checks: "pipeline:CPU|IF:IF|pc:PC_IF|adder_32bit:Incr_command|full_adder:A0"
+ 90. Port Connectivity Checks: "pipeline:CPU|IF:IF|pc:PC_IF|adder_32bit:Incr_command"
+ 91. Port Connectivity Checks: "pipeline:CPU|IF:IF"
+ 92. Port Connectivity Checks: "pipeline:CPU"
+ 93. Elapsed Time Per Partition
+ 94. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sat Nov 30 14:58:58 2024           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; wrapper                                         ;
+; Top-level Entity Name              ; wrapper                                         ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 67,343                                          ;
+;     Total combinational functions  ; 31,683                                          ;
+;     Dedicated logic registers      ; 36,215                                          ;
+; Total registers                    ; 36215                                           ;
+; Total pins                         ; 113                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; wrapper            ; wrapper            ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                               ;
++---------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------+---------+
+; File Name with User-Entered Path            ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                ; Library ;
++---------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------+---------+
+; ../Pipeline_RV32I/adder_32bit.sv            ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/adder_32bit.sv            ;         ;
+; ../Pipeline_RV32I/alu.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/alu.sv                    ;         ;
+; ../Pipeline_RV32I/and_32bit.sv              ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/and_32bit.sv              ;         ;
+; ../Pipeline_RV32I/Branch_predictor.sv       ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/Branch_predictor.sv       ;         ;
+; ../Pipeline_RV32I/brcomp.sv                 ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/brcomp.sv                 ;         ;
+; ../Pipeline_RV32I/ctrl_unit.sv              ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/ctrl_unit.sv              ;         ;
+; ../Pipeline_RV32I/decode_dif.sv             ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/decode_dif.sv             ;         ;
+; ../Pipeline_RV32I/EX.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/EX.sv                     ;         ;
+; ../Pipeline_RV32I/full_adder.sv             ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/full_adder.sv             ;         ;
+; ../Pipeline_RV32I/full_subtractor.sv        ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/full_subtractor.sv        ;         ;
+; ../Pipeline_RV32I/Hazard_unit.sv            ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/Hazard_unit.sv            ;         ;
+; ../Pipeline_RV32I/ID.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/ID.sv                     ;         ;
+; ../Pipeline_RV32I/IF.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/IF.sv                     ;         ;
+; ../Pipeline_RV32I/imem.sv                   ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/imem.sv                   ;         ;
+; ../Pipeline_RV32I/imm_gen.sv                ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/imm_gen.sv                ;         ;
+; ../Pipeline_RV32I/lsu.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/lsu.sv                    ;         ;
+; ../Pipeline_RV32I/MEM.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/MEM.sv                    ;         ;
+; ../Pipeline_RV32I/mux2to1_32bit.sv          ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/mux2to1_32bit.sv          ;         ;
+; ../Pipeline_RV32I/mux3to1_32bit.sv          ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/mux3to1_32bit.sv          ;         ;
+; ../Pipeline_RV32I/or_32bit.sv               ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/or_32bit.sv               ;         ;
+; ../Pipeline_RV32I/pc.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/pc.sv                     ;         ;
+; ../Pipeline_RV32I/pipeline.sv               ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/pipeline.sv               ;         ;
+; ../Pipeline_RV32I/regfile.sv                ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/regfile.sv                ;         ;
+; ../Pipeline_RV32I/set_equal.sv              ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/set_equal.sv              ;         ;
+; ../Pipeline_RV32I/set_less_than.sv          ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/set_less_than.sv          ;         ;
+; ../Pipeline_RV32I/set_less_than_unsign.sv   ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/set_less_than_unsign.sv   ;         ;
+; ../Pipeline_RV32I/shift_left_logical.sv     ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/shift_left_logical.sv     ;         ;
+; ../Pipeline_RV32I/shift_right_arithmetic.sv ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/shift_right_arithmetic.sv ;         ;
+; ../Pipeline_RV32I/shift_right_logical.sv    ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/shift_right_logical.sv    ;         ;
+; ../Pipeline_RV32I/subtractor_32bit.sv       ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/subtractor_32bit.sv       ;         ;
+; ../Pipeline_RV32I/WB.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/WB.sv                     ;         ;
+; ../Pipeline_RV32I/xor_32bit.sv              ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/Pipeline_RV32I/xor_32bit.sv              ;         ;
+; ../Pipeline_RV32I/memfile.txt               ; yes             ; User File                    ; C:/altera/projects/Pipeline_RV32I/memfile.txt               ;         ;
+; wrapper.sv                                  ; yes             ; User SystemVerilog HDL File  ; C:/altera/projects/wrapper_pipeline_RV32I/wrapper.sv        ;         ;
++---------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary            ;
++---------------------------------------------+----------+
+; Resource                                    ; Usage    ;
++---------------------------------------------+----------+
+; Estimated Total logic elements              ; 67,343   ;
+;                                             ;          ;
+; Total combinational functions               ; 31683    ;
+; Logic element usage by number of LUT inputs ;          ;
+;     -- 4 input functions                    ; 29710    ;
+;     -- 3 input functions                    ; 1811     ;
+;     -- <=2 input functions                  ; 162      ;
+;                                             ;          ;
+; Logic elements by mode                      ;          ;
+;     -- normal mode                          ; 31662    ;
+;     -- arithmetic mode                      ; 21       ;
+;                                             ;          ;
+; Total registers                             ; 36215    ;
+;     -- Dedicated logic registers            ; 36215    ;
+;     -- I/O registers                        ; 0        ;
+;                                             ;          ;
+; I/O pins                                    ; 113      ;
+; Embedded Multiplier 9-bit elements          ; 0        ;
+; Maximum fan-out node                        ; CLOCK_27 ;
+; Maximum fan-out                             ; 36215    ;
+; Total fan-out                               ; 233685   ;
+; Average fan-out                             ; 3.44     ;
++---------------------------------------------+----------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                              ;
++-------------------------------------------+-------------------+---------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers  ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                      ; Library Name ;
++-------------------------------------------+-------------------+---------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------+--------------+
+; |wrapper                                  ; 31683 (0)         ; 36215 (0)     ; 0           ; 0            ; 0       ; 0         ; 113  ; 0            ; |wrapper                                                                                                 ; work         ;
+;    |pipeline:CPU|                         ; 31683 (0)         ; 36215 (0)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU                                                                                    ; work         ;
+;       |Branch_predictor:BP|               ; 2002 (2002)       ; 1920 (1920)   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|Branch_predictor:BP                                                                ; work         ;
+;       |EX:EX|                             ; 3564 (111)        ; 111 (111)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX                                                                              ; work         ;
+;          |alu:ALU_EX|                     ; 3162 (326)        ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX                                                                   ; work         ;
+;             |adder_32bit:AD0|             ; 42 (0)            ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0                                                   ; work         ;
+;                |full_adder:A10|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A10                                    ; work         ;
+;                |full_adder:A11|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A11                                    ; work         ;
+;                |full_adder:A12|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A12                                    ; work         ;
+;                |full_adder:A13|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A13                                    ; work         ;
+;                |full_adder:A14|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A14                                    ; work         ;
+;                |full_adder:A15|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A15                                    ; work         ;
+;                |full_adder:A16|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A16                                    ; work         ;
+;                |full_adder:A17|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A17                                    ; work         ;
+;                |full_adder:A18|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A18                                    ; work         ;
+;                |full_adder:A19|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A19                                    ; work         ;
+;                |full_adder:A1|            ; 3 (3)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A1                                     ; work         ;
+;                |full_adder:A20|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A20                                    ; work         ;
+;                |full_adder:A21|           ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A21                                    ; work         ;
+;                |full_adder:A22|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A22                                    ; work         ;
+;                |full_adder:A23|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A23                                    ; work         ;
+;                |full_adder:A24|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A24                                    ; work         ;
+;                |full_adder:A25|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A25                                    ; work         ;
+;                |full_adder:A26|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A26                                    ; work         ;
+;                |full_adder:A27|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A27                                    ; work         ;
+;                |full_adder:A28|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A28                                    ; work         ;
+;                |full_adder:A29|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A29                                    ; work         ;
+;                |full_adder:A2|            ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A2                                     ; work         ;
+;                |full_adder:A30|           ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A30                                    ; work         ;
+;                |full_adder:A3|            ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A3                                     ; work         ;
+;                |full_adder:A4|            ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A4                                     ; work         ;
+;                |full_adder:A5|            ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A5                                     ; work         ;
+;                |full_adder:A6|            ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A6                                     ; work         ;
+;                |full_adder:A7|            ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A7                                     ; work         ;
+;                |full_adder:A8|            ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A8                                     ; work         ;
+;                |full_adder:A9|            ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0|full_adder:A9                                     ; work         ;
+;             |shift_left_logical:SLL0|     ; 1011 (0)          ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0                                           ; work         ;
+;                |decode_dif:DE0|           ; 42 (42)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|decode_dif:DE0                            ; work         ;
+;                |mux2to1_32bit:M0|         ; 3 (3)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M0                          ; work         ;
+;                |mux2to1_32bit:M11|        ; 68 (68)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M11                         ; work         ;
+;                |mux2to1_32bit:M13|        ; 64 (64)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M13                         ; work         ;
+;                |mux2to1_32bit:M15|        ; 18 (18)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M15                         ; work         ;
+;                |mux2to1_32bit:M16|        ; 80 (80)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M16                         ; work         ;
+;                |mux2to1_32bit:M17|        ; 18 (18)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M17                         ; work         ;
+;                |mux2to1_32bit:M18|        ; 46 (46)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M18                         ; work         ;
+;                |mux2to1_32bit:M19|        ; 17 (17)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M19                         ; work         ;
+;                |mux2to1_32bit:M1|         ; 32 (32)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M1                          ; work         ;
+;                |mux2to1_32bit:M20|        ; 45 (45)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M20                         ; work         ;
+;                |mux2to1_32bit:M21|        ; 20 (20)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M21                         ; work         ;
+;                |mux2to1_32bit:M22|        ; 49 (49)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M22                         ; work         ;
+;                |mux2to1_32bit:M23|        ; 18 (18)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M23                         ; work         ;
+;                |mux2to1_32bit:M24|        ; 38 (38)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M24                         ; work         ;
+;                |mux2to1_32bit:M25|        ; 19 (19)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M25                         ; work         ;
+;                |mux2to1_32bit:M26|        ; 33 (33)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M26                         ; work         ;
+;                |mux2to1_32bit:M27|        ; 19 (19)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M27                         ; work         ;
+;                |mux2to1_32bit:M28|        ; 34 (34)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M28                         ; work         ;
+;                |mux2to1_32bit:M29|        ; 38 (38)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M29                         ; work         ;
+;                |mux2to1_32bit:M30|        ; 4 (4)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M30                         ; work         ;
+;                |mux2to1_32bit:M3|         ; 112 (112)         ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M3                          ; work         ;
+;                |mux2to1_32bit:M5|         ; 60 (60)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M5                          ; work         ;
+;                |mux2to1_32bit:M6|         ; 7 (7)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M6                          ; work         ;
+;                |mux2to1_32bit:M7|         ; 65 (65)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M7                          ; work         ;
+;                |mux2to1_32bit:M9|         ; 62 (62)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M9                          ; work         ;
+;             |shift_right_arithmetic:SRA0| ; 763 (0)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0                                       ; work         ;
+;                |mux2to1_32bit:M11|        ; 34 (34)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M11                     ; work         ;
+;                |mux2to1_32bit:M13|        ; 42 (42)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M13                     ; work         ;
+;                |mux2to1_32bit:M16|        ; 57 (57)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M16                     ; work         ;
+;                |mux2to1_32bit:M17|        ; 17 (17)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M17                     ; work         ;
+;                |mux2to1_32bit:M18|        ; 49 (49)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M18                     ; work         ;
+;                |mux2to1_32bit:M19|        ; 15 (15)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M19                     ; work         ;
+;                |mux2to1_32bit:M1|         ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M1                      ; work         ;
+;                |mux2to1_32bit:M20|        ; 41 (41)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M20                     ; work         ;
+;                |mux2to1_32bit:M21|        ; 25 (25)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M21                     ; work         ;
+;                |mux2to1_32bit:M22|        ; 61 (61)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M22                     ; work         ;
+;                |mux2to1_32bit:M23|        ; 25 (25)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M23                     ; work         ;
+;                |mux2to1_32bit:M24|        ; 62 (62)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M24                     ; work         ;
+;                |mux2to1_32bit:M25|        ; 29 (29)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M25                     ; work         ;
+;                |mux2to1_32bit:M26|        ; 76 (76)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M26                     ; work         ;
+;                |mux2to1_32bit:M27|        ; 20 (20)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M27                     ; work         ;
+;                |mux2to1_32bit:M28|        ; 79 (79)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M28                     ; work         ;
+;                |mux2to1_32bit:M29|        ; 56 (56)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M29                     ; work         ;
+;                |mux2to1_32bit:M2|         ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M2                      ; work         ;
+;                |mux2to1_32bit:M3|         ; 9 (9)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M3                      ; work         ;
+;                |mux2to1_32bit:M5|         ; 12 (12)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M5                      ; work         ;
+;                |mux2to1_32bit:M7|         ; 24 (24)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M7                      ; work         ;
+;                |mux2to1_32bit:M9|         ; 28 (28)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0|mux2to1_32bit:M9                      ; work         ;
+;             |shift_right_logical:SRL0|    ; 960 (0)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0                                          ; work         ;
+;                |mux2to1_32bit:M0|         ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M0                         ; work         ;
+;                |mux2to1_32bit:M11|        ; 70 (70)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M11                        ; work         ;
+;                |mux2to1_32bit:M13|        ; 66 (66)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M13                        ; work         ;
+;                |mux2to1_32bit:M15|        ; 35 (35)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M15                        ; work         ;
+;                |mux2to1_32bit:M16|        ; 48 (48)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M16                        ; work         ;
+;                |mux2to1_32bit:M17|        ; 33 (33)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M17                        ; work         ;
+;                |mux2to1_32bit:M18|        ; 31 (31)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M18                        ; work         ;
+;                |mux2to1_32bit:M19|        ; 35 (35)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M19                        ; work         ;
+;                |mux2to1_32bit:M1|         ; 33 (33)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M1                         ; work         ;
+;                |mux2to1_32bit:M20|        ; 25 (25)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M20                        ; work         ;
+;                |mux2to1_32bit:M21|        ; 36 (36)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M21                        ; work         ;
+;                |mux2to1_32bit:M22|        ; 34 (34)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M22                        ; work         ;
+;                |mux2to1_32bit:M23|        ; 34 (34)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M23                        ; work         ;
+;                |mux2to1_32bit:M24|        ; 21 (21)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M24                        ; work         ;
+;                |mux2to1_32bit:M25|        ; 34 (34)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M25                        ; work         ;
+;                |mux2to1_32bit:M26|        ; 18 (18)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M26                        ; work         ;
+;                |mux2to1_32bit:M27|        ; 38 (38)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M27                        ; work         ;
+;                |mux2to1_32bit:M28|        ; 19 (19)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M28                        ; work         ;
+;                |mux2to1_32bit:M29|        ; 46 (46)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M29                        ; work         ;
+;                |mux2to1_32bit:M3|         ; 111 (111)         ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M3                         ; work         ;
+;                |mux2to1_32bit:M5|         ; 60 (60)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M5                         ; work         ;
+;                |mux2to1_32bit:M6|         ; 7 (7)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M6                         ; work         ;
+;                |mux2to1_32bit:M7|         ; 61 (61)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M7                         ; work         ;
+;                |mux2to1_32bit:M9|         ; 63 (63)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M9                         ; work         ;
+;             |subtractor_32bit:SB0|        ; 53 (0)            ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0                                              ; work         ;
+;                |full_subtractor:S10|      ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S10                          ; work         ;
+;                |full_subtractor:S11|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S11                          ; work         ;
+;                |full_subtractor:S12|      ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S12                          ; work         ;
+;                |full_subtractor:S13|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S13                          ; work         ;
+;                |full_subtractor:S14|      ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S14                          ; work         ;
+;                |full_subtractor:S15|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S15                          ; work         ;
+;                |full_subtractor:S16|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S16                          ; work         ;
+;                |full_subtractor:S17|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S17                          ; work         ;
+;                |full_subtractor:S18|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S18                          ; work         ;
+;                |full_subtractor:S19|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S19                          ; work         ;
+;                |full_subtractor:S1|       ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S1                           ; work         ;
+;                |full_subtractor:S20|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S20                          ; work         ;
+;                |full_subtractor:S21|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S21                          ; work         ;
+;                |full_subtractor:S22|      ; 3 (3)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S22                          ; work         ;
+;                |full_subtractor:S23|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S23                          ; work         ;
+;                |full_subtractor:S24|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S24                          ; work         ;
+;                |full_subtractor:S25|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S25                          ; work         ;
+;                |full_subtractor:S26|      ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S26                          ; work         ;
+;                |full_subtractor:S27|      ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S27                          ; work         ;
+;                |full_subtractor:S28|      ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S28                          ; work         ;
+;                |full_subtractor:S29|      ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S29                          ; work         ;
+;                |full_subtractor:S2|       ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S2                           ; work         ;
+;                |full_subtractor:S30|      ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S30                          ; work         ;
+;                |full_subtractor:S3|       ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S3                           ; work         ;
+;                |full_subtractor:S4|       ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S4                           ; work         ;
+;                |full_subtractor:S5|       ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S5                           ; work         ;
+;                |full_subtractor:S6|       ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S6                           ; work         ;
+;                |full_subtractor:S7|       ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S7                           ; work         ;
+;                |full_subtractor:S8|       ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S8                           ; work         ;
+;                |full_subtractor:S9|       ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0|full_subtractor:S9                           ; work         ;
+;             |xor_32bit:XOR0|              ; 7 (7)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|xor_32bit:XOR0                                                    ; work         ;
+;          |brcomp:BrComp_EX|               ; 52 (1)            ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX                                                             ; work         ;
+;             |set_equal:SE|                ; 21 (21)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_equal:SE                                                ; work         ;
+;             |set_less_than:SLT|           ; 30 (0)            ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT                                           ; work         ;
+;                |subtractor_32bit:SUB0|    ; 30 (0)            ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0                     ; work         ;
+;                   |full_subtractor:S10|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S10 ; work         ;
+;                   |full_subtractor:S11|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S11 ; work         ;
+;                   |full_subtractor:S12|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S12 ; work         ;
+;                   |full_subtractor:S13|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S13 ; work         ;
+;                   |full_subtractor:S14|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S14 ; work         ;
+;                   |full_subtractor:S15|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S15 ; work         ;
+;                   |full_subtractor:S16|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S16 ; work         ;
+;                   |full_subtractor:S17|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S17 ; work         ;
+;                   |full_subtractor:S18|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S18 ; work         ;
+;                   |full_subtractor:S19|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S19 ; work         ;
+;                   |full_subtractor:S20|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S20 ; work         ;
+;                   |full_subtractor:S21|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S21 ; work         ;
+;                   |full_subtractor:S22|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S22 ; work         ;
+;                   |full_subtractor:S23|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S23 ; work         ;
+;                   |full_subtractor:S24|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S24 ; work         ;
+;                   |full_subtractor:S25|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S25 ; work         ;
+;                   |full_subtractor:S26|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S26 ; work         ;
+;                   |full_subtractor:S27|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S27 ; work         ;
+;                   |full_subtractor:S28|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S28 ; work         ;
+;                   |full_subtractor:S29|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S29 ; work         ;
+;                   |full_subtractor:S2|    ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S2  ; work         ;
+;                   |full_subtractor:S30|   ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S30 ; work         ;
+;                   |full_subtractor:S3|    ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S3  ; work         ;
+;                   |full_subtractor:S4|    ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S4  ; work         ;
+;                   |full_subtractor:S5|    ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S5  ; work         ;
+;                   |full_subtractor:S6|    ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S6  ; work         ;
+;                   |full_subtractor:S7|    ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S7  ; work         ;
+;                   |full_subtractor:S8|    ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S8  ; work         ;
+;                   |full_subtractor:S9|    ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S9  ; work         ;
+;          |mux2to1_32bit:Mux1_EX|          ; 33 (33)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|mux2to1_32bit:Mux1_EX                                                        ; work         ;
+;          |mux2to1_32bit:Mux2_EX|          ; 70 (70)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|mux2to1_32bit:Mux2_EX                                                        ; work         ;
+;          |mux3to1_32bit:Mux12_EX|         ; 67 (67)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|mux3to1_32bit:Mux12_EX                                                       ; work         ;
+;          |mux3to1_32bit:Mux22_EX|         ; 69 (69)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|EX:EX|mux3to1_32bit:Mux22_EX                                                       ; work         ;
+;       |Hazard_unit:FCU|                   ; 57 (57)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|Hazard_unit:FCU                                                                    ; work         ;
+;       |ID:ID|                             ; 1591 (1493)       ; 1186 (194)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|ID:ID                                                                              ; work         ;
+;          |ctrl_unit:CtrlUnit_ID|          ; 22 (22)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|ID:ID|ctrl_unit:CtrlUnit_ID                                                        ; work         ;
+;          |imm_gen:ImmGen_ID|              ; 13 (13)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|ID:ID|imm_gen:ImmGen_ID                                                            ; work         ;
+;          |regfile:RF_ID|                  ; 63 (63)           ; 992 (992)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID                                                                ; work         ;
+;       |IF:IF|                             ; 1281 (118)        ; 126 (94)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF                                                                              ; work         ;
+;          |adder_32bit:ADD4_IF|            ; 28 (0)            ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF                                                          ; work         ;
+;             |full_adder:A11|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A11                                           ; work         ;
+;             |full_adder:A12|              ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A12                                           ; work         ;
+;             |full_adder:A14|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A14                                           ; work         ;
+;             |full_adder:A15|              ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A15                                           ; work         ;
+;             |full_adder:A17|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A17                                           ; work         ;
+;             |full_adder:A18|              ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A18                                           ; work         ;
+;             |full_adder:A20|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A20                                           ; work         ;
+;             |full_adder:A21|              ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A21                                           ; work         ;
+;             |full_adder:A23|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A23                                           ; work         ;
+;             |full_adder:A24|              ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A24                                           ; work         ;
+;             |full_adder:A26|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A26                                           ; work         ;
+;             |full_adder:A27|              ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A27                                           ; work         ;
+;             |full_adder:A28|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A28                                           ; work         ;
+;             |full_adder:A29|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A29                                           ; work         ;
+;             |full_adder:A30|              ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A30                                           ; work         ;
+;             |full_adder:A3|               ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A3                                            ; work         ;
+;             |full_adder:A5|               ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A5                                            ; work         ;
+;             |full_adder:A6|               ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A6                                            ; work         ;
+;             |full_adder:A8|               ; 1 (1)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A8                                            ; work         ;
+;             |full_adder:A9|               ; 2 (2)             ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|adder_32bit:ADD4_IF|full_adder:A9                                            ; work         ;
+;          |imem:IMEM_IF|                   ; 366 (366)         ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|imem:IMEM_IF                                                                 ; work         ;
+;          |mux2to1_32bit:MUX_IF|           ; 604 (604)         ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|mux2to1_32bit:MUX_IF                                                         ; work         ;
+;          |mux3to1_32bit:MUX3_IF|          ; 164 (164)         ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|mux3to1_32bit:MUX3_IF                                                        ; work         ;
+;          |pc:PC_IF|                       ; 1 (1)             ; 32 (32)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|IF:IF|pc:PC_IF                                                                     ; work         ;
+;       |MEM:MEM|                           ; 23125 (0)         ; 32872 (104)   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|MEM:MEM                                                                            ; work         ;
+;          |lsu:LSU_MEM|                    ; 23125 (23125)     ; 32768 (32768) ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|MEM:MEM|lsu:LSU_MEM                                                                ; work         ;
+;       |WB:WB|                             ; 63 (0)            ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|WB:WB                                                                              ; work         ;
+;          |mux3to1_32bit:Mux_WB|           ; 63 (63)           ; 0 (0)         ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |wrapper|pipeline:CPU|WB:WB|mux3to1_32bit:Mux_WB                                                         ; work         ;
++-------------------------------------------+-------------------+---------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                   ;
++----------------------------------------+---------------------------------------------+
+; Register name                          ; Reason for Removal                          ;
++----------------------------------------+---------------------------------------------+
+; pipeline:CPU|ID:ID|inst_r[11]          ; Merged with pipeline:CPU|ID:ID|rsW_r[4]     ;
+; pipeline:CPU|ID:ID|inst_r[10]          ; Merged with pipeline:CPU|ID:ID|rsW_r[3]     ;
+; pipeline:CPU|ID:ID|inst_r[9]           ; Merged with pipeline:CPU|ID:ID|rsW_r[2]     ;
+; pipeline:CPU|ID:ID|inst_r[8]           ; Merged with pipeline:CPU|ID:ID|rsW_r[1]     ;
+; pipeline:CPU|ID:ID|inst_r[7]           ; Merged with pipeline:CPU|ID:ID|rsW_r[0]     ;
+; pipeline:CPU|MEM:MEM|rsW_r[4]          ; Merged with pipeline:CPU|MEM:MEM|inst_r[11] ;
+; pipeline:CPU|MEM:MEM|rsW_r[3]          ; Merged with pipeline:CPU|MEM:MEM|inst_r[10] ;
+; pipeline:CPU|MEM:MEM|rsW_r[2]          ; Merged with pipeline:CPU|MEM:MEM|inst_r[9]  ;
+; pipeline:CPU|MEM:MEM|rsW_r[1]          ; Merged with pipeline:CPU|MEM:MEM|inst_r[8]  ;
+; pipeline:CPU|MEM:MEM|rsW_r[0]          ; Merged with pipeline:CPU|MEM:MEM|inst_r[7]  ;
+; pipeline:CPU|EX:EX|rsW_r[4]            ; Merged with pipeline:CPU|EX:EX|inst_r[11]   ;
+; pipeline:CPU|EX:EX|rsW_r[3]            ; Merged with pipeline:CPU|EX:EX|inst_r[10]   ;
+; pipeline:CPU|EX:EX|rsW_r[2]            ; Merged with pipeline:CPU|EX:EX|inst_r[9]    ;
+; pipeline:CPU|EX:EX|rsW_r[1]            ; Merged with pipeline:CPU|EX:EX|inst_r[8]    ;
+; pipeline:CPU|EX:EX|rsW_r[0]            ; Merged with pipeline:CPU|EX:EX|inst_r[7]    ;
+; pipeline:CPU|ID:ID|pc_r[1]             ; Merged with pipeline:CPU|ID:ID|pc4_r[1]     ;
+; pipeline:CPU|ID:ID|pc_r[0]             ; Merged with pipeline:CPU|ID:ID|pc4_r[0]     ;
+; pipeline:CPU|IF:IF|PC_r[1]             ; Merged with pipeline:CPU|IF:IF|PC_add4_r[1] ;
+; pipeline:CPU|IF:IF|PC_r[0]             ; Merged with pipeline:CPU|IF:IF|PC_add4_r[0] ;
+; pipeline:CPU|IF:IF|inst_r[0]           ; Merged with pipeline:CPU|IF:IF|inst_r[1]    ;
+; pipeline:CPU|ID:ID|inst_r[0]           ; Merged with pipeline:CPU|ID:ID|inst_r[1]    ;
+; pipeline:CPU|EX:EX|inst_r[0]           ; Merged with pipeline:CPU|EX:EX|inst_r[1]    ;
+; Total Number of Removed Registers = 22 ;                                             ;
++----------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 36215 ;
+; Number of registers using Synchronous Clear  ; 64    ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 503   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 36000 ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |wrapper|pipeline:CPU|ID:ID|WBSel_r[0]                            ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[31].tag[24]       ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[30].tag[24]       ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[29].target_pc[2]  ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[28].target_pc[29] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[27].target_pc[17] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[26].target_pc[21] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[25].target_pc[17] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[24].target_pc[23] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[23].target_pc[1]  ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[22].target_pc[1]  ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[21].tag[21]       ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1]   ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[19].target_pc[17] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[18].target_pc[20] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[17].target_pc[9]  ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[16].valid         ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[15].tag[11]       ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[14].target_pc[16] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[13].target_pc[20] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[12].target_pc[2]  ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[11].tag[23]       ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[10].target_pc[31] ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[9].target_pc[4]   ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[8].tag[14]        ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[7].tag[7]         ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[6].tag[23]        ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[5].tag[16]        ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[4].target_pc[26]  ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[3].target_pc[13]  ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[2].target_pc[25]  ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[1].tag[23]        ;
+; 3:1                ; 60 bits   ; 120 LEs       ; 60 LEs               ; 60 LEs                 ; Yes        ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[0]   ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |wrapper|pipeline:CPU|IF:IF|inst_r[6]                             ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|IF:IF|pc:PC_IF|data_o[28]                   ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r1_q[9]             ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r2_q[13]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r3_q[11]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r4_q[24]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r5_q[15]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r6_q[26]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r7_q[19]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r8_q[6]             ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r9_q[12]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r10_q[16]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r11_q[7]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r12_q[16]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r13_q[12]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r14_q[25]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r15_q[6]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r16_q[7]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r17_q[24]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r18_q[24]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r19_q[23]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r20_q[25]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r21_q[6]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r22_q[30]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r23_q[0]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r24_q[29]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r25_q[28]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r26_q[15]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r27_q[26]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r28_q[12]           ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r29_q[0]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r30_q[0]            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|regfile:RF_ID|reg_r31_q[17]           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |wrapper|pipeline:CPU|ID:ID|AluSel_r[3]                           ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|imm_r[1]                              ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|imm_r[29]                             ;
+; 34:1               ; 32 bits   ; 704 LEs       ; 672 LEs              ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|rs2_r[29]                             ;
+; 34:1               ; 32 bits   ; 704 LEs       ; 672 LEs              ; 32 LEs                 ; Yes        ; |wrapper|pipeline:CPU|ID:ID|rs1_r[18]                             ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |wrapper|pipeline:CPU|ID:ID|imm_r[18]                             ;
+; 1026:1             ; 16 bits   ; 10944 LEs     ; 10928 LEs            ; 16 LEs                 ; Yes        ; |wrapper|pipeline:CPU|MEM:MEM|mem_r[18]                           ;
+; 1026:1             ; 16 bits   ; 10944 LEs     ; 10944 LEs            ; 0 LEs                  ; Yes        ; |wrapper|pipeline:CPU|MEM:MEM|mem_r[3]                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |wrapper|pipeline:CPU|ID:ID|ctrl_unit:CtrlUnit_ID|ImmSel_o        ;
+; 32:1               ; 34 bits   ; 714 LEs       ; 714 LEs              ; 0 LEs                  ; No         ; |wrapper|pipeline:CPU|Branch_predictor:BP|Mux84                   ;
+; 32:1               ; 27 bits   ; 567 LEs       ; 567 LEs              ; 0 LEs                  ; No         ; |wrapper|pipeline:CPU|Branch_predictor:BP|Mux32                   ;
+; 33:1               ; 25 bits   ; 550 LEs       ; 550 LEs              ; 0 LEs                  ; No         ; |wrapper|pipeline:CPU|Branch_predictor:BP|BTB_temp_r.tag[11]      ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; No         ; |wrapper|pipeline:CPU|IF:IF|mux2to1_32bit:MUX_IF|c_o[4]           ;
+; 19:1               ; 29 bits   ; 348 LEs       ; 261 LEs              ; 87 LEs                 ; No         ; |wrapper|pipeline:CPU|EX:EX|alu:ALU_EX|Result_o[19]               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|MEM:MEM|adder_32bit:Incr_command" ;
++------------+--------+----------+------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                  ;
++------------+--------+----------+------------------------------------------+
+; b_i[31..1] ; Input  ; Info     ; Stuck at GND                             ;
+; c_o        ; Output ; Info     ; Explicitly unconnected                   ;
++------------+--------+----------+------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|MEM:MEM|lsu:LSU_MEM|set_less_than_unsign:SLTU2" ;
++---------------+-------+----------+------------------------------------------------------+
+; Port          ; Type  ; Severity ; Details                                              ;
++---------------+-------+----------+------------------------------------------------------+
+; rs1_i[31..30] ; Input ; Info     ; Stuck at GND                                         ;
+; rs2_i[9..7]   ; Input ; Info     ; Stuck at VCC                                         ;
+; rs2_i[31..10] ; Input ; Info     ; Stuck at GND                                         ;
+; rs2_i[6..0]   ; Input ; Info     ; Stuck at GND                                         ;
++---------------+-------+----------+------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|MEM:MEM|lsu:LSU_MEM|set_less_than_unsign:SLTU1" ;
++---------------+-------+----------+------------------------------------------------------+
+; Port          ; Type  ; Severity ; Details                                              ;
++---------------+-------+----------+------------------------------------------------------+
+; rs1_i[31..30] ; Input ; Info     ; Stuck at GND                                         ;
+; rs2_i[9..8]   ; Input ; Info     ; Stuck at VCC                                         ;
+; rs2_i[31..10] ; Input ; Info     ; Stuck at GND                                         ;
+; rs2_i[5..0]   ; Input ; Info     ; Stuck at GND                                         ;
+; rs2_i[7]      ; Input ; Info     ; Stuck at GND                                         ;
+; rs2_i[6]      ; Input ; Info     ; Stuck at VCC                                         ;
++---------------+-------+----------+------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|MEM:MEM|lsu:LSU_MEM|set_less_than_unsign:SLTU0"                                 ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; rs1_i[31..30] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; rs2_i[9..8]   ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; rs2_i[31..10] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; rs2_i[7..0]   ; Input  ; Info     ; Stuck at GND                                                                        ;
+; rd_o          ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|MEM:MEM"                                                                                                                         ;
++----------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------+
+; no_lscommand_o ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "no_lscommand_o[31..1]" have no fanouts ;
+; no_lscommand_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                 ;
++----------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M31" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M30" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M29" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M28" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M27" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M26" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M25" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M24" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M23" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M22" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M21" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M20" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M19" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M18" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M17" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M16" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M15" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M14" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M13" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M12" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M11" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M10" ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                 ;
++---------+-------+----------+-------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                            ;
++---------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M9" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M8" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M7" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M6" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M5" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M4" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M3" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M2" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M1" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0|mux2to1_32bit:M0" ;
++---------+-------+----------+------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                ;
++---------+-------+----------+------------------------------------------------------------------------+
+; b_i[31] ; Input ; Info     ; Stuck at GND                                                           ;
++---------+-------+----------+------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M31" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M30" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M29" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M28" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M27" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M26" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M25" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M24" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M23" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M22" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M21" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M20" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M19" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M18" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M17" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M16" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M15" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M14" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M13" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M12" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M11" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M10" ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                 ;
++--------+-------+----------+-------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                            ;
++--------+-------+----------+-------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M9" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M8" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M7" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M6" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M5" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M4" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M3" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M2" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M1" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|mux2to1_32bit:M0" ;
++--------+-------+----------+------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                ;
++--------+-------+----------+------------------------------------------------------------------------+
+; b_i[0] ; Input ; Info     ; Stuck at GND                                                           ;
++--------+-------+----------+------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|subtractor_32bit:SB0"                                 ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; b_o  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|alu:ALU_EX|adder_32bit:AD0"                                      ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; c_o  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than_unsign:SLTU|subtractor_32bit:S0"  ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; d_o  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than_unsign:SLTU"                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; rd_o[31..1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S0" ;
++------+-------+----------+--------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                          ;
++------+-------+----------+--------------------------------------------------------------------------------------------------+
+; c_i  ; Input ; Info     ; Stuck at GND                                                                                     ;
++------+-------+----------+--------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0"              ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; d_o[30..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; b_o        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT"                                     ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; rd_o[31..1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_equal:SE"                                          ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; rd_o[31..1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|IF:IF|adder_32bit:ADD4_IF"                                                   ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+; a_i[31..3] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; a_i[1..0]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; a_i[2]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; c_o        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|IF:IF|pc:PC_IF|adder_32bit:Incr_command|full_adder:A0" ;
++------+-------+----------+----------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                              ;
++------+-------+----------+----------------------------------------------------------------------+
+; c_i  ; Input ; Info     ; Stuck at GND                                                         ;
++------+-------+----------+----------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|IF:IF|pc:PC_IF|adder_32bit:Incr_command" ;
++------------+--------+----------+-------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                         ;
++------------+--------+----------+-------------------------------------------------+
+; b_i[31..1] ; Input  ; Info     ; Stuck at GND                                    ;
+; b_i[0]     ; Input  ; Info     ; Stuck at VCC                                    ;
+; c_o        ; Output ; Info     ; Explicitly unconnected                          ;
++------------+--------+----------+-------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU|IF:IF"                                                                         ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; No_command_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pipeline:CPU"                                                                                                                                ;
++------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                                                                          ;
++------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------+
+; io_sw_i[31..16]  ; Input  ; Info     ; Stuck at GND                                                                                                                     ;
+; io_lcd_o[30..11] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                              ;
+; io_ledg_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (8 bits) it drives; bit(s) "io_ledg_o[31..8]" have no fanouts   ;
+; io_ledr_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (17 bits) it drives; bit(s) "io_ledr_o[31..17]" have no fanouts ;
+; io_hex0_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (7 bits) it drives; bit(s) "io_hex0_o[31..7]" have no fanouts   ;
+; io_hex1_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (7 bits) it drives; bit(s) "io_hex1_o[31..7]" have no fanouts   ;
+; io_hex2_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (7 bits) it drives; bit(s) "io_hex2_o[31..7]" have no fanouts   ;
+; io_hex3_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (7 bits) it drives; bit(s) "io_hex3_o[31..7]" have no fanouts   ;
+; io_hex4_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (7 bits) it drives; bit(s) "io_hex4_o[31..7]" have no fanouts   ;
+; io_hex5_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (7 bits) it drives; bit(s) "io_hex5_o[31..7]" have no fanouts   ;
+; io_hex6_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (7 bits) it drives; bit(s) "io_hex6_o[31..7]" have no fanouts   ;
+; io_hex7_o        ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (7 bits) it drives; bit(s) "io_hex7_o[31..7]" have no fanouts   ;
++------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:04:12     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Sat Nov 30 14:54:21 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off wrapper -c wrapper
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/adder_4bit.sv
+    Info (12023): Found entity 1: adder_4bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/adder_8bit.sv
+    Info (12023): Found entity 1: adder_8bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/adder_10bit.sv
+    Info (12023): Found entity 1: adder_10bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/adder_16bit.sv
+    Info (12023): Found entity 1: adder_16bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/adder_24bit.sv
+    Info (12023): Found entity 1: adder_24bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/adder_32bit.sv
+    Info (12023): Found entity 1: adder_32bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/alu.sv
+    Info (12023): Found entity 1: alu
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/and_32bit.sv
+    Info (12023): Found entity 1: and_32bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/branch_predictor.sv
+    Info (12023): Found entity 1: Branch_predictor
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/brcomp.sv
+    Info (12023): Found entity 1: brcomp
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/ctrl_unit.sv
+    Info (12023): Found entity 1: ctrl_unit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/decode_dif.sv
+    Info (12023): Found entity 1: decode_dif
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/decode3to8.sv
+    Info (12023): Found entity 1: decode3to8
+Info (12021): Found 0 design units, including 0 entities, in source file /altera/projects/pipeline_rv32i/define.sv
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/ex.sv
+    Info (12023): Found entity 1: EX
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/full_adder.sv
+    Info (12023): Found entity 1: full_adder
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/full_subtractor.sv
+    Info (12023): Found entity 1: full_subtractor
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/hazard_unit.sv
+    Info (12023): Found entity 1: Hazard_unit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/id.sv
+    Info (12023): Found entity 1: ID
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/if.sv
+    Info (12023): Found entity 1: IF
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/imem.sv
+    Info (12023): Found entity 1: imem
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/imm_gen.sv
+    Info (12023): Found entity 1: imm_gen
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/lsu.sv
+    Info (12023): Found entity 1: lsu
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/mem.sv
+    Info (12023): Found entity 1: MEM
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/mux2to1_32bit.sv
+    Info (12023): Found entity 1: mux2to1_32bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/mux3to1_32bit.sv
+    Info (12023): Found entity 1: mux3to1_32bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/or_32bit.sv
+    Info (12023): Found entity 1: or_32bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/pc.sv
+    Info (12023): Found entity 1: pc
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/pipeline.sv
+    Info (12023): Found entity 1: pipeline
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/pipeline_tb.sv
+    Info (12023): Found entity 1: pipeline_tb
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/regfile.sv
+    Info (12023): Found entity 1: regfile
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/set_equal.sv
+    Info (12023): Found entity 1: set_equal
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/set_less_than.sv
+    Info (12023): Found entity 1: set_less_than
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/set_less_than_unsign.sv
+    Info (12023): Found entity 1: set_less_than_unsign
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/shift_left_logical.sv
+    Info (12023): Found entity 1: shift_left_logical
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/shift_right_arithmetic.sv
+    Info (12023): Found entity 1: shift_right_arithmetic
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/shift_right_logical.sv
+    Info (12023): Found entity 1: shift_right_logical
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/subtractor_32bit.sv
+    Info (12023): Found entity 1: subtractor_32bit
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/vedic_mul_2x2.sv
+    Info (12023): Found entity 1: vedic_mul_2x2
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/vedic_mul_4x4.sv
+    Info (12023): Found entity 1: vedic_mul_4x4
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/vedic_mul_8x8.sv
+    Info (12023): Found entity 1: vedic_mul_8x8
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/vedic_mul_16x16.sv
+    Info (12023): Found entity 1: vedic_mul_16x16
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/wb.sv
+    Info (12023): Found entity 1: WB
+Info (12021): Found 1 design units, including 1 entities, in source file /altera/projects/pipeline_rv32i/xor_32bit.sv
+    Info (12023): Found entity 1: xor_32bit
+Info (12021): Found 1 design units, including 1 entities, in source file wrapper.sv
+    Info (12023): Found entity 1: wrapper
+Info (12021): Found 1 design units, including 1 entities, in source file wrapper_tb.sv
+    Info (12023): Found entity 1: wrapper_tb
+Warning (10236): Verilog HDL Implicit Net warning at pipeline.sv(176): created implicit net for "no_lscommand_w"
+Info (12127): Elaborating entity "wrapper" for the top level hierarchy
+Info (12128): Elaborating entity "pipeline" for hierarchy "pipeline:CPU"
+Info (12128): Elaborating entity "IF" for hierarchy "pipeline:CPU|IF:IF"
+Info (12128): Elaborating entity "mux2to1_32bit" for hierarchy "pipeline:CPU|IF:IF|mux2to1_32bit:MUX_IF"
+Info (12128): Elaborating entity "mux3to1_32bit" for hierarchy "pipeline:CPU|IF:IF|mux3to1_32bit:MUX3_IF"
+Info (12128): Elaborating entity "pc" for hierarchy "pipeline:CPU|IF:IF|pc:PC_IF"
+Info (12128): Elaborating entity "adder_32bit" for hierarchy "pipeline:CPU|IF:IF|pc:PC_IF|adder_32bit:Incr_command"
+Info (12128): Elaborating entity "full_adder" for hierarchy "pipeline:CPU|IF:IF|pc:PC_IF|adder_32bit:Incr_command|full_adder:A0"
+Info (12128): Elaborating entity "imem" for hierarchy "pipeline:CPU|IF:IF|imem:IMEM_IF"
+Warning (10850): Verilog HDL warning at imem.sv(14): number of words (205) in memory file does not match the number of elements in the address range [0:2047]
+Warning (10030): Net "mem.data_a" at imem.sv(7) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "mem.waddr_a" at imem.sv(7) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "mem.we_a" at imem.sv(7) has no driver or initial value, using a default initial value '0'
+Info (12128): Elaborating entity "ID" for hierarchy "pipeline:CPU|ID:ID"
+Info (12128): Elaborating entity "regfile" for hierarchy "pipeline:CPU|ID:ID|regfile:RF_ID"
+Info (12128): Elaborating entity "imm_gen" for hierarchy "pipeline:CPU|ID:ID|imm_gen:ImmGen_ID"
+Info (12128): Elaborating entity "ctrl_unit" for hierarchy "pipeline:CPU|ID:ID|ctrl_unit:CtrlUnit_ID"
+Info (12128): Elaborating entity "EX" for hierarchy "pipeline:CPU|EX:EX"
+Info (12128): Elaborating entity "brcomp" for hierarchy "pipeline:CPU|EX:EX|brcomp:BrComp_EX"
+Info (12128): Elaborating entity "set_equal" for hierarchy "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_equal:SE"
+Info (12128): Elaborating entity "xor_32bit" for hierarchy "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_equal:SE|xor_32bit:X0"
+Info (12128): Elaborating entity "set_less_than" for hierarchy "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT"
+Info (12128): Elaborating entity "subtractor_32bit" for hierarchy "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0"
+Info (12128): Elaborating entity "full_subtractor" for hierarchy "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than:SLT|subtractor_32bit:SUB0|full_subtractor:S0"
+Info (12128): Elaborating entity "set_less_than_unsign" for hierarchy "pipeline:CPU|EX:EX|brcomp:BrComp_EX|set_less_than_unsign:SLTU"
+Info (12128): Elaborating entity "alu" for hierarchy "pipeline:CPU|EX:EX|alu:ALU_EX"
+Info (12128): Elaborating entity "shift_left_logical" for hierarchy "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0"
+Info (12128): Elaborating entity "decode_dif" for hierarchy "pipeline:CPU|EX:EX|alu:ALU_EX|shift_left_logical:SLL0|decode_dif:DE0"
+Info (12128): Elaborating entity "shift_right_logical" for hierarchy "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_logical:SRL0"
+Info (12128): Elaborating entity "shift_right_arithmetic" for hierarchy "pipeline:CPU|EX:EX|alu:ALU_EX|shift_right_arithmetic:SRA0"
+Info (12128): Elaborating entity "or_32bit" for hierarchy "pipeline:CPU|EX:EX|alu:ALU_EX|or_32bit:OR0"
+Info (12128): Elaborating entity "and_32bit" for hierarchy "pipeline:CPU|EX:EX|alu:ALU_EX|and_32bit:AND0"
+Info (12128): Elaborating entity "MEM" for hierarchy "pipeline:CPU|MEM:MEM"
+Info (12128): Elaborating entity "lsu" for hierarchy "pipeline:CPU|MEM:MEM|lsu:LSU_MEM"
+Info (12128): Elaborating entity "WB" for hierarchy "pipeline:CPU|WB:WB"
+Info (12128): Elaborating entity "Hazard_unit" for hierarchy "pipeline:CPU|Hazard_unit:FCU"
+Info (12128): Elaborating entity "Branch_predictor" for hierarchy "pipeline:CPU|Branch_predictor:BP"
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/altera/projects/wrapper_pipeline_RV32I/db/wrapper.ram0_imem_37c714.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SW[16]"
+    Warning (15610): No output dependent on input pin "KEY[0]"
+Info (21057): Implemented 67550 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 20 input pins
+    Info (21059): Implemented 93 output pins
+    Info (21061): Implemented 67437 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 11 warnings
+    Info: Peak virtual memory: 4771 megabytes
+    Info: Processing ended: Sat Nov 30 14:59:00 2024
+    Info: Elapsed time: 00:04:39
+    Info: Total CPU time (on all processors): 00:04:31
+
+

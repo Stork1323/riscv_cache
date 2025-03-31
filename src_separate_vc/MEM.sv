@@ -171,7 +171,7 @@ module MEM(
 	// assign mem_data_w.ready = Valid_memory2cache_w;
 
 	/* control stall for previous stages */
-	assign stall_by_dcache_o = ((Valid_cpu2cache_mem_i&(~cpu_result_w.ready)) ? 1'b1 : 1'b0);// | (~vc_miss_w);
+	assign stall_by_dcache_o = ((Valid_cpu2cache_mem_i&(~cpu_result_w.ready)) ? 1'b1 : 1'b0) | (~vc_miss_w);
 	
 	// logic cpu_result_ready_d, cpu_result_ready_r;
 	// assign cpu_result_ready_d = cpu_result_w.ready;

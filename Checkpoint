@@ -1,0 +1,17 @@
+Files src_l1_4way/Branch_predictor.sv and src_two_level_4way/Branch_predictor.sv differ
+Files src_l1_4way/Hazard_unit.sv and src_two_level_4way/Hazard_unit.sv differ
+Files src_l1_4way/IF.sv and src_two_level_4way/IF.sv differ
+Files src_l1_4way/MEM.sv and src_two_level_4way/MEM.sv differ
+Files src_l1_4way/cache_LRU.sv and src_two_level_4way/cache_LRU.sv differ
+Files src_l1_4way/cache_data.sv and src_two_level_4way/cache_data.sv differ
+Files src_l1_4way/cache_def.sv and src_two_level_4way/cache_def.sv differ
+Files src_l1_4way/cache_fsm.sv and src_two_level_4way/cache_fsm.sv differ
+Files src_l1_4way/cache_pLRU.sv and src_two_level_4way/cache_pLRU.sv differ
+Files src_l1_4way/cache_tag.sv and src_two_level_4way/cache_tag.sv differ
+Files src_l1_4way/d_cache.sv and src_two_level_4way/d_cache.sv differ
+Files src_l1_4way/i_cache.sv and src_two_level_4way/i_cache.sv differ
+Files src_l1_4way/icache_controller.sv and src_two_level_4way/icache_controller.sv differ
+Files src_l1_4way/imem.sv and src_two_level_4way/imem.sv differ
+Files src_l1_4way/lsu.sv and src_two_level_4way/lsu.sv differ
+Files src_l1_4way/riscv_cache.sv and src_two_level_4way/riscv_cache.sv differ
+Files src_l1_4way/riscv_cache_tb.sv and src_two_level_4way/riscv_cache_tb.sv differ

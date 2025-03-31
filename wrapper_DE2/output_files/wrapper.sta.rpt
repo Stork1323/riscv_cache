@@ -1,0 +1,1797 @@
+TimeQuest Timing Analyzer report for wrapper
+Wed May 08 18:46:40 2024
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. Clocks
+  5. Slow Model Fmax Summary
+  6. Slow Model Setup Summary
+  7. Slow Model Hold Summary
+  8. Slow Model Recovery Summary
+  9. Slow Model Removal Summary
+ 10. Slow Model Minimum Pulse Width Summary
+ 11. Slow Model Setup: 'CLOCK_27'
+ 12. Slow Model Hold: 'CLOCK_27'
+ 13. Slow Model Minimum Pulse Width: 'CLOCK_27'
+ 14. Setup Times
+ 15. Hold Times
+ 16. Clock to Output Times
+ 17. Minimum Clock to Output Times
+ 18. Fast Model Setup Summary
+ 19. Fast Model Hold Summary
+ 20. Fast Model Recovery Summary
+ 21. Fast Model Removal Summary
+ 22. Fast Model Minimum Pulse Width Summary
+ 23. Fast Model Setup: 'CLOCK_27'
+ 24. Fast Model Hold: 'CLOCK_27'
+ 25. Fast Model Minimum Pulse Width: 'CLOCK_27'
+ 26. Setup Times
+ 27. Hold Times
+ 28. Clock to Output Times
+ 29. Minimum Clock to Output Times
+ 30. Multicorner Timing Analysis Summary
+ 31. Setup Times
+ 32. Hold Times
+ 33. Clock to Output Times
+ 34. Minimum Clock to Output Times
+ 35. Setup Transfers
+ 36. Hold Transfers
+ 37. Report TCCS
+ 38. Report RSKM
+ 39. Unconstrained Paths
+ 40. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                                      ;
++--------------------+-------------------------------------------------------------------+
+; Quartus II Version ; Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition ;
+; Revision Name      ; wrapper                                                           ;
+; Device Family      ; Cyclone II                                                        ;
+; Device Name        ; EP2C35F672C6                                                      ;
+; Timing Models      ; Final                                                             ;
+; Delay Model        ; Combined                                                          ;
+; Rise/Fall Delays   ; Unavailable                                                       ;
++--------------------+-------------------------------------------------------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                               ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets      ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+; CLOCK_27   ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLOCK_27 } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
+
+
++-------------------------------------------------+
+; Slow Model Fmax Summary                         ;
++-----------+-----------------+------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
++-----------+-----------------+------------+------+
+; 27.76 MHz ; 27.76 MHz       ; CLOCK_27   ;      ;
++-----------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++------------------------------------+
+; Slow Model Setup Summary           ;
++----------+---------+---------------+
+; Clock    ; Slack   ; End Point TNS ;
++----------+---------+---------------+
+; CLOCK_27 ; -35.023 ; -266727.535   ;
++----------+---------+---------------+
+
+
++----------------------------------+
+; Slow Model Hold Summary          ;
++----------+-------+---------------+
+; Clock    ; Slack ; End Point TNS ;
++----------+-------+---------------+
+; CLOCK_27 ; 0.391 ; 0.000         ;
++----------+-------+---------------+
+
+
+-------------------------------
+; Slow Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Slow Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Slow Model Minimum Pulse Width Summary ;
++----------+--------+--------------------+
+; Clock    ; Slack  ; End Point TNS      ;
++----------+--------+--------------------+
+; CLOCK_27 ; -1.380 ; -19671.380         ;
++----------+--------+--------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Setup: 'CLOCK_27'                                                                                                                                             ;
++---------+---------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack   ; From Node                       ; To Node                                                ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++---------+---------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; -35.023 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 36.080     ;
+; -34.998 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 36.057     ;
+; -34.940 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.957     ;
+; -34.938 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.955     ;
+; -34.914 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.962     ;
+; -34.897 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 35.954     ;
+; -34.893 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.943     ;
+; -34.881 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.931     ;
+; -34.872 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.931     ;
+; -34.841 ; pipeline:CPU|EX:EX|inst_r[9]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 35.898     ;
+; -34.822 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|ID:ID|rs1_r[0]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.014     ; 35.844     ;
+; -34.816 ; pipeline:CPU|EX:EX|inst_r[9]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.875     ;
+; -34.814 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.831     ;
+; -34.813 ; pipeline:CPU|EX:EX|inst_r[8]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 35.870     ;
+; -34.812 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.829     ;
+; -34.810 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[16][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.018      ; 35.864     ;
+; -34.809 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[29][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.868     ;
+; -34.809 ; pipeline:CPU|ID:ID|inst_r[21]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 35.866     ;
+; -34.808 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[26][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.867     ;
+; -34.796 ; pipeline:CPU|MEM:MEM|inst_r[9]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.855     ;
+; -34.788 ; pipeline:CPU|EX:EX|inst_r[8]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.847     ;
+; -34.788 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.836     ;
+; -34.784 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[4][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.009      ; 35.829     ;
+; -34.784 ; pipeline:CPU|ID:ID|inst_r[21]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.843     ;
+; -34.779 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[3][1]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 35.834     ;
+; -34.771 ; pipeline:CPU|MEM:MEM|inst_r[9]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.025      ; 35.832     ;
+; -34.767 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.817     ;
+; -34.766 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|ID:ID|rs1_r[2]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.814     ;
+; -34.758 ; pipeline:CPU|EX:EX|inst_r[9]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.775     ;
+; -34.757 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[14][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.001     ; 35.792     ;
+; -34.756 ; pipeline:CPU|EX:EX|inst_r[9]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.773     ;
+; -34.755 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.805     ;
+; -34.754 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[12][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.001     ; 35.789     ;
+; -34.754 ; pipeline:CPU|ID:ID|inst_r[22]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.813     ;
+; -34.748 ; pipeline:CPU|EX:EX|inst_r[10]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 35.805     ;
+; -34.747 ; pipeline:CPU|ID:ID|inst_r[20]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 35.804     ;
+; -34.736 ; pipeline:CPU|ID:ID|inst_r[23]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.795     ;
+; -34.732 ; pipeline:CPU|EX:EX|inst_r[9]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.780     ;
+; -34.730 ; pipeline:CPU|EX:EX|inst_r[8]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.747     ;
+; -34.729 ; pipeline:CPU|ID:ID|inst_r[22]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.025      ; 35.790     ;
+; -34.728 ; pipeline:CPU|EX:EX|inst_r[8]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.745     ;
+; -34.726 ; pipeline:CPU|ID:ID|inst_r[21]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.743     ;
+; -34.724 ; pipeline:CPU|ID:ID|inst_r[21]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.741     ;
+; -34.723 ; pipeline:CPU|EX:EX|inst_r[10]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.782     ;
+; -34.722 ; pipeline:CPU|ID:ID|inst_r[20]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.781     ;
+; -34.719 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|ID:ID|BSel_r                              ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.022     ; 35.733     ;
+; -34.713 ; pipeline:CPU|MEM:MEM|inst_r[9]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.017     ; 35.732     ;
+; -34.711 ; pipeline:CPU|EX:EX|inst_r[9]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.761     ;
+; -34.711 ; pipeline:CPU|MEM:MEM|inst_r[9]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.017     ; 35.730     ;
+; -34.711 ; pipeline:CPU|ID:ID|inst_r[23]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.025      ; 35.772     ;
+; -34.710 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[0][1]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.010     ; 35.736     ;
+; -34.709 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.010     ; 35.735     ;
+; -34.704 ; pipeline:CPU|EX:EX|inst_r[8]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.752     ;
+; -34.700 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.018      ; 35.754     ;
+; -34.700 ; pipeline:CPU|ID:ID|inst_r[21]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.748     ;
+; -34.699 ; pipeline:CPU|EX:EX|inst_r[9]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.749     ;
+; -34.698 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|IF:IF|inst_r[18]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.017      ; 35.751     ;
+; -34.698 ; pipeline:CPU|MEM:MEM|inst_r[7]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 35.755     ;
+; -34.696 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|IF:IF|inst_r[16]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.017      ; 35.749     ;
+; -34.696 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|IF:IF|inst_r[27]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.017      ; 35.749     ;
+; -34.696 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|ID:ID|rs1_r[0]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.014     ; 35.718     ;
+; -34.692 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|IF:IF|inst_r[17]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.017      ; 35.745     ;
+; -34.687 ; pipeline:CPU|MEM:MEM|inst_r[9]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.737     ;
+; -34.684 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[16][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.018      ; 35.738     ;
+; -34.683 ; pipeline:CPU|EX:EX|inst_r[8]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.733     ;
+; -34.683 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[29][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.742     ;
+; -34.682 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|IF:IF|inst_r[11]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.008      ; 35.726     ;
+; -34.682 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[26][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.741     ;
+; -34.679 ; pipeline:CPU|ID:ID|inst_r[21]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.729     ;
+; -34.673 ; pipeline:CPU|MEM:MEM|inst_r[7]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.732     ;
+; -34.671 ; pipeline:CPU|EX:EX|inst_r[8]    ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.721     ;
+; -34.671 ; pipeline:CPU|ID:ID|inst_r[22]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.017     ; 35.690     ;
+; -34.669 ; pipeline:CPU|ID:ID|inst_r[22]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.017     ; 35.688     ;
+; -34.667 ; pipeline:CPU|ID:ID|inst_r[21]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.717     ;
+; -34.666 ; pipeline:CPU|MEM:MEM|inst_r[10] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.023      ; 35.725     ;
+; -34.666 ; pipeline:CPU|MEM:MEM|inst_r[9]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.016      ; 35.718     ;
+; -34.665 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[15][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.715     ;
+; -34.665 ; pipeline:CPU|EX:EX|inst_r[10]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.682     ;
+; -34.664 ; pipeline:CPU|ID:ID|inst_r[20]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.681     ;
+; -34.663 ; pipeline:CPU|EX:EX|inst_r[10]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.680     ;
+; -34.662 ; pipeline:CPU|ID:ID|inst_r[20]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 35.679     ;
+; -34.658 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[4][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.009      ; 35.703     ;
+; -34.654 ; pipeline:CPU|MEM:MEM|inst_r[9]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.016      ; 35.706     ;
+; -34.653 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[5][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.009      ; 35.698     ;
+; -34.653 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[3][1]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 35.708     ;
+; -34.653 ; pipeline:CPU|ID:ID|inst_r[23]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.017     ; 35.672     ;
+; -34.651 ; pipeline:CPU|ID:ID|inst_r[23]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.017     ; 35.670     ;
+; -34.649 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|IF:IF|inst_r[21]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.003     ; 35.682     ;
+; -34.646 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|IF:IF|inst_r[19]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.003     ; 35.679     ;
+; -34.645 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|IF:IF|inst_r[15]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.003     ; 35.678     ;
+; -34.645 ; pipeline:CPU|ID:ID|inst_r[22]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.014      ; 35.695     ;
+; -34.644 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.002      ; 35.682     ;
+; -34.644 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[31][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.002      ; 35.682     ;
+; -34.641 ; pipeline:CPU|MEM:MEM|inst_r[10] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.025      ; 35.702     ;
+; -34.640 ; pipeline:CPU|EX:EX|inst_r[9]    ; pipeline:CPU|ID:ID|rs1_r[0]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.014     ; 35.662     ;
+; -34.640 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|ID:ID|rs1_r[2]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.688     ;
+; -34.639 ; pipeline:CPU|EX:EX|inst_r[10]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.687     ;
+; -34.638 ; pipeline:CPU|EX:EX|inst_r[11]   ; pipeline:CPU|ID:ID|ASel_r                              ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.006     ; 35.668     ;
+; -34.638 ; pipeline:CPU|ID:ID|inst_r[20]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 35.686     ;
+; -34.631 ; pipeline:CPU|MEM:MEM|inst_r[8]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[14][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.001     ; 35.666     ;
++---------+---------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Hold: 'CLOCK_27'                                                                                                                                          ;
++-------+----------------------------------------+-----------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                              ; To Node                                       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------------+-----------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.391 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|ID:ID|hit_r                      ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.657      ;
+; 0.521 ; pipeline:CPU|IF:IF|PC_add4_r[8]        ; pipeline:CPU|ID:ID|pc4_r[8]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.787      ;
+; 0.542 ; pipeline:CPU|IF:IF|PC_add4_r[6]        ; pipeline:CPU|ID:ID|pc4_r[6]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.808      ;
+; 0.544 ; pipeline:CPU|ID:ID|inst_r[5]           ; pipeline:CPU|EX:EX|inst_r[5]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.810      ;
+; 0.650 ; pipeline:CPU|IF:IF|PC_add4_r[31]       ; pipeline:CPU|ID:ID|pc4_r[31]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.916      ;
+; 0.653 ; pipeline:CPU|IF:IF|PC_add4_r[28]       ; pipeline:CPU|ID:ID|pc4_r[28]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.919      ;
+; 0.655 ; pipeline:CPU|IF:IF|PC_add4_r[21]       ; pipeline:CPU|ID:ID|pc4_r[21]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.921      ;
+; 0.658 ; pipeline:CPU|ID:ID|pc4_r[28]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[28]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.924      ;
+; 0.660 ; pipeline:CPU|IF:IF|PC_add4_r[13]       ; pipeline:CPU|ID:ID|pc4_r[13]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.926      ;
+; 0.661 ; pipeline:CPU|EX:EX|pc4_r[28]           ; pipeline:CPU|MEM:MEM|pc4_r[28]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.927      ;
+; 0.662 ; pipeline:CPU|EX:EX|pc4_r[30]           ; pipeline:CPU|MEM:MEM|pc4_r[30]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.928      ;
+; 0.663 ; pipeline:CPU|EX:EX|pc4_r[20]           ; pipeline:CPU|MEM:MEM|pc4_r[20]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.929      ;
+; 0.664 ; pipeline:CPU|EX:EX|pc4_r[18]           ; pipeline:CPU|MEM:MEM|pc4_r[18]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.930      ;
+; 0.664 ; pipeline:CPU|EX:EX|pc4_r[31]           ; pipeline:CPU|MEM:MEM|pc4_r[31]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.930      ;
+; 0.665 ; pipeline:CPU|ID:ID|pc4_r[22]           ; pipeline:CPU|EX:EX|pc4_r[22]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.931      ;
+; 0.665 ; pipeline:CPU|ID:ID|pc4_r[4]            ; pipeline:CPU|EX:EX|pc4_r[4]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.931      ;
+; 0.666 ; pipeline:CPU|EX:EX|pc4_r[5]            ; pipeline:CPU|MEM:MEM|pc4_r[5]                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.932      ;
+; 0.666 ; pipeline:CPU|EX:EX|pc4_r[23]           ; pipeline:CPU|MEM:MEM|pc4_r[23]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.932      ;
+; 0.666 ; pipeline:CPU|EX:EX|pc4_r[29]           ; pipeline:CPU|MEM:MEM|pc4_r[29]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.932      ;
+; 0.670 ; pipeline:CPU|EX:EX|alu_r[17]           ; pipeline:CPU|MEM:MEM|alu_r[17]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.936      ;
+; 0.672 ; pipeline:CPU|EX:EX|alu_r[20]           ; pipeline:CPU|MEM:MEM|alu_r[20]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.938      ;
+; 0.677 ; pipeline:CPU|EX:EX|alu_r[29]           ; pipeline:CPU|MEM:MEM|alu_r[29]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.943      ;
+; 0.678 ; pipeline:CPU|EX:EX|alu_r[23]           ; pipeline:CPU|MEM:MEM|alu_r[23]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.944      ;
+; 0.681 ; pipeline:CPU|EX:EX|alu_r[24]           ; pipeline:CPU|MEM:MEM|alu_r[24]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.947      ;
+; 0.689 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[9]  ; pipeline:CPU|IF:IF|PC_add4_r[9]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.955      ;
+; 0.694 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[30] ; pipeline:CPU|IF:IF|PC_add4_r[31]              ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.960      ;
+; 0.730 ; pipeline:CPU|EX:EX|alu_r[6]            ; pipeline:CPU|MEM:MEM|alu_r[6]                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.996      ;
+; 0.790 ; pipeline:CPU|IF:IF|PC_add4_r[12]       ; pipeline:CPU|ID:ID|pc4_r[12]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.056      ;
+; 0.791 ; pipeline:CPU|IF:IF|PC_add4_r[16]       ; pipeline:CPU|ID:ID|pc4_r[16]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.057      ;
+; 0.795 ; pipeline:CPU|IF:IF|PC_add4_r[19]       ; pipeline:CPU|ID:ID|pc4_r[19]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.061      ;
+; 0.798 ; pipeline:CPU|IF:IF|PC_r[14]            ; pipeline:CPU|ID:ID|pc_r[14]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.064      ;
+; 0.798 ; pipeline:CPU|IF:IF|PC_add4_r[2]        ; pipeline:CPU|ID:ID|pc4_r[2]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.064      ;
+; 0.799 ; pipeline:CPU|IF:IF|PC_add4_r[17]       ; pipeline:CPU|ID:ID|pc4_r[17]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.065      ;
+; 0.800 ; pipeline:CPU|IF:IF|PC_add4_r[14]       ; pipeline:CPU|ID:ID|pc4_r[14]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.066      ;
+; 0.802 ; pipeline:CPU|ID:ID|pc4_r[17]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[17]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.068      ;
+; 0.804 ; pipeline:CPU|IF:IF|PC_add4_r[23]       ; pipeline:CPU|ID:ID|pc4_r[23]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.070      ;
+; 0.807 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[0]  ; pipeline:CPU|IF:IF|PC_add4_r[0]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.073      ;
+; 0.807 ; pipeline:CPU|ID:ID|pc4_r[8]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[8]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.073      ;
+; 0.809 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[2]  ; pipeline:CPU|IF:IF|PC_add4_r[2]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.075      ;
+; 0.810 ; pipeline:CPU|ID:ID|pc4_r[27]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[27]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.076      ;
+; 0.810 ; pipeline:CPU|IF:IF|PC_add4_r[9]        ; pipeline:CPU|ID:ID|pc4_r[9]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.076      ;
+; 0.812 ; pipeline:CPU|ID:ID|pc4_r[21]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[21]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.078      ;
+; 0.815 ; pipeline:CPU|EX:EX|alu_r[8]            ; pipeline:CPU|MEM:MEM|mem_r[25]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.081      ;
+; 0.820 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|IF:IF|PC_add4_r[4]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.086      ;
+; 0.820 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|ID:ID|pc4_r[13]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.086      ;
+; 0.821 ; pipeline:CPU|IF:IF|PC_add4_r[11]       ; pipeline:CPU|ID:ID|pc4_r[11]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.087      ;
+; 0.821 ; pipeline:CPU|IF:IF|PC_add4_r[30]       ; pipeline:CPU|ID:ID|pc4_r[30]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.087      ;
+; 0.822 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|IF:IF|PC_add4_r[13]              ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.088      ;
+; 0.825 ; pipeline:CPU|IF:IF|PC_r[5]             ; pipeline:CPU|ID:ID|pc_r[5]                    ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.091      ;
+; 0.825 ; pipeline:CPU|IF:IF|PC_add4_r[3]        ; pipeline:CPU|ID:ID|pc4_r[3]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.091      ;
+; 0.825 ; pipeline:CPU|IF:IF|PC_r[9]             ; pipeline:CPU|ID:ID|pc_r[9]                    ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.091      ;
+; 0.825 ; pipeline:CPU|IF:IF|hit_r               ; pipeline:CPU|ID:ID|hit_r                      ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.091      ;
+; 0.826 ; pipeline:CPU|IF:IF|PC_r[23]            ; pipeline:CPU|ID:ID|pc_r[23]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.092      ;
+; 0.828 ; pipeline:CPU|IF:IF|PC_r[19]            ; pipeline:CPU|ID:ID|pc_r[19]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.094      ;
+; 0.830 ; pipeline:CPU|IF:IF|PC_add4_r[20]       ; pipeline:CPU|ID:ID|pc4_r[20]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.096      ;
+; 0.830 ; pipeline:CPU|IF:IF|PC_r[26]            ; pipeline:CPU|ID:ID|pc_r[26]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.096      ;
+; 0.830 ; pipeline:CPU|IF:IF|PC_add4_r[29]       ; pipeline:CPU|ID:ID|pc4_r[29]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.096      ;
+; 0.831 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[6]  ; pipeline:CPU|IF:IF|PC_add4_r[6]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.097      ;
+; 0.832 ; pipeline:CPU|IF:IF|PC_r[29]            ; pipeline:CPU|ID:ID|pc_r[29]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.098      ;
+; 0.832 ; pipeline:CPU|IF:IF|PC_r[20]            ; pipeline:CPU|ID:ID|pc_r[20]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.098      ;
+; 0.833 ; pipeline:CPU|IF:IF|PC_add4_r[7]        ; pipeline:CPU|ID:ID|pc4_r[7]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.099      ;
+; 0.833 ; pipeline:CPU|IF:IF|PC_add4_r[26]       ; pipeline:CPU|ID:ID|pc4_r[26]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.099      ;
+; 0.833 ; pipeline:CPU|ID:ID|inst_r[1]           ; pipeline:CPU|EX:EX|inst_r[0]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.099      ;
+; 0.835 ; pipeline:CPU|IF:IF|PC_r[27]            ; pipeline:CPU|ID:ID|pc_r[27]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.101      ;
+; 0.835 ; pipeline:CPU|IF:IF|PC_r[11]            ; pipeline:CPU|ID:ID|pc_r[11]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.101      ;
+; 0.835 ; pipeline:CPU|IF:IF|PC_add4_r[1]        ; pipeline:CPU|ID:ID|pc4_r[1]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.101      ;
+; 0.837 ; pipeline:CPU|ID:ID|pc4_r[23]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[23]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.103      ;
+; 0.840 ; pipeline:CPU|IF:IF|PC_add4_r[27]       ; pipeline:CPU|ID:ID|pc4_r[27]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.106      ;
+; 0.841 ; pipeline:CPU|ID:ID|pc4_r[2]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[2]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.107      ;
+; 0.842 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[17] ; pipeline:CPU|IF:IF|PC_r[17]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.108      ;
+; 0.842 ; pipeline:CPU|IF:IF|PC_r[10]            ; pipeline:CPU|ID:ID|pc_r[10]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.108      ;
+; 0.847 ; pipeline:CPU|IF:IF|PC_add4_r[10]       ; pipeline:CPU|ID:ID|pc4_r[10]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.113      ;
+; 0.860 ; pipeline:CPU|EX:EX|alu_r[21]           ; pipeline:CPU|MEM:MEM|alu_r[21]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.126      ;
+; 0.861 ; pipeline:CPU|EX:EX|inst_r[8]           ; pipeline:CPU|MEM:MEM|inst_r[8]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.127      ;
+; 0.869 ; pipeline:CPU|EX:EX|alu_r[26]           ; pipeline:CPU|MEM:MEM|alu_r[26]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.001     ; 1.134      ;
+; 0.869 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[30] ; pipeline:CPU|IF:IF|PC_add4_r[30]              ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.135      ;
+; 0.869 ; pipeline:CPU|EX:EX|pc4_r[12]           ; pipeline:CPU|MEM:MEM|pc4_r[12]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.002     ; 1.133      ;
+; 0.870 ; pipeline:CPU|EX:EX|alu_r[19]           ; pipeline:CPU|MEM:MEM|alu_r[19]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.002     ; 1.134      ;
+; 0.871 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[30] ; pipeline:CPU|IF:IF|PC_r[30]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.137      ;
+; 0.875 ; pipeline:CPU|EX:EX|pc4_r[11]           ; pipeline:CPU|MEM:MEM|pc4_r[11]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.141      ;
+; 0.879 ; pipeline:CPU|EX:EX|inst_r[10]          ; pipeline:CPU|MEM:MEM|inst_r[10]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.002     ; 1.143      ;
+; 0.879 ; pipeline:CPU|EX:EX|RegWEn_r            ; pipeline:CPU|MEM:MEM|RegWEn_r                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.002     ; 1.143      ;
+; 0.880 ; pipeline:CPU|EX:EX|alu_r[28]           ; pipeline:CPU|MEM:MEM|alu_r[28]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.146      ;
+; 0.880 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[27] ; pipeline:CPU|IF:IF|PC_add4_r[27]              ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.146      ;
+; 0.883 ; pipeline:CPU|EX:EX|alu_r[9]            ; pipeline:CPU|MEM:MEM|alu_r[9]                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.149      ;
+; 0.889 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|IF:IF|hit_r                      ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.155      ;
+; 0.890 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|ID:ID|pc4_r[12]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.156      ;
+; 0.892 ; pipeline:CPU|EX:EX|alu_r[1]            ; pipeline:CPU|MEM:MEM|alu_r[1]                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.004     ; 1.154      ;
+; 0.957 ; pipeline:CPU|ID:ID|pc4_r[0]            ; pipeline:CPU|EX:EX|pc4_r[0]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.029      ; 1.252      ;
+; 0.977 ; pipeline:CPU|EX:EX|rs2_r[12]           ; pipeline:CPU|MEM:MEM|lsu:LSU_MEM|mem[380][12] ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.243      ;
+; 0.978 ; pipeline:CPU|EX:EX|rs2_r[12]           ; pipeline:CPU|MEM:MEM|lsu:LSU_MEM|mem[267][12] ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.244      ;
+; 0.983 ; pipeline:CPU|ID:ID|pc4_r[6]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[6]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.249      ;
+; 0.985 ; pipeline:CPU|EX:EX|rs2_r[18]           ; pipeline:CPU|MEM:MEM|lsu:LSU_MEM|mem[335][18] ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.001     ; 1.250      ;
+; 0.994 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[14] ; pipeline:CPU|IF:IF|PC_r[14]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.260      ;
+; 1.006 ; pipeline:CPU|ID:ID|MemRW_r             ; pipeline:CPU|EX:EX|MemRW_r                    ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.002     ; 1.270      ;
+; 1.017 ; pipeline:CPU|ID:ID|pc4_r[9]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[9]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.283      ;
+; 1.021 ; pipeline:CPU|IF:IF|PC_add4_r[15]       ; pipeline:CPU|ID:ID|pc4_r[15]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.287      ;
+; 1.025 ; pipeline:CPU|EX:EX|rs2_r[31]           ; pipeline:CPU|MEM:MEM|lsu:LSU_MEM|mem[233][31] ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.002     ; 1.289      ;
+; 1.027 ; pipeline:CPU|ID:ID|pc4_r[1]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[1]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.293      ;
+; 1.036 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[20] ; pipeline:CPU|IF:IF|PC_r[20]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 1.302      ;
++-------+----------------------------------------+-----------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Minimum Pulse Width: 'CLOCK_27'                                                                                                  ;
++--------+--------------+----------------+------------------+----------+------------+---------------------------------------------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock    ; Clock Edge ; Target                                                  ;
++--------+--------------+----------------+------------------+----------+------------+---------------------------------------------------------+
+; -1.380 ; 1.000        ; 2.380          ; Port Rate        ; CLOCK_27 ; Rise       ; CLOCK_27                                                ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[0]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[0]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[10]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[10]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[11]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[11]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[12]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[12]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[13]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[13]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[14]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[14]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[15]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[15]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[16]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[16]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[17]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[17]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[18]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[18]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[19]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[19]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[1]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[1]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[2]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[2]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[3]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[3]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[4]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[4]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[5]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[5]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[6]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[6]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[7]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[7]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[8]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[8]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[9]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[9]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[0]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[0]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[10] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[10] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[11] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[11] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[12] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[12] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[13] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[13] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[14] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[14] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[15] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[15] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[16] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[16] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[17] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[17] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[18] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[18] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[19] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[19] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[1]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[1]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[20] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[20] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[21] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[21] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[22] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[22] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[23] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[23] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[24] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[24] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[25] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[25] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[26] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[26] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[27] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[27] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[28] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[28] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[29] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[29] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[2]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[2]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[30] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[30] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[31] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[31] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[3]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[3]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[4]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[4]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[5]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[5]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[6]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[6]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[7]  ;
++--------+--------------+----------------+------------------+----------+------------+---------------------------------------------------------+
+
+
++-------------------------------------------------------------------------+
+; Setup Times                                                             ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; SW[*]     ; CLOCK_27   ; 38.442 ; 38.442 ; Rise       ; CLOCK_27        ;
+;  SW[0]    ; CLOCK_27   ; 0.785  ; 0.785  ; Rise       ; CLOCK_27        ;
+;  SW[1]    ; CLOCK_27   ; 1.102  ; 1.102  ; Rise       ; CLOCK_27        ;
+;  SW[2]    ; CLOCK_27   ; 1.259  ; 1.259  ; Rise       ; CLOCK_27        ;
+;  SW[3]    ; CLOCK_27   ; 0.515  ; 0.515  ; Rise       ; CLOCK_27        ;
+;  SW[4]    ; CLOCK_27   ; 0.333  ; 0.333  ; Rise       ; CLOCK_27        ;
+;  SW[5]    ; CLOCK_27   ; 0.222  ; 0.222  ; Rise       ; CLOCK_27        ;
+;  SW[6]    ; CLOCK_27   ; 0.277  ; 0.277  ; Rise       ; CLOCK_27        ;
+;  SW[7]    ; CLOCK_27   ; 0.241  ; 0.241  ; Rise       ; CLOCK_27        ;
+;  SW[8]    ; CLOCK_27   ; 0.491  ; 0.491  ; Rise       ; CLOCK_27        ;
+;  SW[9]    ; CLOCK_27   ; 0.432  ; 0.432  ; Rise       ; CLOCK_27        ;
+;  SW[10]   ; CLOCK_27   ; 0.181  ; 0.181  ; Rise       ; CLOCK_27        ;
+;  SW[11]   ; CLOCK_27   ; 0.204  ; 0.204  ; Rise       ; CLOCK_27        ;
+;  SW[12]   ; CLOCK_27   ; 0.617  ; 0.617  ; Rise       ; CLOCK_27        ;
+;  SW[13]   ; CLOCK_27   ; 4.266  ; 4.266  ; Rise       ; CLOCK_27        ;
+;  SW[14]   ; CLOCK_27   ; 4.226  ; 4.226  ; Rise       ; CLOCK_27        ;
+;  SW[15]   ; CLOCK_27   ; 4.159  ; 4.159  ; Rise       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; 38.442 ; 38.442 ; Rise       ; CLOCK_27        ;
+; SW[*]     ; CLOCK_27   ; 9.194  ; 9.194  ; Fall       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; 9.194  ; 9.194  ; Fall       ; CLOCK_27        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; SW[*]     ; CLOCK_27   ; 0.049  ; 0.049  ; Rise       ; CLOCK_27        ;
+;  SW[0]    ; CLOCK_27   ; -0.555 ; -0.555 ; Rise       ; CLOCK_27        ;
+;  SW[1]    ; CLOCK_27   ; -0.872 ; -0.872 ; Rise       ; CLOCK_27        ;
+;  SW[2]    ; CLOCK_27   ; -1.029 ; -1.029 ; Rise       ; CLOCK_27        ;
+;  SW[3]    ; CLOCK_27   ; -0.285 ; -0.285 ; Rise       ; CLOCK_27        ;
+;  SW[4]    ; CLOCK_27   ; -0.103 ; -0.103 ; Rise       ; CLOCK_27        ;
+;  SW[5]    ; CLOCK_27   ; 0.008  ; 0.008  ; Rise       ; CLOCK_27        ;
+;  SW[6]    ; CLOCK_27   ; -0.047 ; -0.047 ; Rise       ; CLOCK_27        ;
+;  SW[7]    ; CLOCK_27   ; -0.011 ; -0.011 ; Rise       ; CLOCK_27        ;
+;  SW[8]    ; CLOCK_27   ; -0.261 ; -0.261 ; Rise       ; CLOCK_27        ;
+;  SW[9]    ; CLOCK_27   ; -0.202 ; -0.202 ; Rise       ; CLOCK_27        ;
+;  SW[10]   ; CLOCK_27   ; 0.049  ; 0.049  ; Rise       ; CLOCK_27        ;
+;  SW[11]   ; CLOCK_27   ; 0.026  ; 0.026  ; Rise       ; CLOCK_27        ;
+;  SW[12]   ; CLOCK_27   ; -0.387 ; -0.387 ; Rise       ; CLOCK_27        ;
+;  SW[13]   ; CLOCK_27   ; -4.036 ; -4.036 ; Rise       ; CLOCK_27        ;
+;  SW[14]   ; CLOCK_27   ; -3.996 ; -3.996 ; Rise       ; CLOCK_27        ;
+;  SW[15]   ; CLOCK_27   ; -3.929 ; -3.929 ; Rise       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; -4.250 ; -4.250 ; Rise       ; CLOCK_27        ;
+; SW[*]     ; CLOCK_27   ; -5.222 ; -5.222 ; Fall       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; -5.222 ; -5.222 ; Fall       ; CLOCK_27        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Clock to Output Times                                                    ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; HEX0[*]      ; CLOCK_27   ; 8.565 ; 8.565 ; Rise       ; CLOCK_27        ;
+;  HEX0[0]     ; CLOCK_27   ; 8.094 ; 8.094 ; Rise       ; CLOCK_27        ;
+;  HEX0[1]     ; CLOCK_27   ; 7.004 ; 7.004 ; Rise       ; CLOCK_27        ;
+;  HEX0[2]     ; CLOCK_27   ; 8.220 ; 8.220 ; Rise       ; CLOCK_27        ;
+;  HEX0[3]     ; CLOCK_27   ; 8.565 ; 8.565 ; Rise       ; CLOCK_27        ;
+;  HEX0[4]     ; CLOCK_27   ; 7.878 ; 7.878 ; Rise       ; CLOCK_27        ;
+;  HEX0[5]     ; CLOCK_27   ; 7.265 ; 7.265 ; Rise       ; CLOCK_27        ;
+;  HEX0[6]     ; CLOCK_27   ; 7.704 ; 7.704 ; Rise       ; CLOCK_27        ;
+; HEX1[*]      ; CLOCK_27   ; 9.800 ; 9.800 ; Rise       ; CLOCK_27        ;
+;  HEX1[0]     ; CLOCK_27   ; 8.680 ; 8.680 ; Rise       ; CLOCK_27        ;
+;  HEX1[1]     ; CLOCK_27   ; 8.285 ; 8.285 ; Rise       ; CLOCK_27        ;
+;  HEX1[2]     ; CLOCK_27   ; 8.828 ; 8.828 ; Rise       ; CLOCK_27        ;
+;  HEX1[3]     ; CLOCK_27   ; 8.634 ; 8.634 ; Rise       ; CLOCK_27        ;
+;  HEX1[4]     ; CLOCK_27   ; 7.801 ; 7.801 ; Rise       ; CLOCK_27        ;
+;  HEX1[5]     ; CLOCK_27   ; 9.800 ; 9.800 ; Rise       ; CLOCK_27        ;
+;  HEX1[6]     ; CLOCK_27   ; 8.437 ; 8.437 ; Rise       ; CLOCK_27        ;
+; HEX2[*]      ; CLOCK_27   ; 8.160 ; 8.160 ; Rise       ; CLOCK_27        ;
+;  HEX2[0]     ; CLOCK_27   ; 8.136 ; 8.136 ; Rise       ; CLOCK_27        ;
+;  HEX2[1]     ; CLOCK_27   ; 7.415 ; 7.415 ; Rise       ; CLOCK_27        ;
+;  HEX2[2]     ; CLOCK_27   ; 8.160 ; 8.160 ; Rise       ; CLOCK_27        ;
+;  HEX2[3]     ; CLOCK_27   ; 7.914 ; 7.914 ; Rise       ; CLOCK_27        ;
+;  HEX2[4]     ; CLOCK_27   ; 7.986 ; 7.986 ; Rise       ; CLOCK_27        ;
+;  HEX2[5]     ; CLOCK_27   ; 7.703 ; 7.703 ; Rise       ; CLOCK_27        ;
+;  HEX2[6]     ; CLOCK_27   ; 7.984 ; 7.984 ; Rise       ; CLOCK_27        ;
+; HEX3[*]      ; CLOCK_27   ; 9.461 ; 9.461 ; Rise       ; CLOCK_27        ;
+;  HEX3[0]     ; CLOCK_27   ; 8.053 ; 8.053 ; Rise       ; CLOCK_27        ;
+;  HEX3[1]     ; CLOCK_27   ; 8.009 ; 8.009 ; Rise       ; CLOCK_27        ;
+;  HEX3[2]     ; CLOCK_27   ; 8.773 ; 8.773 ; Rise       ; CLOCK_27        ;
+;  HEX3[3]     ; CLOCK_27   ; 8.449 ; 8.449 ; Rise       ; CLOCK_27        ;
+;  HEX3[4]     ; CLOCK_27   ; 9.275 ; 9.275 ; Rise       ; CLOCK_27        ;
+;  HEX3[5]     ; CLOCK_27   ; 7.936 ; 7.936 ; Rise       ; CLOCK_27        ;
+;  HEX3[6]     ; CLOCK_27   ; 9.461 ; 9.461 ; Rise       ; CLOCK_27        ;
+; HEX4[*]      ; CLOCK_27   ; 7.845 ; 7.845 ; Rise       ; CLOCK_27        ;
+;  HEX4[0]     ; CLOCK_27   ; 7.267 ; 7.267 ; Rise       ; CLOCK_27        ;
+;  HEX4[1]     ; CLOCK_27   ; 7.012 ; 7.012 ; Rise       ; CLOCK_27        ;
+;  HEX4[2]     ; CLOCK_27   ; 7.845 ; 7.845 ; Rise       ; CLOCK_27        ;
+;  HEX4[3]     ; CLOCK_27   ; 7.203 ; 7.203 ; Rise       ; CLOCK_27        ;
+;  HEX4[4]     ; CLOCK_27   ; 7.393 ; 7.393 ; Rise       ; CLOCK_27        ;
+;  HEX4[5]     ; CLOCK_27   ; 7.250 ; 7.250 ; Rise       ; CLOCK_27        ;
+;  HEX4[6]     ; CLOCK_27   ; 7.611 ; 7.611 ; Rise       ; CLOCK_27        ;
+; HEX5[*]      ; CLOCK_27   ; 7.345 ; 7.345 ; Rise       ; CLOCK_27        ;
+;  HEX5[0]     ; CLOCK_27   ; 6.747 ; 6.747 ; Rise       ; CLOCK_27        ;
+;  HEX5[1]     ; CLOCK_27   ; 6.508 ; 6.508 ; Rise       ; CLOCK_27        ;
+;  HEX5[2]     ; CLOCK_27   ; 6.610 ; 6.610 ; Rise       ; CLOCK_27        ;
+;  HEX5[3]     ; CLOCK_27   ; 6.268 ; 6.268 ; Rise       ; CLOCK_27        ;
+;  HEX5[4]     ; CLOCK_27   ; 7.286 ; 7.286 ; Rise       ; CLOCK_27        ;
+;  HEX5[5]     ; CLOCK_27   ; 7.345 ; 7.345 ; Rise       ; CLOCK_27        ;
+;  HEX5[6]     ; CLOCK_27   ; 6.537 ; 6.537 ; Rise       ; CLOCK_27        ;
+; HEX6[*]      ; CLOCK_27   ; 8.259 ; 8.259 ; Rise       ; CLOCK_27        ;
+;  HEX6[0]     ; CLOCK_27   ; 7.708 ; 7.708 ; Rise       ; CLOCK_27        ;
+;  HEX6[1]     ; CLOCK_27   ; 6.709 ; 6.709 ; Rise       ; CLOCK_27        ;
+;  HEX6[2]     ; CLOCK_27   ; 7.253 ; 7.253 ; Rise       ; CLOCK_27        ;
+;  HEX6[3]     ; CLOCK_27   ; 8.007 ; 8.007 ; Rise       ; CLOCK_27        ;
+;  HEX6[4]     ; CLOCK_27   ; 7.256 ; 7.256 ; Rise       ; CLOCK_27        ;
+;  HEX6[5]     ; CLOCK_27   ; 8.127 ; 8.127 ; Rise       ; CLOCK_27        ;
+;  HEX6[6]     ; CLOCK_27   ; 8.259 ; 8.259 ; Rise       ; CLOCK_27        ;
+; HEX7[*]      ; CLOCK_27   ; 8.269 ; 8.269 ; Rise       ; CLOCK_27        ;
+;  HEX7[0]     ; CLOCK_27   ; 7.859 ; 7.859 ; Rise       ; CLOCK_27        ;
+;  HEX7[1]     ; CLOCK_27   ; 7.851 ; 7.851 ; Rise       ; CLOCK_27        ;
+;  HEX7[2]     ; CLOCK_27   ; 8.083 ; 8.083 ; Rise       ; CLOCK_27        ;
+;  HEX7[3]     ; CLOCK_27   ; 7.843 ; 7.843 ; Rise       ; CLOCK_27        ;
+;  HEX7[4]     ; CLOCK_27   ; 7.671 ; 7.671 ; Rise       ; CLOCK_27        ;
+;  HEX7[5]     ; CLOCK_27   ; 8.269 ; 8.269 ; Rise       ; CLOCK_27        ;
+;  HEX7[6]     ; CLOCK_27   ; 7.562 ; 7.562 ; Rise       ; CLOCK_27        ;
+; LCD_DATA[*]  ; CLOCK_27   ; 9.060 ; 9.060 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[0] ; CLOCK_27   ; 7.625 ; 7.625 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[1] ; CLOCK_27   ; 8.581 ; 8.581 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[2] ; CLOCK_27   ; 8.304 ; 8.304 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[3] ; CLOCK_27   ; 8.061 ; 8.061 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[4] ; CLOCK_27   ; 8.262 ; 8.262 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[5] ; CLOCK_27   ; 8.757 ; 8.757 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[6] ; CLOCK_27   ; 8.676 ; 8.676 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[7] ; CLOCK_27   ; 9.060 ; 9.060 ; Rise       ; CLOCK_27        ;
+; LCD_EN       ; CLOCK_27   ; 8.332 ; 8.332 ; Rise       ; CLOCK_27        ;
+; LCD_ON       ; CLOCK_27   ; 8.819 ; 8.819 ; Rise       ; CLOCK_27        ;
+; LCD_RS       ; CLOCK_27   ; 8.205 ; 8.205 ; Rise       ; CLOCK_27        ;
+; LCD_RW       ; CLOCK_27   ; 7.962 ; 7.962 ; Rise       ; CLOCK_27        ;
+; LEDG[*]      ; CLOCK_27   ; 9.905 ; 9.905 ; Rise       ; CLOCK_27        ;
+;  LEDG[0]     ; CLOCK_27   ; 9.465 ; 9.465 ; Rise       ; CLOCK_27        ;
+;  LEDG[1]     ; CLOCK_27   ; 9.905 ; 9.905 ; Rise       ; CLOCK_27        ;
+;  LEDG[2]     ; CLOCK_27   ; 8.335 ; 8.335 ; Rise       ; CLOCK_27        ;
+;  LEDG[3]     ; CLOCK_27   ; 9.314 ; 9.314 ; Rise       ; CLOCK_27        ;
+;  LEDG[4]     ; CLOCK_27   ; 8.926 ; 8.926 ; Rise       ; CLOCK_27        ;
+;  LEDG[5]     ; CLOCK_27   ; 8.770 ; 8.770 ; Rise       ; CLOCK_27        ;
+;  LEDG[6]     ; CLOCK_27   ; 9.031 ; 9.031 ; Rise       ; CLOCK_27        ;
+;  LEDG[7]     ; CLOCK_27   ; 8.192 ; 8.192 ; Rise       ; CLOCK_27        ;
+; LEDR[*]      ; CLOCK_27   ; 9.716 ; 9.716 ; Rise       ; CLOCK_27        ;
+;  LEDR[0]     ; CLOCK_27   ; 8.597 ; 8.597 ; Rise       ; CLOCK_27        ;
+;  LEDR[1]     ; CLOCK_27   ; 8.730 ; 8.730 ; Rise       ; CLOCK_27        ;
+;  LEDR[2]     ; CLOCK_27   ; 8.797 ; 8.797 ; Rise       ; CLOCK_27        ;
+;  LEDR[3]     ; CLOCK_27   ; 8.976 ; 8.976 ; Rise       ; CLOCK_27        ;
+;  LEDR[4]     ; CLOCK_27   ; 9.247 ; 9.247 ; Rise       ; CLOCK_27        ;
+;  LEDR[5]     ; CLOCK_27   ; 9.716 ; 9.716 ; Rise       ; CLOCK_27        ;
+;  LEDR[6]     ; CLOCK_27   ; 7.990 ; 7.990 ; Rise       ; CLOCK_27        ;
+;  LEDR[7]     ; CLOCK_27   ; 8.885 ; 8.885 ; Rise       ; CLOCK_27        ;
+;  LEDR[8]     ; CLOCK_27   ; 8.890 ; 8.890 ; Rise       ; CLOCK_27        ;
+;  LEDR[9]     ; CLOCK_27   ; 7.931 ; 7.931 ; Rise       ; CLOCK_27        ;
+;  LEDR[10]    ; CLOCK_27   ; 7.606 ; 7.606 ; Rise       ; CLOCK_27        ;
+;  LEDR[11]    ; CLOCK_27   ; 7.751 ; 7.751 ; Rise       ; CLOCK_27        ;
+;  LEDR[12]    ; CLOCK_27   ; 7.997 ; 7.997 ; Rise       ; CLOCK_27        ;
+;  LEDR[13]    ; CLOCK_27   ; 7.744 ; 7.744 ; Rise       ; CLOCK_27        ;
+;  LEDR[14]    ; CLOCK_27   ; 8.037 ; 8.037 ; Rise       ; CLOCK_27        ;
+;  LEDR[15]    ; CLOCK_27   ; 7.761 ; 7.761 ; Rise       ; CLOCK_27        ;
+;  LEDR[16]    ; CLOCK_27   ; 7.508 ; 7.508 ; Rise       ; CLOCK_27        ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                            ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; HEX0[*]      ; CLOCK_27   ; 7.004 ; 7.004 ; Rise       ; CLOCK_27        ;
+;  HEX0[0]     ; CLOCK_27   ; 8.094 ; 8.094 ; Rise       ; CLOCK_27        ;
+;  HEX0[1]     ; CLOCK_27   ; 7.004 ; 7.004 ; Rise       ; CLOCK_27        ;
+;  HEX0[2]     ; CLOCK_27   ; 8.220 ; 8.220 ; Rise       ; CLOCK_27        ;
+;  HEX0[3]     ; CLOCK_27   ; 8.565 ; 8.565 ; Rise       ; CLOCK_27        ;
+;  HEX0[4]     ; CLOCK_27   ; 7.878 ; 7.878 ; Rise       ; CLOCK_27        ;
+;  HEX0[5]     ; CLOCK_27   ; 7.265 ; 7.265 ; Rise       ; CLOCK_27        ;
+;  HEX0[6]     ; CLOCK_27   ; 7.704 ; 7.704 ; Rise       ; CLOCK_27        ;
+; HEX1[*]      ; CLOCK_27   ; 7.801 ; 7.801 ; Rise       ; CLOCK_27        ;
+;  HEX1[0]     ; CLOCK_27   ; 8.680 ; 8.680 ; Rise       ; CLOCK_27        ;
+;  HEX1[1]     ; CLOCK_27   ; 8.285 ; 8.285 ; Rise       ; CLOCK_27        ;
+;  HEX1[2]     ; CLOCK_27   ; 8.828 ; 8.828 ; Rise       ; CLOCK_27        ;
+;  HEX1[3]     ; CLOCK_27   ; 8.634 ; 8.634 ; Rise       ; CLOCK_27        ;
+;  HEX1[4]     ; CLOCK_27   ; 7.801 ; 7.801 ; Rise       ; CLOCK_27        ;
+;  HEX1[5]     ; CLOCK_27   ; 9.800 ; 9.800 ; Rise       ; CLOCK_27        ;
+;  HEX1[6]     ; CLOCK_27   ; 8.437 ; 8.437 ; Rise       ; CLOCK_27        ;
+; HEX2[*]      ; CLOCK_27   ; 7.415 ; 7.415 ; Rise       ; CLOCK_27        ;
+;  HEX2[0]     ; CLOCK_27   ; 8.136 ; 8.136 ; Rise       ; CLOCK_27        ;
+;  HEX2[1]     ; CLOCK_27   ; 7.415 ; 7.415 ; Rise       ; CLOCK_27        ;
+;  HEX2[2]     ; CLOCK_27   ; 8.160 ; 8.160 ; Rise       ; CLOCK_27        ;
+;  HEX2[3]     ; CLOCK_27   ; 7.914 ; 7.914 ; Rise       ; CLOCK_27        ;
+;  HEX2[4]     ; CLOCK_27   ; 7.986 ; 7.986 ; Rise       ; CLOCK_27        ;
+;  HEX2[5]     ; CLOCK_27   ; 7.703 ; 7.703 ; Rise       ; CLOCK_27        ;
+;  HEX2[6]     ; CLOCK_27   ; 7.984 ; 7.984 ; Rise       ; CLOCK_27        ;
+; HEX3[*]      ; CLOCK_27   ; 7.936 ; 7.936 ; Rise       ; CLOCK_27        ;
+;  HEX3[0]     ; CLOCK_27   ; 8.053 ; 8.053 ; Rise       ; CLOCK_27        ;
+;  HEX3[1]     ; CLOCK_27   ; 8.009 ; 8.009 ; Rise       ; CLOCK_27        ;
+;  HEX3[2]     ; CLOCK_27   ; 8.773 ; 8.773 ; Rise       ; CLOCK_27        ;
+;  HEX3[3]     ; CLOCK_27   ; 8.449 ; 8.449 ; Rise       ; CLOCK_27        ;
+;  HEX3[4]     ; CLOCK_27   ; 9.275 ; 9.275 ; Rise       ; CLOCK_27        ;
+;  HEX3[5]     ; CLOCK_27   ; 7.936 ; 7.936 ; Rise       ; CLOCK_27        ;
+;  HEX3[6]     ; CLOCK_27   ; 9.461 ; 9.461 ; Rise       ; CLOCK_27        ;
+; HEX4[*]      ; CLOCK_27   ; 7.012 ; 7.012 ; Rise       ; CLOCK_27        ;
+;  HEX4[0]     ; CLOCK_27   ; 7.267 ; 7.267 ; Rise       ; CLOCK_27        ;
+;  HEX4[1]     ; CLOCK_27   ; 7.012 ; 7.012 ; Rise       ; CLOCK_27        ;
+;  HEX4[2]     ; CLOCK_27   ; 7.845 ; 7.845 ; Rise       ; CLOCK_27        ;
+;  HEX4[3]     ; CLOCK_27   ; 7.203 ; 7.203 ; Rise       ; CLOCK_27        ;
+;  HEX4[4]     ; CLOCK_27   ; 7.393 ; 7.393 ; Rise       ; CLOCK_27        ;
+;  HEX4[5]     ; CLOCK_27   ; 7.250 ; 7.250 ; Rise       ; CLOCK_27        ;
+;  HEX4[6]     ; CLOCK_27   ; 7.611 ; 7.611 ; Rise       ; CLOCK_27        ;
+; HEX5[*]      ; CLOCK_27   ; 6.268 ; 6.268 ; Rise       ; CLOCK_27        ;
+;  HEX5[0]     ; CLOCK_27   ; 6.747 ; 6.747 ; Rise       ; CLOCK_27        ;
+;  HEX5[1]     ; CLOCK_27   ; 6.508 ; 6.508 ; Rise       ; CLOCK_27        ;
+;  HEX5[2]     ; CLOCK_27   ; 6.610 ; 6.610 ; Rise       ; CLOCK_27        ;
+;  HEX5[3]     ; CLOCK_27   ; 6.268 ; 6.268 ; Rise       ; CLOCK_27        ;
+;  HEX5[4]     ; CLOCK_27   ; 7.286 ; 7.286 ; Rise       ; CLOCK_27        ;
+;  HEX5[5]     ; CLOCK_27   ; 7.345 ; 7.345 ; Rise       ; CLOCK_27        ;
+;  HEX5[6]     ; CLOCK_27   ; 6.537 ; 6.537 ; Rise       ; CLOCK_27        ;
+; HEX6[*]      ; CLOCK_27   ; 6.709 ; 6.709 ; Rise       ; CLOCK_27        ;
+;  HEX6[0]     ; CLOCK_27   ; 7.708 ; 7.708 ; Rise       ; CLOCK_27        ;
+;  HEX6[1]     ; CLOCK_27   ; 6.709 ; 6.709 ; Rise       ; CLOCK_27        ;
+;  HEX6[2]     ; CLOCK_27   ; 7.253 ; 7.253 ; Rise       ; CLOCK_27        ;
+;  HEX6[3]     ; CLOCK_27   ; 8.007 ; 8.007 ; Rise       ; CLOCK_27        ;
+;  HEX6[4]     ; CLOCK_27   ; 7.256 ; 7.256 ; Rise       ; CLOCK_27        ;
+;  HEX6[5]     ; CLOCK_27   ; 8.127 ; 8.127 ; Rise       ; CLOCK_27        ;
+;  HEX6[6]     ; CLOCK_27   ; 8.259 ; 8.259 ; Rise       ; CLOCK_27        ;
+; HEX7[*]      ; CLOCK_27   ; 7.562 ; 7.562 ; Rise       ; CLOCK_27        ;
+;  HEX7[0]     ; CLOCK_27   ; 7.859 ; 7.859 ; Rise       ; CLOCK_27        ;
+;  HEX7[1]     ; CLOCK_27   ; 7.851 ; 7.851 ; Rise       ; CLOCK_27        ;
+;  HEX7[2]     ; CLOCK_27   ; 8.083 ; 8.083 ; Rise       ; CLOCK_27        ;
+;  HEX7[3]     ; CLOCK_27   ; 7.843 ; 7.843 ; Rise       ; CLOCK_27        ;
+;  HEX7[4]     ; CLOCK_27   ; 7.671 ; 7.671 ; Rise       ; CLOCK_27        ;
+;  HEX7[5]     ; CLOCK_27   ; 8.269 ; 8.269 ; Rise       ; CLOCK_27        ;
+;  HEX7[6]     ; CLOCK_27   ; 7.562 ; 7.562 ; Rise       ; CLOCK_27        ;
+; LCD_DATA[*]  ; CLOCK_27   ; 7.625 ; 7.625 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[0] ; CLOCK_27   ; 7.625 ; 7.625 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[1] ; CLOCK_27   ; 8.581 ; 8.581 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[2] ; CLOCK_27   ; 8.304 ; 8.304 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[3] ; CLOCK_27   ; 8.061 ; 8.061 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[4] ; CLOCK_27   ; 8.262 ; 8.262 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[5] ; CLOCK_27   ; 8.757 ; 8.757 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[6] ; CLOCK_27   ; 8.676 ; 8.676 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[7] ; CLOCK_27   ; 9.060 ; 9.060 ; Rise       ; CLOCK_27        ;
+; LCD_EN       ; CLOCK_27   ; 8.332 ; 8.332 ; Rise       ; CLOCK_27        ;
+; LCD_ON       ; CLOCK_27   ; 8.819 ; 8.819 ; Rise       ; CLOCK_27        ;
+; LCD_RS       ; CLOCK_27   ; 8.205 ; 8.205 ; Rise       ; CLOCK_27        ;
+; LCD_RW       ; CLOCK_27   ; 7.962 ; 7.962 ; Rise       ; CLOCK_27        ;
+; LEDG[*]      ; CLOCK_27   ; 8.192 ; 8.192 ; Rise       ; CLOCK_27        ;
+;  LEDG[0]     ; CLOCK_27   ; 9.465 ; 9.465 ; Rise       ; CLOCK_27        ;
+;  LEDG[1]     ; CLOCK_27   ; 9.905 ; 9.905 ; Rise       ; CLOCK_27        ;
+;  LEDG[2]     ; CLOCK_27   ; 8.335 ; 8.335 ; Rise       ; CLOCK_27        ;
+;  LEDG[3]     ; CLOCK_27   ; 9.314 ; 9.314 ; Rise       ; CLOCK_27        ;
+;  LEDG[4]     ; CLOCK_27   ; 8.926 ; 8.926 ; Rise       ; CLOCK_27        ;
+;  LEDG[5]     ; CLOCK_27   ; 8.770 ; 8.770 ; Rise       ; CLOCK_27        ;
+;  LEDG[6]     ; CLOCK_27   ; 9.031 ; 9.031 ; Rise       ; CLOCK_27        ;
+;  LEDG[7]     ; CLOCK_27   ; 8.192 ; 8.192 ; Rise       ; CLOCK_27        ;
+; LEDR[*]      ; CLOCK_27   ; 7.508 ; 7.508 ; Rise       ; CLOCK_27        ;
+;  LEDR[0]     ; CLOCK_27   ; 8.597 ; 8.597 ; Rise       ; CLOCK_27        ;
+;  LEDR[1]     ; CLOCK_27   ; 8.730 ; 8.730 ; Rise       ; CLOCK_27        ;
+;  LEDR[2]     ; CLOCK_27   ; 8.797 ; 8.797 ; Rise       ; CLOCK_27        ;
+;  LEDR[3]     ; CLOCK_27   ; 8.976 ; 8.976 ; Rise       ; CLOCK_27        ;
+;  LEDR[4]     ; CLOCK_27   ; 9.247 ; 9.247 ; Rise       ; CLOCK_27        ;
+;  LEDR[5]     ; CLOCK_27   ; 9.716 ; 9.716 ; Rise       ; CLOCK_27        ;
+;  LEDR[6]     ; CLOCK_27   ; 7.990 ; 7.990 ; Rise       ; CLOCK_27        ;
+;  LEDR[7]     ; CLOCK_27   ; 8.885 ; 8.885 ; Rise       ; CLOCK_27        ;
+;  LEDR[8]     ; CLOCK_27   ; 8.890 ; 8.890 ; Rise       ; CLOCK_27        ;
+;  LEDR[9]     ; CLOCK_27   ; 7.931 ; 7.931 ; Rise       ; CLOCK_27        ;
+;  LEDR[10]    ; CLOCK_27   ; 7.606 ; 7.606 ; Rise       ; CLOCK_27        ;
+;  LEDR[11]    ; CLOCK_27   ; 7.751 ; 7.751 ; Rise       ; CLOCK_27        ;
+;  LEDR[12]    ; CLOCK_27   ; 7.997 ; 7.997 ; Rise       ; CLOCK_27        ;
+;  LEDR[13]    ; CLOCK_27   ; 7.744 ; 7.744 ; Rise       ; CLOCK_27        ;
+;  LEDR[14]    ; CLOCK_27   ; 8.037 ; 8.037 ; Rise       ; CLOCK_27        ;
+;  LEDR[15]    ; CLOCK_27   ; 7.761 ; 7.761 ; Rise       ; CLOCK_27        ;
+;  LEDR[16]    ; CLOCK_27   ; 7.508 ; 7.508 ; Rise       ; CLOCK_27        ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------+
+; Fast Model Setup Summary           ;
++----------+---------+---------------+
+; Clock    ; Slack   ; End Point TNS ;
++----------+---------+---------------+
+; CLOCK_27 ; -14.773 ; -111881.169   ;
++----------+---------+---------------+
+
+
++----------------------------------+
+; Fast Model Hold Summary          ;
++----------+-------+---------------+
+; Clock    ; Slack ; End Point TNS ;
++----------+-------+---------------+
+; CLOCK_27 ; 0.215 ; 0.000         ;
++----------+-------+---------------+
+
+
+-------------------------------
+; Fast Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Fast Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Fast Model Minimum Pulse Width Summary ;
++----------+--------+--------------------+
+; Clock    ; Slack  ; End Point TNS      ;
++----------+--------+--------------------+
+; CLOCK_27 ; -1.380 ; -19671.380         ;
++----------+--------+--------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Setup: 'CLOCK_27'                                                                                                                                            ;
++---------+--------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack   ; From Node                      ; To Node                                                ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++---------+--------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+; -14.773 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.825     ;
+; -14.771 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 15.822     ;
+; -14.758 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.770     ;
+; -14.757 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.769     ;
+; -14.731 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.010      ; 15.773     ;
+; -14.720 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 15.764     ;
+; -14.713 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 15.757     ;
+; -14.706 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|ID:ID|BSel_r                              ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.718     ;
+; -14.693 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.745     ;
+; -14.691 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 15.742     ;
+; -14.684 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.736     ;
+; -14.682 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 15.733     ;
+; -14.678 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[16][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.015      ; 15.725     ;
+; -14.678 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.690     ;
+; -14.677 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.689     ;
+; -14.672 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|ID:ID|rs1_r[0]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.013     ; 15.691     ;
+; -14.669 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[29][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 15.722     ;
+; -14.669 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.681     ;
+; -14.668 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.680     ;
+; -14.666 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[26][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 15.719     ;
+; -14.664 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[4][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.006      ; 15.702     ;
+; -14.661 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[3][1]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.016      ; 15.709     ;
+; -14.659 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[0][1]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.011     ; 15.680     ;
+; -14.659 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.011     ; 15.680     ;
+; -14.655 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|IF:IF|inst_r[18]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.013      ; 15.700     ;
+; -14.654 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|ID:ID|ASel_r                              ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.005     ; 15.681     ;
+; -14.654 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|IF:IF|inst_r[27]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.013      ; 15.699     ;
+; -14.654 ; pipeline:CPU|EX:EX|inst_r[8]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.706     ;
+; -14.653 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|IF:IF|inst_r[16]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.013      ; 15.698     ;
+; -14.652 ; pipeline:CPU|EX:EX|inst_r[8]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 15.703     ;
+; -14.651 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.010      ; 15.693     ;
+; -14.650 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|IF:IF|inst_r[17]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.013      ; 15.695     ;
+; -14.650 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[14][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.004     ; 15.678     ;
+; -14.647 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[12][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.004     ; 15.675     ;
+; -14.642 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|IF:IF|inst_r[11]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.006      ; 15.680     ;
+; -14.642 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.010      ; 15.684     ;
+; -14.641 ; pipeline:CPU|ID:ID|inst_r[22]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 15.694     ;
+; -14.640 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 15.684     ;
+; -14.639 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|ID:ID|rs1_r[2]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.009      ; 15.680     ;
+; -14.639 ; pipeline:CPU|EX:EX|inst_r[8]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.651     ;
+; -14.639 ; pipeline:CPU|ID:ID|inst_r[22]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.691     ;
+; -14.638 ; pipeline:CPU|EX:EX|inst_r[8]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.650     ;
+; -14.636 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|ID:ID|imm_r[9]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.025      ; 15.693     ;
+; -14.635 ; pipeline:CPU|MEM:MEM|inst_r[9] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 15.688     ;
+; -14.633 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 15.677     ;
+; -14.633 ; pipeline:CPU|MEM:MEM|inst_r[9] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.685     ;
+; -14.631 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 15.675     ;
+; -14.626 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|ID:ID|BSel_r                              ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.638     ;
+; -14.626 ; pipeline:CPU|ID:ID|inst_r[22]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 15.639     ;
+; -14.625 ; pipeline:CPU|ID:ID|inst_r[22]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 15.638     ;
+; -14.625 ; pipeline:CPU|ID:ID|inst_r[21]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.677     ;
+; -14.624 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 15.668     ;
+; -14.623 ; pipeline:CPU|ID:ID|inst_r[21]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 15.674     ;
+; -14.620 ; pipeline:CPU|MEM:MEM|inst_r[9] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 15.633     ;
+; -14.620 ; pipeline:CPU|ID:ID|inst_r[23]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 15.673     ;
+; -14.619 ; pipeline:CPU|MEM:MEM|inst_r[9] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 15.632     ;
+; -14.618 ; pipeline:CPU|ID:ID|inst_r[23]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.670     ;
+; -14.618 ; pipeline:CPU|ID:ID|inst_r[20]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.670     ;
+; -14.617 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|ID:ID|BSel_r                              ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.629     ;
+; -14.616 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.001      ; 15.649     ;
+; -14.616 ; pipeline:CPU|ID:ID|inst_r[20]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 15.667     ;
+; -14.615 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[31][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.001      ; 15.648     ;
+; -14.612 ; pipeline:CPU|EX:EX|inst_r[8]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.010      ; 15.654     ;
+; -14.610 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.015      ; 15.657     ;
+; -14.610 ; pipeline:CPU|ID:ID|inst_r[21]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.622     ;
+; -14.609 ; pipeline:CPU|ID:ID|inst_r[21]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.621     ;
+; -14.607 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|IF:IF|inst_r[21]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.002     ; 15.637     ;
+; -14.606 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|IF:IF|inst_r[19]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.002     ; 15.636     ;
+; -14.605 ; pipeline:CPU|ID:ID|inst_r[23]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 15.618     ;
+; -14.604 ; pipeline:CPU|ID:ID|inst_r[23]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.019     ; 15.617     ;
+; -14.603 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|IF:IF|inst_r[15]                          ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.002     ; 15.633     ;
+; -14.603 ; pipeline:CPU|ID:ID|inst_r[20]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.615     ;
+; -14.602 ; pipeline:CPU|ID:ID|inst_r[20]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[8][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.614     ;
+; -14.601 ; pipeline:CPU|EX:EX|inst_r[8]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 15.645     ;
+; -14.599 ; pipeline:CPU|ID:ID|inst_r[22]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.011      ; 15.642     ;
+; -14.598 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[16][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.015      ; 15.645     ;
+; -14.594 ; pipeline:CPU|EX:EX|inst_r[8]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.012      ; 15.638     ;
+; -14.593 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[14][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.003      ; 15.628     ;
+; -14.593 ; pipeline:CPU|MEM:MEM|inst_r[9] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.011      ; 15.636     ;
+; -14.592 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|ID:ID|rs1_r[0]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.013     ; 15.611     ;
+; -14.591 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[11][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.003      ; 15.626     ;
+; -14.589 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[16][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.015      ; 15.636     ;
+; -14.589 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[29][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 15.642     ;
+; -14.589 ; pipeline:CPU|EX:EX|inst_r[10]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[19][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.020      ; 15.641     ;
+; -14.588 ; pipeline:CPU|ID:ID|inst_r[22]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.013      ; 15.633     ;
+; -14.587 ; pipeline:CPU|EX:EX|inst_r[8]   ; pipeline:CPU|ID:ID|BSel_r                              ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.020     ; 15.599     ;
+; -14.587 ; pipeline:CPU|EX:EX|inst_r[10]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[17][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.019      ; 15.638     ;
+; -14.586 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[26][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 15.639     ;
+; -14.584 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[11][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.003      ; 15.619     ;
+; -14.584 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[4][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.006      ; 15.622     ;
+; -14.583 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|ID:ID|rs1_r[0]                            ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.013     ; 15.602     ;
+; -14.583 ; pipeline:CPU|ID:ID|inst_r[21]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.010      ; 15.625     ;
+; -14.582 ; pipeline:CPU|MEM:MEM|inst_r[9] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[27][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.013      ; 15.627     ;
+; -14.581 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[3][1]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.016      ; 15.629     ;
+; -14.581 ; pipeline:CPU|ID:ID|inst_r[22]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[20][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.013      ; 15.626     ;
+; -14.580 ; pipeline:CPU|EX:EX|inst_r[9]   ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[29][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.021      ; 15.633     ;
+; -14.579 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[0][1]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.011     ; 15.600     ;
+; -14.579 ; pipeline:CPU|MEM:MEM|inst_r[8] ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[10][1] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; -0.011     ; 15.600     ;
+; -14.578 ; pipeline:CPU|ID:ID|inst_r[23]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[25][0] ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.011      ; 15.621     ;
+; -14.577 ; pipeline:CPU|EX:EX|inst_r[11]  ; pipeline:CPU|Branch_predictor:BP|predicted_2bit[5][0]  ; CLOCK_27     ; CLOCK_27    ; 1.000        ; 0.006      ; 15.615     ;
++---------+--------------------------------+--------------------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Hold: 'CLOCK_27'                                                                                                                                          ;
++-------+----------------------------------------+-----------------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                              ; To Node                                       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------------+-----------------------------------------------+--------------+-------------+--------------+------------+------------+
+; 0.215 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|ID:ID|hit_r                      ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.367      ;
+; 0.240 ; pipeline:CPU|IF:IF|PC_add4_r[8]        ; pipeline:CPU|ID:ID|pc4_r[8]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.392      ;
+; 0.252 ; pipeline:CPU|IF:IF|PC_add4_r[6]        ; pipeline:CPU|ID:ID|pc4_r[6]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.404      ;
+; 0.255 ; pipeline:CPU|ID:ID|inst_r[5]           ; pipeline:CPU|EX:EX|inst_r[5]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.407      ;
+; 0.293 ; pipeline:CPU|ID:ID|pc4_r[28]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[28]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.445      ;
+; 0.310 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[9]  ; pipeline:CPU|IF:IF|PC_add4_r[9]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.462      ;
+; 0.316 ; pipeline:CPU|IF:IF|PC_add4_r[31]       ; pipeline:CPU|ID:ID|pc4_r[31]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.468      ;
+; 0.317 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[30] ; pipeline:CPU|IF:IF|PC_add4_r[31]              ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.469      ;
+; 0.317 ; pipeline:CPU|IF:IF|PC_add4_r[28]       ; pipeline:CPU|ID:ID|pc4_r[28]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.469      ;
+; 0.318 ; pipeline:CPU|IF:IF|PC_add4_r[21]       ; pipeline:CPU|ID:ID|pc4_r[21]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.470      ;
+; 0.320 ; pipeline:CPU|ID:ID|pc4_r[4]            ; pipeline:CPU|EX:EX|pc4_r[4]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.472      ;
+; 0.321 ; pipeline:CPU|ID:ID|pc4_r[22]           ; pipeline:CPU|EX:EX|pc4_r[22]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.473      ;
+; 0.322 ; pipeline:CPU|IF:IF|PC_add4_r[13]       ; pipeline:CPU|ID:ID|pc4_r[13]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.474      ;
+; 0.325 ; pipeline:CPU|EX:EX|pc4_r[28]           ; pipeline:CPU|MEM:MEM|pc4_r[28]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.477      ;
+; 0.327 ; pipeline:CPU|EX:EX|pc4_r[18]           ; pipeline:CPU|MEM:MEM|pc4_r[18]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.479      ;
+; 0.327 ; pipeline:CPU|EX:EX|pc4_r[20]           ; pipeline:CPU|MEM:MEM|pc4_r[20]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.479      ;
+; 0.327 ; pipeline:CPU|EX:EX|pc4_r[30]           ; pipeline:CPU|MEM:MEM|pc4_r[30]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.479      ;
+; 0.328 ; pipeline:CPU|EX:EX|alu_r[17]           ; pipeline:CPU|MEM:MEM|alu_r[17]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.480      ;
+; 0.328 ; pipeline:CPU|EX:EX|pc4_r[29]           ; pipeline:CPU|MEM:MEM|pc4_r[29]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.480      ;
+; 0.328 ; pipeline:CPU|EX:EX|pc4_r[31]           ; pipeline:CPU|MEM:MEM|pc4_r[31]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.480      ;
+; 0.329 ; pipeline:CPU|EX:EX|pc4_r[5]            ; pipeline:CPU|MEM:MEM|pc4_r[5]                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.481      ;
+; 0.329 ; pipeline:CPU|EX:EX|pc4_r[23]           ; pipeline:CPU|MEM:MEM|pc4_r[23]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.481      ;
+; 0.330 ; pipeline:CPU|EX:EX|alu_r[20]           ; pipeline:CPU|MEM:MEM|alu_r[20]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.482      ;
+; 0.331 ; pipeline:CPU|EX:EX|alu_r[23]           ; pipeline:CPU|MEM:MEM|alu_r[23]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.483      ;
+; 0.332 ; pipeline:CPU|EX:EX|alu_r[29]           ; pipeline:CPU|MEM:MEM|alu_r[29]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.484      ;
+; 0.333 ; pipeline:CPU|EX:EX|alu_r[6]            ; pipeline:CPU|MEM:MEM|alu_r[6]                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.485      ;
+; 0.337 ; pipeline:CPU|EX:EX|alu_r[24]           ; pipeline:CPU|MEM:MEM|alu_r[24]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.489      ;
+; 0.358 ; pipeline:CPU|ID:ID|pc4_r[17]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[17]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.510      ;
+; 0.359 ; pipeline:CPU|IF:IF|PC_add4_r[12]       ; pipeline:CPU|ID:ID|pc4_r[12]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.511      ;
+; 0.361 ; pipeline:CPU|IF:IF|PC_add4_r[16]       ; pipeline:CPU|ID:ID|pc4_r[16]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.513      ;
+; 0.361 ; pipeline:CPU|ID:ID|pc4_r[8]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[8]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.513      ;
+; 0.362 ; pipeline:CPU|IF:IF|PC_add4_r[19]       ; pipeline:CPU|ID:ID|pc4_r[19]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.514      ;
+; 0.363 ; pipeline:CPU|IF:IF|PC_r[14]            ; pipeline:CPU|ID:ID|pc_r[14]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.515      ;
+; 0.364 ; pipeline:CPU|IF:IF|PC_add4_r[2]        ; pipeline:CPU|ID:ID|pc4_r[2]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.516      ;
+; 0.365 ; pipeline:CPU|ID:ID|pc4_r[21]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[21]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.517      ;
+; 0.365 ; pipeline:CPU|IF:IF|PC_add4_r[14]       ; pipeline:CPU|ID:ID|pc4_r[14]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.517      ;
+; 0.366 ; pipeline:CPU|IF:IF|PC_add4_r[17]       ; pipeline:CPU|ID:ID|pc4_r[17]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.518      ;
+; 0.367 ; pipeline:CPU|IF:IF|PC_add4_r[23]       ; pipeline:CPU|ID:ID|pc4_r[23]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.519      ;
+; 0.368 ; pipeline:CPU|ID:ID|pc4_r[27]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[27]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.520      ;
+; 0.369 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[0]  ; pipeline:CPU|IF:IF|PC_add4_r[0]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.521      ;
+; 0.371 ; pipeline:CPU|EX:EX|alu_r[8]            ; pipeline:CPU|MEM:MEM|mem_r[25]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.523      ;
+; 0.372 ; pipeline:CPU|IF:IF|PC_add4_r[11]       ; pipeline:CPU|ID:ID|pc4_r[11]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.524      ;
+; 0.372 ; pipeline:CPU|IF:IF|PC_add4_r[30]       ; pipeline:CPU|ID:ID|pc4_r[30]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.524      ;
+; 0.373 ; pipeline:CPU|IF:IF|PC_r[5]             ; pipeline:CPU|ID:ID|pc_r[5]                    ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.525      ;
+; 0.373 ; pipeline:CPU|IF:IF|PC_add4_r[3]        ; pipeline:CPU|ID:ID|pc4_r[3]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.525      ;
+; 0.373 ; pipeline:CPU|ID:ID|pc4_r[23]           ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[23]        ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.525      ;
+; 0.373 ; pipeline:CPU|IF:IF|PC_add4_r[9]        ; pipeline:CPU|ID:ID|pc4_r[9]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.525      ;
+; 0.373 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|IF:IF|PC_add4_r[4]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.525      ;
+; 0.373 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|ID:ID|pc4_r[13]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.525      ;
+; 0.374 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|IF:IF|PC_add4_r[13]              ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.526      ;
+; 0.374 ; pipeline:CPU|IF:IF|PC_r[9]             ; pipeline:CPU|ID:ID|pc_r[9]                    ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.526      ;
+; 0.374 ; pipeline:CPU|ID:ID|pc4_r[2]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[2]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.526      ;
+; 0.374 ; pipeline:CPU|IF:IF|hit_r               ; pipeline:CPU|ID:ID|hit_r                      ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.526      ;
+; 0.375 ; pipeline:CPU|IF:IF|PC_r[19]            ; pipeline:CPU|ID:ID|pc_r[19]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.527      ;
+; 0.375 ; pipeline:CPU|IF:IF|PC_r[23]            ; pipeline:CPU|ID:ID|pc_r[23]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.527      ;
+; 0.376 ; pipeline:CPU|IF:IF|PC_add4_r[20]       ; pipeline:CPU|ID:ID|pc4_r[20]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.528      ;
+; 0.376 ; pipeline:CPU|IF:IF|PC_r[26]            ; pipeline:CPU|ID:ID|pc_r[26]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.528      ;
+; 0.377 ; pipeline:CPU|IF:IF|PC_add4_r[29]       ; pipeline:CPU|ID:ID|pc4_r[29]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.529      ;
+; 0.377 ; pipeline:CPU|IF:IF|PC_r[29]            ; pipeline:CPU|ID:ID|pc_r[29]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.529      ;
+; 0.377 ; pipeline:CPU|IF:IF|PC_r[20]            ; pipeline:CPU|ID:ID|pc_r[20]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.529      ;
+; 0.378 ; pipeline:CPU|IF:IF|PC_add4_r[7]        ; pipeline:CPU|ID:ID|pc4_r[7]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.530      ;
+; 0.378 ; pipeline:CPU|ID:ID|inst_r[1]           ; pipeline:CPU|EX:EX|inst_r[0]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.530      ;
+; 0.379 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[17] ; pipeline:CPU|IF:IF|PC_r[17]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.531      ;
+; 0.379 ; pipeline:CPU|IF:IF|PC_r[27]            ; pipeline:CPU|ID:ID|pc_r[27]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.531      ;
+; 0.379 ; pipeline:CPU|IF:IF|PC_add4_r[26]       ; pipeline:CPU|ID:ID|pc4_r[26]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.531      ;
+; 0.380 ; pipeline:CPU|IF:IF|PC_r[11]            ; pipeline:CPU|ID:ID|pc_r[11]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.532      ;
+; 0.381 ; pipeline:CPU|IF:IF|PC_add4_r[1]        ; pipeline:CPU|ID:ID|pc4_r[1]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.533      ;
+; 0.383 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[6]  ; pipeline:CPU|IF:IF|PC_add4_r[6]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.535      ;
+; 0.385 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[2]  ; pipeline:CPU|IF:IF|PC_add4_r[2]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.537      ;
+; 0.387 ; pipeline:CPU|IF:IF|PC_add4_r[10]       ; pipeline:CPU|ID:ID|pc4_r[10]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.539      ;
+; 0.400 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[30] ; pipeline:CPU|IF:IF|PC_add4_r[30]              ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.552      ;
+; 0.402 ; pipeline:CPU|IF:IF|PC_add4_r[27]       ; pipeline:CPU|ID:ID|pc4_r[27]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.554      ;
+; 0.402 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[30] ; pipeline:CPU|IF:IF|PC_r[30]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.554      ;
+; 0.403 ; pipeline:CPU|IF:IF|PC_r[10]            ; pipeline:CPU|ID:ID|pc_r[10]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.555      ;
+; 0.403 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|IF:IF|hit_r                      ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.555      ;
+; 0.403 ; pipeline:CPU|ID:ID|hit_r               ; pipeline:CPU|ID:ID|pc4_r[12]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.555      ;
+; 0.409 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[27] ; pipeline:CPU|IF:IF|PC_add4_r[27]              ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.561      ;
+; 0.416 ; pipeline:CPU|EX:EX|alu_r[21]           ; pipeline:CPU|MEM:MEM|alu_r[21]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.568      ;
+; 0.417 ; pipeline:CPU|EX:EX|inst_r[8]           ; pipeline:CPU|MEM:MEM|inst_r[8]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.569      ;
+; 0.423 ; pipeline:CPU|EX:EX|alu_r[19]           ; pipeline:CPU|MEM:MEM|alu_r[19]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.001     ; 0.574      ;
+; 0.423 ; pipeline:CPU|EX:EX|alu_r[26]           ; pipeline:CPU|MEM:MEM|alu_r[26]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.002     ; 0.573      ;
+; 0.425 ; pipeline:CPU|EX:EX|pc4_r[12]           ; pipeline:CPU|MEM:MEM|pc4_r[12]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.002     ; 0.575      ;
+; 0.426 ; pipeline:CPU|EX:EX|alu_r[28]           ; pipeline:CPU|MEM:MEM|alu_r[28]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.578      ;
+; 0.426 ; pipeline:CPU|EX:EX|pc4_r[11]           ; pipeline:CPU|MEM:MEM|pc4_r[11]                ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.578      ;
+; 0.428 ; pipeline:CPU|EX:EX|inst_r[10]          ; pipeline:CPU|MEM:MEM|inst_r[10]               ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.001     ; 0.579      ;
+; 0.428 ; pipeline:CPU|EX:EX|RegWEn_r            ; pipeline:CPU|MEM:MEM|RegWEn_r                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.001     ; 0.579      ;
+; 0.430 ; pipeline:CPU|ID:ID|pc4_r[0]            ; pipeline:CPU|EX:EX|pc4_r[0]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.025      ; 0.607      ;
+; 0.431 ; pipeline:CPU|EX:EX|alu_r[9]            ; pipeline:CPU|MEM:MEM|alu_r[9]                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.583      ;
+; 0.434 ; pipeline:CPU|EX:EX|alu_r[1]            ; pipeline:CPU|MEM:MEM|alu_r[1]                 ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.001     ; 0.585      ;
+; 0.441 ; pipeline:CPU|ID:ID|pc4_r[6]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[6]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.593      ;
+; 0.450 ; pipeline:CPU|EX:EX|rs2_r[12]           ; pipeline:CPU|MEM:MEM|lsu:LSU_MEM|mem[267][12] ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.602      ;
+; 0.450 ; pipeline:CPU|EX:EX|rs2_r[12]           ; pipeline:CPU|MEM:MEM|lsu:LSU_MEM|mem[380][12] ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.602      ;
+; 0.451 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[14] ; pipeline:CPU|IF:IF|PC_r[14]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.603      ;
+; 0.453 ; pipeline:CPU|ID:ID|pc4_r[9]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[9]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.605      ;
+; 0.455 ; pipeline:CPU|ID:ID|MemRW_r             ; pipeline:CPU|EX:EX|MemRW_r                    ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.607      ;
+; 0.456 ; pipeline:CPU|EX:EX|rs2_r[18]           ; pipeline:CPU|MEM:MEM|lsu:LSU_MEM|mem[335][18] ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.001     ; 0.607      ;
+; 0.459 ; pipeline:CPU|ID:ID|pc4_r[1]            ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[1]         ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.611      ;
+; 0.464 ; pipeline:CPU|IF:IF|PC_add4_r[15]       ; pipeline:CPU|ID:ID|pc4_r[15]                  ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.616      ;
+; 0.472 ; pipeline:CPU|IF:IF|pc:PC_IF|data_o[20] ; pipeline:CPU|IF:IF|PC_r[20]                   ; CLOCK_27     ; CLOCK_27    ; 0.000        ; 0.000      ; 0.624      ;
+; 0.478 ; pipeline:CPU|EX:EX|rs2_r[31]           ; pipeline:CPU|MEM:MEM|lsu:LSU_MEM|mem[233][31] ; CLOCK_27     ; CLOCK_27    ; 0.000        ; -0.003     ; 0.627      ;
++-------+----------------------------------------+-----------------------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Minimum Pulse Width: 'CLOCK_27'                                                                                                  ;
++--------+--------------+----------------+------------------+----------+------------+---------------------------------------------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock    ; Clock Edge ; Target                                                  ;
++--------+--------------+----------------+------------------+----------+------------+---------------------------------------------------------+
+; -1.380 ; 1.000        ; 2.380          ; Port Rate        ; CLOCK_27 ; Rise       ; CLOCK_27                                                ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[0]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[0]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[10]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[10]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[11]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[11]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[12]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[12]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[13]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[13]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[14]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[14]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[15]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[15]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[16]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[16]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[17]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[17]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[18]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[18]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[19]       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[19]       ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[1]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[1]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[2]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[2]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[3]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[3]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[4]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[4]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[5]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[5]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[6]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[6]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[7]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[7]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[8]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[8]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[9]        ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].tag[9]        ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[0]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[0]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[10] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[10] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[11] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[11] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[12] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[12] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[13] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[13] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[14] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[14] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[15] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[15] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[16] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[16] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[17] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[17] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[18] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[18] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[19] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[19] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[1]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[1]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[20] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[20] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[21] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[21] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[22] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[22] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[23] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[23] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[24] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[24] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[25] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[25] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[26] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[26] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[27] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[27] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[28] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[28] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[29] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[29] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[2]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[2]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[30] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[30] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[31] ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[31] ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[3]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[3]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[4]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[4]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[5]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[5]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[6]  ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[6]  ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_27 ; Rise       ; pipeline:CPU|Branch_predictor:BP|BTB_r[0].target_pc[7]  ;
++--------+--------------+----------------+------------------+----------+------------+---------------------------------------------------------+
+
+
++-------------------------------------------------------------------------+
+; Setup Times                                                             ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; SW[*]     ; CLOCK_27   ; 17.250 ; 17.250 ; Rise       ; CLOCK_27        ;
+;  SW[0]    ; CLOCK_27   ; 0.131  ; 0.131  ; Rise       ; CLOCK_27        ;
+;  SW[1]    ; CLOCK_27   ; 0.293  ; 0.293  ; Rise       ; CLOCK_27        ;
+;  SW[2]    ; CLOCK_27   ; 0.337  ; 0.337  ; Rise       ; CLOCK_27        ;
+;  SW[3]    ; CLOCK_27   ; 0.043  ; 0.043  ; Rise       ; CLOCK_27        ;
+;  SW[4]    ; CLOCK_27   ; -0.101 ; -0.101 ; Rise       ; CLOCK_27        ;
+;  SW[5]    ; CLOCK_27   ; -0.103 ; -0.103 ; Rise       ; CLOCK_27        ;
+;  SW[6]    ; CLOCK_27   ; -0.145 ; -0.145 ; Rise       ; CLOCK_27        ;
+;  SW[7]    ; CLOCK_27   ; -0.099 ; -0.099 ; Rise       ; CLOCK_27        ;
+;  SW[8]    ; CLOCK_27   ; 0.003  ; 0.003  ; Rise       ; CLOCK_27        ;
+;  SW[9]    ; CLOCK_27   ; 0.033  ; 0.033  ; Rise       ; CLOCK_27        ;
+;  SW[10]   ; CLOCK_27   ; -0.160 ; -0.160 ; Rise       ; CLOCK_27        ;
+;  SW[11]   ; CLOCK_27   ; -0.155 ; -0.155 ; Rise       ; CLOCK_27        ;
+;  SW[12]   ; CLOCK_27   ; 0.074  ; 0.074  ; Rise       ; CLOCK_27        ;
+;  SW[13]   ; CLOCK_27   ; 2.363  ; 2.363  ; Rise       ; CLOCK_27        ;
+;  SW[14]   ; CLOCK_27   ; 2.298  ; 2.298  ; Rise       ; CLOCK_27        ;
+;  SW[15]   ; CLOCK_27   ; 2.299  ; 2.299  ; Rise       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; 17.250 ; 17.250 ; Rise       ; CLOCK_27        ;
+; SW[*]     ; CLOCK_27   ; 4.715  ; 4.715  ; Fall       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; 4.715  ; 4.715  ; Fall       ; CLOCK_27        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; SW[*]     ; CLOCK_27   ; 0.280  ; 0.280  ; Rise       ; CLOCK_27        ;
+;  SW[0]    ; CLOCK_27   ; -0.011 ; -0.011 ; Rise       ; CLOCK_27        ;
+;  SW[1]    ; CLOCK_27   ; -0.173 ; -0.173 ; Rise       ; CLOCK_27        ;
+;  SW[2]    ; CLOCK_27   ; -0.217 ; -0.217 ; Rise       ; CLOCK_27        ;
+;  SW[3]    ; CLOCK_27   ; 0.077  ; 0.077  ; Rise       ; CLOCK_27        ;
+;  SW[4]    ; CLOCK_27   ; 0.221  ; 0.221  ; Rise       ; CLOCK_27        ;
+;  SW[5]    ; CLOCK_27   ; 0.223  ; 0.223  ; Rise       ; CLOCK_27        ;
+;  SW[6]    ; CLOCK_27   ; 0.265  ; 0.265  ; Rise       ; CLOCK_27        ;
+;  SW[7]    ; CLOCK_27   ; 0.219  ; 0.219  ; Rise       ; CLOCK_27        ;
+;  SW[8]    ; CLOCK_27   ; 0.117  ; 0.117  ; Rise       ; CLOCK_27        ;
+;  SW[9]    ; CLOCK_27   ; 0.087  ; 0.087  ; Rise       ; CLOCK_27        ;
+;  SW[10]   ; CLOCK_27   ; 0.280  ; 0.280  ; Rise       ; CLOCK_27        ;
+;  SW[11]   ; CLOCK_27   ; 0.275  ; 0.275  ; Rise       ; CLOCK_27        ;
+;  SW[12]   ; CLOCK_27   ; 0.046  ; 0.046  ; Rise       ; CLOCK_27        ;
+;  SW[13]   ; CLOCK_27   ; -2.243 ; -2.243 ; Rise       ; CLOCK_27        ;
+;  SW[14]   ; CLOCK_27   ; -2.178 ; -2.178 ; Rise       ; CLOCK_27        ;
+;  SW[15]   ; CLOCK_27   ; -2.179 ; -2.179 ; Rise       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; -2.393 ; -2.393 ; Rise       ; CLOCK_27        ;
+; SW[*]     ; CLOCK_27   ; -2.813 ; -2.813 ; Fall       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; -2.813 ; -2.813 ; Fall       ; CLOCK_27        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Clock to Output Times                                                    ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; HEX0[*]      ; CLOCK_27   ; 4.684 ; 4.684 ; Rise       ; CLOCK_27        ;
+;  HEX0[0]     ; CLOCK_27   ; 4.479 ; 4.479 ; Rise       ; CLOCK_27        ;
+;  HEX0[1]     ; CLOCK_27   ; 3.929 ; 3.929 ; Rise       ; CLOCK_27        ;
+;  HEX0[2]     ; CLOCK_27   ; 4.573 ; 4.573 ; Rise       ; CLOCK_27        ;
+;  HEX0[3]     ; CLOCK_27   ; 4.684 ; 4.684 ; Rise       ; CLOCK_27        ;
+;  HEX0[4]     ; CLOCK_27   ; 4.361 ; 4.361 ; Rise       ; CLOCK_27        ;
+;  HEX0[5]     ; CLOCK_27   ; 4.066 ; 4.066 ; Rise       ; CLOCK_27        ;
+;  HEX0[6]     ; CLOCK_27   ; 4.329 ; 4.329 ; Rise       ; CLOCK_27        ;
+; HEX1[*]      ; CLOCK_27   ; 5.361 ; 5.361 ; Rise       ; CLOCK_27        ;
+;  HEX1[0]     ; CLOCK_27   ; 4.796 ; 4.796 ; Rise       ; CLOCK_27        ;
+;  HEX1[1]     ; CLOCK_27   ; 4.586 ; 4.586 ; Rise       ; CLOCK_27        ;
+;  HEX1[2]     ; CLOCK_27   ; 4.804 ; 4.804 ; Rise       ; CLOCK_27        ;
+;  HEX1[3]     ; CLOCK_27   ; 4.723 ; 4.723 ; Rise       ; CLOCK_27        ;
+;  HEX1[4]     ; CLOCK_27   ; 4.323 ; 4.323 ; Rise       ; CLOCK_27        ;
+;  HEX1[5]     ; CLOCK_27   ; 5.361 ; 5.361 ; Rise       ; CLOCK_27        ;
+;  HEX1[6]     ; CLOCK_27   ; 4.615 ; 4.615 ; Rise       ; CLOCK_27        ;
+; HEX2[*]      ; CLOCK_27   ; 4.454 ; 4.454 ; Rise       ; CLOCK_27        ;
+;  HEX2[0]     ; CLOCK_27   ; 4.454 ; 4.454 ; Rise       ; CLOCK_27        ;
+;  HEX2[1]     ; CLOCK_27   ; 4.129 ; 4.129 ; Rise       ; CLOCK_27        ;
+;  HEX2[2]     ; CLOCK_27   ; 4.448 ; 4.448 ; Rise       ; CLOCK_27        ;
+;  HEX2[3]     ; CLOCK_27   ; 4.359 ; 4.359 ; Rise       ; CLOCK_27        ;
+;  HEX2[4]     ; CLOCK_27   ; 4.424 ; 4.424 ; Rise       ; CLOCK_27        ;
+;  HEX2[5]     ; CLOCK_27   ; 4.265 ; 4.265 ; Rise       ; CLOCK_27        ;
+;  HEX2[6]     ; CLOCK_27   ; 4.397 ; 4.397 ; Rise       ; CLOCK_27        ;
+; HEX3[*]      ; CLOCK_27   ; 5.201 ; 5.201 ; Rise       ; CLOCK_27        ;
+;  HEX3[0]     ; CLOCK_27   ; 4.436 ; 4.436 ; Rise       ; CLOCK_27        ;
+;  HEX3[1]     ; CLOCK_27   ; 4.419 ; 4.419 ; Rise       ; CLOCK_27        ;
+;  HEX3[2]     ; CLOCK_27   ; 4.844 ; 4.844 ; Rise       ; CLOCK_27        ;
+;  HEX3[3]     ; CLOCK_27   ; 4.625 ; 4.625 ; Rise       ; CLOCK_27        ;
+;  HEX3[4]     ; CLOCK_27   ; 4.930 ; 4.930 ; Rise       ; CLOCK_27        ;
+;  HEX3[5]     ; CLOCK_27   ; 4.363 ; 4.363 ; Rise       ; CLOCK_27        ;
+;  HEX3[6]     ; CLOCK_27   ; 5.201 ; 5.201 ; Rise       ; CLOCK_27        ;
+; HEX4[*]      ; CLOCK_27   ; 4.275 ; 4.275 ; Rise       ; CLOCK_27        ;
+;  HEX4[0]     ; CLOCK_27   ; 3.997 ; 3.997 ; Rise       ; CLOCK_27        ;
+;  HEX4[1]     ; CLOCK_27   ; 3.911 ; 3.911 ; Rise       ; CLOCK_27        ;
+;  HEX4[2]     ; CLOCK_27   ; 4.275 ; 4.275 ; Rise       ; CLOCK_27        ;
+;  HEX4[3]     ; CLOCK_27   ; 3.961 ; 3.961 ; Rise       ; CLOCK_27        ;
+;  HEX4[4]     ; CLOCK_27   ; 4.048 ; 4.048 ; Rise       ; CLOCK_27        ;
+;  HEX4[5]     ; CLOCK_27   ; 3.995 ; 3.995 ; Rise       ; CLOCK_27        ;
+;  HEX4[6]     ; CLOCK_27   ; 4.170 ; 4.170 ; Rise       ; CLOCK_27        ;
+; HEX5[*]      ; CLOCK_27   ; 4.037 ; 4.037 ; Rise       ; CLOCK_27        ;
+;  HEX5[0]     ; CLOCK_27   ; 3.757 ; 3.757 ; Rise       ; CLOCK_27        ;
+;  HEX5[1]     ; CLOCK_27   ; 3.632 ; 3.632 ; Rise       ; CLOCK_27        ;
+;  HEX5[2]     ; CLOCK_27   ; 3.684 ; 3.684 ; Rise       ; CLOCK_27        ;
+;  HEX5[3]     ; CLOCK_27   ; 3.544 ; 3.544 ; Rise       ; CLOCK_27        ;
+;  HEX5[4]     ; CLOCK_27   ; 3.998 ; 3.998 ; Rise       ; CLOCK_27        ;
+;  HEX5[5]     ; CLOCK_27   ; 4.037 ; 4.037 ; Rise       ; CLOCK_27        ;
+;  HEX5[6]     ; CLOCK_27   ; 3.658 ; 3.658 ; Rise       ; CLOCK_27        ;
+; HEX6[*]      ; CLOCK_27   ; 4.488 ; 4.488 ; Rise       ; CLOCK_27        ;
+;  HEX6[0]     ; CLOCK_27   ; 4.196 ; 4.196 ; Rise       ; CLOCK_27        ;
+;  HEX6[1]     ; CLOCK_27   ; 3.764 ; 3.764 ; Rise       ; CLOCK_27        ;
+;  HEX6[2]     ; CLOCK_27   ; 4.019 ; 4.019 ; Rise       ; CLOCK_27        ;
+;  HEX6[3]     ; CLOCK_27   ; 4.409 ; 4.409 ; Rise       ; CLOCK_27        ;
+;  HEX6[4]     ; CLOCK_27   ; 4.046 ; 4.046 ; Rise       ; CLOCK_27        ;
+;  HEX6[5]     ; CLOCK_27   ; 4.461 ; 4.461 ; Rise       ; CLOCK_27        ;
+;  HEX6[6]     ; CLOCK_27   ; 4.488 ; 4.488 ; Rise       ; CLOCK_27        ;
+; HEX7[*]      ; CLOCK_27   ; 4.537 ; 4.537 ; Rise       ; CLOCK_27        ;
+;  HEX7[0]     ; CLOCK_27   ; 4.359 ; 4.359 ; Rise       ; CLOCK_27        ;
+;  HEX7[1]     ; CLOCK_27   ; 4.329 ; 4.329 ; Rise       ; CLOCK_27        ;
+;  HEX7[2]     ; CLOCK_27   ; 4.411 ; 4.411 ; Rise       ; CLOCK_27        ;
+;  HEX7[3]     ; CLOCK_27   ; 4.316 ; 4.316 ; Rise       ; CLOCK_27        ;
+;  HEX7[4]     ; CLOCK_27   ; 4.236 ; 4.236 ; Rise       ; CLOCK_27        ;
+;  HEX7[5]     ; CLOCK_27   ; 4.537 ; 4.537 ; Rise       ; CLOCK_27        ;
+;  HEX7[6]     ; CLOCK_27   ; 4.226 ; 4.226 ; Rise       ; CLOCK_27        ;
+; LCD_DATA[*]  ; CLOCK_27   ; 4.869 ; 4.869 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[0] ; CLOCK_27   ; 4.211 ; 4.211 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[1] ; CLOCK_27   ; 4.635 ; 4.635 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[2] ; CLOCK_27   ; 4.564 ; 4.564 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[3] ; CLOCK_27   ; 4.456 ; 4.456 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[4] ; CLOCK_27   ; 4.566 ; 4.566 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[5] ; CLOCK_27   ; 4.723 ; 4.723 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[6] ; CLOCK_27   ; 4.714 ; 4.714 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[7] ; CLOCK_27   ; 4.869 ; 4.869 ; Rise       ; CLOCK_27        ;
+; LCD_EN       ; CLOCK_27   ; 4.542 ; 4.542 ; Rise       ; CLOCK_27        ;
+; LCD_ON       ; CLOCK_27   ; 4.759 ; 4.759 ; Rise       ; CLOCK_27        ;
+; LCD_RS       ; CLOCK_27   ; 4.513 ; 4.513 ; Rise       ; CLOCK_27        ;
+; LCD_RW       ; CLOCK_27   ; 4.398 ; 4.398 ; Rise       ; CLOCK_27        ;
+; LEDG[*]      ; CLOCK_27   ; 5.376 ; 5.376 ; Rise       ; CLOCK_27        ;
+;  LEDG[0]     ; CLOCK_27   ; 5.142 ; 5.142 ; Rise       ; CLOCK_27        ;
+;  LEDG[1]     ; CLOCK_27   ; 5.376 ; 5.376 ; Rise       ; CLOCK_27        ;
+;  LEDG[2]     ; CLOCK_27   ; 4.638 ; 4.638 ; Rise       ; CLOCK_27        ;
+;  LEDG[3]     ; CLOCK_27   ; 5.094 ; 5.094 ; Rise       ; CLOCK_27        ;
+;  LEDG[4]     ; CLOCK_27   ; 4.870 ; 4.870 ; Rise       ; CLOCK_27        ;
+;  LEDG[5]     ; CLOCK_27   ; 4.824 ; 4.824 ; Rise       ; CLOCK_27        ;
+;  LEDG[6]     ; CLOCK_27   ; 5.001 ; 5.001 ; Rise       ; CLOCK_27        ;
+;  LEDG[7]     ; CLOCK_27   ; 4.533 ; 4.533 ; Rise       ; CLOCK_27        ;
+; LEDR[*]      ; CLOCK_27   ; 5.201 ; 5.201 ; Rise       ; CLOCK_27        ;
+;  LEDR[0]     ; CLOCK_27   ; 4.736 ; 4.736 ; Rise       ; CLOCK_27        ;
+;  LEDR[1]     ; CLOCK_27   ; 4.826 ; 4.826 ; Rise       ; CLOCK_27        ;
+;  LEDR[2]     ; CLOCK_27   ; 4.790 ; 4.790 ; Rise       ; CLOCK_27        ;
+;  LEDR[3]     ; CLOCK_27   ; 4.954 ; 4.954 ; Rise       ; CLOCK_27        ;
+;  LEDR[4]     ; CLOCK_27   ; 5.029 ; 5.029 ; Rise       ; CLOCK_27        ;
+;  LEDR[5]     ; CLOCK_27   ; 5.201 ; 5.201 ; Rise       ; CLOCK_27        ;
+;  LEDR[6]     ; CLOCK_27   ; 4.453 ; 4.453 ; Rise       ; CLOCK_27        ;
+;  LEDR[7]     ; CLOCK_27   ; 4.833 ; 4.833 ; Rise       ; CLOCK_27        ;
+;  LEDR[8]     ; CLOCK_27   ; 4.900 ; 4.900 ; Rise       ; CLOCK_27        ;
+;  LEDR[9]     ; CLOCK_27   ; 4.355 ; 4.355 ; Rise       ; CLOCK_27        ;
+;  LEDR[10]    ; CLOCK_27   ; 4.269 ; 4.269 ; Rise       ; CLOCK_27        ;
+;  LEDR[11]    ; CLOCK_27   ; 4.313 ; 4.313 ; Rise       ; CLOCK_27        ;
+;  LEDR[12]    ; CLOCK_27   ; 4.395 ; 4.395 ; Rise       ; CLOCK_27        ;
+;  LEDR[13]    ; CLOCK_27   ; 4.282 ; 4.282 ; Rise       ; CLOCK_27        ;
+;  LEDR[14]    ; CLOCK_27   ; 4.431 ; 4.431 ; Rise       ; CLOCK_27        ;
+;  LEDR[15]    ; CLOCK_27   ; 4.305 ; 4.305 ; Rise       ; CLOCK_27        ;
+;  LEDR[16]    ; CLOCK_27   ; 4.182 ; 4.182 ; Rise       ; CLOCK_27        ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                            ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; HEX0[*]      ; CLOCK_27   ; 3.929 ; 3.929 ; Rise       ; CLOCK_27        ;
+;  HEX0[0]     ; CLOCK_27   ; 4.479 ; 4.479 ; Rise       ; CLOCK_27        ;
+;  HEX0[1]     ; CLOCK_27   ; 3.929 ; 3.929 ; Rise       ; CLOCK_27        ;
+;  HEX0[2]     ; CLOCK_27   ; 4.573 ; 4.573 ; Rise       ; CLOCK_27        ;
+;  HEX0[3]     ; CLOCK_27   ; 4.684 ; 4.684 ; Rise       ; CLOCK_27        ;
+;  HEX0[4]     ; CLOCK_27   ; 4.361 ; 4.361 ; Rise       ; CLOCK_27        ;
+;  HEX0[5]     ; CLOCK_27   ; 4.066 ; 4.066 ; Rise       ; CLOCK_27        ;
+;  HEX0[6]     ; CLOCK_27   ; 4.329 ; 4.329 ; Rise       ; CLOCK_27        ;
+; HEX1[*]      ; CLOCK_27   ; 4.323 ; 4.323 ; Rise       ; CLOCK_27        ;
+;  HEX1[0]     ; CLOCK_27   ; 4.796 ; 4.796 ; Rise       ; CLOCK_27        ;
+;  HEX1[1]     ; CLOCK_27   ; 4.586 ; 4.586 ; Rise       ; CLOCK_27        ;
+;  HEX1[2]     ; CLOCK_27   ; 4.804 ; 4.804 ; Rise       ; CLOCK_27        ;
+;  HEX1[3]     ; CLOCK_27   ; 4.723 ; 4.723 ; Rise       ; CLOCK_27        ;
+;  HEX1[4]     ; CLOCK_27   ; 4.323 ; 4.323 ; Rise       ; CLOCK_27        ;
+;  HEX1[5]     ; CLOCK_27   ; 5.361 ; 5.361 ; Rise       ; CLOCK_27        ;
+;  HEX1[6]     ; CLOCK_27   ; 4.615 ; 4.615 ; Rise       ; CLOCK_27        ;
+; HEX2[*]      ; CLOCK_27   ; 4.129 ; 4.129 ; Rise       ; CLOCK_27        ;
+;  HEX2[0]     ; CLOCK_27   ; 4.454 ; 4.454 ; Rise       ; CLOCK_27        ;
+;  HEX2[1]     ; CLOCK_27   ; 4.129 ; 4.129 ; Rise       ; CLOCK_27        ;
+;  HEX2[2]     ; CLOCK_27   ; 4.448 ; 4.448 ; Rise       ; CLOCK_27        ;
+;  HEX2[3]     ; CLOCK_27   ; 4.359 ; 4.359 ; Rise       ; CLOCK_27        ;
+;  HEX2[4]     ; CLOCK_27   ; 4.424 ; 4.424 ; Rise       ; CLOCK_27        ;
+;  HEX2[5]     ; CLOCK_27   ; 4.265 ; 4.265 ; Rise       ; CLOCK_27        ;
+;  HEX2[6]     ; CLOCK_27   ; 4.397 ; 4.397 ; Rise       ; CLOCK_27        ;
+; HEX3[*]      ; CLOCK_27   ; 4.363 ; 4.363 ; Rise       ; CLOCK_27        ;
+;  HEX3[0]     ; CLOCK_27   ; 4.436 ; 4.436 ; Rise       ; CLOCK_27        ;
+;  HEX3[1]     ; CLOCK_27   ; 4.419 ; 4.419 ; Rise       ; CLOCK_27        ;
+;  HEX3[2]     ; CLOCK_27   ; 4.844 ; 4.844 ; Rise       ; CLOCK_27        ;
+;  HEX3[3]     ; CLOCK_27   ; 4.625 ; 4.625 ; Rise       ; CLOCK_27        ;
+;  HEX3[4]     ; CLOCK_27   ; 4.930 ; 4.930 ; Rise       ; CLOCK_27        ;
+;  HEX3[5]     ; CLOCK_27   ; 4.363 ; 4.363 ; Rise       ; CLOCK_27        ;
+;  HEX3[6]     ; CLOCK_27   ; 5.201 ; 5.201 ; Rise       ; CLOCK_27        ;
+; HEX4[*]      ; CLOCK_27   ; 3.911 ; 3.911 ; Rise       ; CLOCK_27        ;
+;  HEX4[0]     ; CLOCK_27   ; 3.997 ; 3.997 ; Rise       ; CLOCK_27        ;
+;  HEX4[1]     ; CLOCK_27   ; 3.911 ; 3.911 ; Rise       ; CLOCK_27        ;
+;  HEX4[2]     ; CLOCK_27   ; 4.275 ; 4.275 ; Rise       ; CLOCK_27        ;
+;  HEX4[3]     ; CLOCK_27   ; 3.961 ; 3.961 ; Rise       ; CLOCK_27        ;
+;  HEX4[4]     ; CLOCK_27   ; 4.048 ; 4.048 ; Rise       ; CLOCK_27        ;
+;  HEX4[5]     ; CLOCK_27   ; 3.995 ; 3.995 ; Rise       ; CLOCK_27        ;
+;  HEX4[6]     ; CLOCK_27   ; 4.170 ; 4.170 ; Rise       ; CLOCK_27        ;
+; HEX5[*]      ; CLOCK_27   ; 3.544 ; 3.544 ; Rise       ; CLOCK_27        ;
+;  HEX5[0]     ; CLOCK_27   ; 3.757 ; 3.757 ; Rise       ; CLOCK_27        ;
+;  HEX5[1]     ; CLOCK_27   ; 3.632 ; 3.632 ; Rise       ; CLOCK_27        ;
+;  HEX5[2]     ; CLOCK_27   ; 3.684 ; 3.684 ; Rise       ; CLOCK_27        ;
+;  HEX5[3]     ; CLOCK_27   ; 3.544 ; 3.544 ; Rise       ; CLOCK_27        ;
+;  HEX5[4]     ; CLOCK_27   ; 3.998 ; 3.998 ; Rise       ; CLOCK_27        ;
+;  HEX5[5]     ; CLOCK_27   ; 4.037 ; 4.037 ; Rise       ; CLOCK_27        ;
+;  HEX5[6]     ; CLOCK_27   ; 3.658 ; 3.658 ; Rise       ; CLOCK_27        ;
+; HEX6[*]      ; CLOCK_27   ; 3.764 ; 3.764 ; Rise       ; CLOCK_27        ;
+;  HEX6[0]     ; CLOCK_27   ; 4.196 ; 4.196 ; Rise       ; CLOCK_27        ;
+;  HEX6[1]     ; CLOCK_27   ; 3.764 ; 3.764 ; Rise       ; CLOCK_27        ;
+;  HEX6[2]     ; CLOCK_27   ; 4.019 ; 4.019 ; Rise       ; CLOCK_27        ;
+;  HEX6[3]     ; CLOCK_27   ; 4.409 ; 4.409 ; Rise       ; CLOCK_27        ;
+;  HEX6[4]     ; CLOCK_27   ; 4.046 ; 4.046 ; Rise       ; CLOCK_27        ;
+;  HEX6[5]     ; CLOCK_27   ; 4.461 ; 4.461 ; Rise       ; CLOCK_27        ;
+;  HEX6[6]     ; CLOCK_27   ; 4.488 ; 4.488 ; Rise       ; CLOCK_27        ;
+; HEX7[*]      ; CLOCK_27   ; 4.226 ; 4.226 ; Rise       ; CLOCK_27        ;
+;  HEX7[0]     ; CLOCK_27   ; 4.359 ; 4.359 ; Rise       ; CLOCK_27        ;
+;  HEX7[1]     ; CLOCK_27   ; 4.329 ; 4.329 ; Rise       ; CLOCK_27        ;
+;  HEX7[2]     ; CLOCK_27   ; 4.411 ; 4.411 ; Rise       ; CLOCK_27        ;
+;  HEX7[3]     ; CLOCK_27   ; 4.316 ; 4.316 ; Rise       ; CLOCK_27        ;
+;  HEX7[4]     ; CLOCK_27   ; 4.236 ; 4.236 ; Rise       ; CLOCK_27        ;
+;  HEX7[5]     ; CLOCK_27   ; 4.537 ; 4.537 ; Rise       ; CLOCK_27        ;
+;  HEX7[6]     ; CLOCK_27   ; 4.226 ; 4.226 ; Rise       ; CLOCK_27        ;
+; LCD_DATA[*]  ; CLOCK_27   ; 4.211 ; 4.211 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[0] ; CLOCK_27   ; 4.211 ; 4.211 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[1] ; CLOCK_27   ; 4.635 ; 4.635 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[2] ; CLOCK_27   ; 4.564 ; 4.564 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[3] ; CLOCK_27   ; 4.456 ; 4.456 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[4] ; CLOCK_27   ; 4.566 ; 4.566 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[5] ; CLOCK_27   ; 4.723 ; 4.723 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[6] ; CLOCK_27   ; 4.714 ; 4.714 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[7] ; CLOCK_27   ; 4.869 ; 4.869 ; Rise       ; CLOCK_27        ;
+; LCD_EN       ; CLOCK_27   ; 4.542 ; 4.542 ; Rise       ; CLOCK_27        ;
+; LCD_ON       ; CLOCK_27   ; 4.759 ; 4.759 ; Rise       ; CLOCK_27        ;
+; LCD_RS       ; CLOCK_27   ; 4.513 ; 4.513 ; Rise       ; CLOCK_27        ;
+; LCD_RW       ; CLOCK_27   ; 4.398 ; 4.398 ; Rise       ; CLOCK_27        ;
+; LEDG[*]      ; CLOCK_27   ; 4.533 ; 4.533 ; Rise       ; CLOCK_27        ;
+;  LEDG[0]     ; CLOCK_27   ; 5.142 ; 5.142 ; Rise       ; CLOCK_27        ;
+;  LEDG[1]     ; CLOCK_27   ; 5.376 ; 5.376 ; Rise       ; CLOCK_27        ;
+;  LEDG[2]     ; CLOCK_27   ; 4.638 ; 4.638 ; Rise       ; CLOCK_27        ;
+;  LEDG[3]     ; CLOCK_27   ; 5.094 ; 5.094 ; Rise       ; CLOCK_27        ;
+;  LEDG[4]     ; CLOCK_27   ; 4.870 ; 4.870 ; Rise       ; CLOCK_27        ;
+;  LEDG[5]     ; CLOCK_27   ; 4.824 ; 4.824 ; Rise       ; CLOCK_27        ;
+;  LEDG[6]     ; CLOCK_27   ; 5.001 ; 5.001 ; Rise       ; CLOCK_27        ;
+;  LEDG[7]     ; CLOCK_27   ; 4.533 ; 4.533 ; Rise       ; CLOCK_27        ;
+; LEDR[*]      ; CLOCK_27   ; 4.182 ; 4.182 ; Rise       ; CLOCK_27        ;
+;  LEDR[0]     ; CLOCK_27   ; 4.736 ; 4.736 ; Rise       ; CLOCK_27        ;
+;  LEDR[1]     ; CLOCK_27   ; 4.826 ; 4.826 ; Rise       ; CLOCK_27        ;
+;  LEDR[2]     ; CLOCK_27   ; 4.790 ; 4.790 ; Rise       ; CLOCK_27        ;
+;  LEDR[3]     ; CLOCK_27   ; 4.954 ; 4.954 ; Rise       ; CLOCK_27        ;
+;  LEDR[4]     ; CLOCK_27   ; 5.029 ; 5.029 ; Rise       ; CLOCK_27        ;
+;  LEDR[5]     ; CLOCK_27   ; 5.201 ; 5.201 ; Rise       ; CLOCK_27        ;
+;  LEDR[6]     ; CLOCK_27   ; 4.453 ; 4.453 ; Rise       ; CLOCK_27        ;
+;  LEDR[7]     ; CLOCK_27   ; 4.833 ; 4.833 ; Rise       ; CLOCK_27        ;
+;  LEDR[8]     ; CLOCK_27   ; 4.900 ; 4.900 ; Rise       ; CLOCK_27        ;
+;  LEDR[9]     ; CLOCK_27   ; 4.355 ; 4.355 ; Rise       ; CLOCK_27        ;
+;  LEDR[10]    ; CLOCK_27   ; 4.269 ; 4.269 ; Rise       ; CLOCK_27        ;
+;  LEDR[11]    ; CLOCK_27   ; 4.313 ; 4.313 ; Rise       ; CLOCK_27        ;
+;  LEDR[12]    ; CLOCK_27   ; 4.395 ; 4.395 ; Rise       ; CLOCK_27        ;
+;  LEDR[13]    ; CLOCK_27   ; 4.282 ; 4.282 ; Rise       ; CLOCK_27        ;
+;  LEDR[14]    ; CLOCK_27   ; 4.431 ; 4.431 ; Rise       ; CLOCK_27        ;
+;  LEDR[15]    ; CLOCK_27   ; 4.305 ; 4.305 ; Rise       ; CLOCK_27        ;
+;  LEDR[16]    ; CLOCK_27   ; 4.182 ; 4.182 ; Rise       ; CLOCK_27        ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                               ;
++------------------+-------------+-------+----------+---------+---------------------+
+; Clock            ; Setup       ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+-------------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -35.023     ; 0.215 ; N/A      ; N/A     ; -1.380              ;
+;  CLOCK_27        ; -35.023     ; 0.215 ; N/A      ; N/A     ; -1.380              ;
+; Design-wide TNS  ; -266727.535 ; 0.0   ; 0.0      ; 0.0     ; -19671.38           ;
+;  CLOCK_27        ; -266727.535 ; 0.000 ; N/A      ; N/A     ; -19671.380          ;
++------------------+-------------+-------+----------+---------+---------------------+
+
+
++-------------------------------------------------------------------------+
+; Setup Times                                                             ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; SW[*]     ; CLOCK_27   ; 38.442 ; 38.442 ; Rise       ; CLOCK_27        ;
+;  SW[0]    ; CLOCK_27   ; 0.785  ; 0.785  ; Rise       ; CLOCK_27        ;
+;  SW[1]    ; CLOCK_27   ; 1.102  ; 1.102  ; Rise       ; CLOCK_27        ;
+;  SW[2]    ; CLOCK_27   ; 1.259  ; 1.259  ; Rise       ; CLOCK_27        ;
+;  SW[3]    ; CLOCK_27   ; 0.515  ; 0.515  ; Rise       ; CLOCK_27        ;
+;  SW[4]    ; CLOCK_27   ; 0.333  ; 0.333  ; Rise       ; CLOCK_27        ;
+;  SW[5]    ; CLOCK_27   ; 0.222  ; 0.222  ; Rise       ; CLOCK_27        ;
+;  SW[6]    ; CLOCK_27   ; 0.277  ; 0.277  ; Rise       ; CLOCK_27        ;
+;  SW[7]    ; CLOCK_27   ; 0.241  ; 0.241  ; Rise       ; CLOCK_27        ;
+;  SW[8]    ; CLOCK_27   ; 0.491  ; 0.491  ; Rise       ; CLOCK_27        ;
+;  SW[9]    ; CLOCK_27   ; 0.432  ; 0.432  ; Rise       ; CLOCK_27        ;
+;  SW[10]   ; CLOCK_27   ; 0.181  ; 0.181  ; Rise       ; CLOCK_27        ;
+;  SW[11]   ; CLOCK_27   ; 0.204  ; 0.204  ; Rise       ; CLOCK_27        ;
+;  SW[12]   ; CLOCK_27   ; 0.617  ; 0.617  ; Rise       ; CLOCK_27        ;
+;  SW[13]   ; CLOCK_27   ; 4.266  ; 4.266  ; Rise       ; CLOCK_27        ;
+;  SW[14]   ; CLOCK_27   ; 4.226  ; 4.226  ; Rise       ; CLOCK_27        ;
+;  SW[15]   ; CLOCK_27   ; 4.159  ; 4.159  ; Rise       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; 38.442 ; 38.442 ; Rise       ; CLOCK_27        ;
+; SW[*]     ; CLOCK_27   ; 9.194  ; 9.194  ; Fall       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; 9.194  ; 9.194  ; Fall       ; CLOCK_27        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; SW[*]     ; CLOCK_27   ; 0.280  ; 0.280  ; Rise       ; CLOCK_27        ;
+;  SW[0]    ; CLOCK_27   ; -0.011 ; -0.011 ; Rise       ; CLOCK_27        ;
+;  SW[1]    ; CLOCK_27   ; -0.173 ; -0.173 ; Rise       ; CLOCK_27        ;
+;  SW[2]    ; CLOCK_27   ; -0.217 ; -0.217 ; Rise       ; CLOCK_27        ;
+;  SW[3]    ; CLOCK_27   ; 0.077  ; 0.077  ; Rise       ; CLOCK_27        ;
+;  SW[4]    ; CLOCK_27   ; 0.221  ; 0.221  ; Rise       ; CLOCK_27        ;
+;  SW[5]    ; CLOCK_27   ; 0.223  ; 0.223  ; Rise       ; CLOCK_27        ;
+;  SW[6]    ; CLOCK_27   ; 0.265  ; 0.265  ; Rise       ; CLOCK_27        ;
+;  SW[7]    ; CLOCK_27   ; 0.219  ; 0.219  ; Rise       ; CLOCK_27        ;
+;  SW[8]    ; CLOCK_27   ; 0.117  ; 0.117  ; Rise       ; CLOCK_27        ;
+;  SW[9]    ; CLOCK_27   ; 0.087  ; 0.087  ; Rise       ; CLOCK_27        ;
+;  SW[10]   ; CLOCK_27   ; 0.280  ; 0.280  ; Rise       ; CLOCK_27        ;
+;  SW[11]   ; CLOCK_27   ; 0.275  ; 0.275  ; Rise       ; CLOCK_27        ;
+;  SW[12]   ; CLOCK_27   ; 0.046  ; 0.046  ; Rise       ; CLOCK_27        ;
+;  SW[13]   ; CLOCK_27   ; -2.243 ; -2.243 ; Rise       ; CLOCK_27        ;
+;  SW[14]   ; CLOCK_27   ; -2.178 ; -2.178 ; Rise       ; CLOCK_27        ;
+;  SW[15]   ; CLOCK_27   ; -2.179 ; -2.179 ; Rise       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; -2.393 ; -2.393 ; Rise       ; CLOCK_27        ;
+; SW[*]     ; CLOCK_27   ; -2.813 ; -2.813 ; Fall       ; CLOCK_27        ;
+;  SW[17]   ; CLOCK_27   ; -2.813 ; -2.813 ; Fall       ; CLOCK_27        ;
++-----------+------------+--------+--------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Clock to Output Times                                                    ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; HEX0[*]      ; CLOCK_27   ; 8.565 ; 8.565 ; Rise       ; CLOCK_27        ;
+;  HEX0[0]     ; CLOCK_27   ; 8.094 ; 8.094 ; Rise       ; CLOCK_27        ;
+;  HEX0[1]     ; CLOCK_27   ; 7.004 ; 7.004 ; Rise       ; CLOCK_27        ;
+;  HEX0[2]     ; CLOCK_27   ; 8.220 ; 8.220 ; Rise       ; CLOCK_27        ;
+;  HEX0[3]     ; CLOCK_27   ; 8.565 ; 8.565 ; Rise       ; CLOCK_27        ;
+;  HEX0[4]     ; CLOCK_27   ; 7.878 ; 7.878 ; Rise       ; CLOCK_27        ;
+;  HEX0[5]     ; CLOCK_27   ; 7.265 ; 7.265 ; Rise       ; CLOCK_27        ;
+;  HEX0[6]     ; CLOCK_27   ; 7.704 ; 7.704 ; Rise       ; CLOCK_27        ;
+; HEX1[*]      ; CLOCK_27   ; 9.800 ; 9.800 ; Rise       ; CLOCK_27        ;
+;  HEX1[0]     ; CLOCK_27   ; 8.680 ; 8.680 ; Rise       ; CLOCK_27        ;
+;  HEX1[1]     ; CLOCK_27   ; 8.285 ; 8.285 ; Rise       ; CLOCK_27        ;
+;  HEX1[2]     ; CLOCK_27   ; 8.828 ; 8.828 ; Rise       ; CLOCK_27        ;
+;  HEX1[3]     ; CLOCK_27   ; 8.634 ; 8.634 ; Rise       ; CLOCK_27        ;
+;  HEX1[4]     ; CLOCK_27   ; 7.801 ; 7.801 ; Rise       ; CLOCK_27        ;
+;  HEX1[5]     ; CLOCK_27   ; 9.800 ; 9.800 ; Rise       ; CLOCK_27        ;
+;  HEX1[6]     ; CLOCK_27   ; 8.437 ; 8.437 ; Rise       ; CLOCK_27        ;
+; HEX2[*]      ; CLOCK_27   ; 8.160 ; 8.160 ; Rise       ; CLOCK_27        ;
+;  HEX2[0]     ; CLOCK_27   ; 8.136 ; 8.136 ; Rise       ; CLOCK_27        ;
+;  HEX2[1]     ; CLOCK_27   ; 7.415 ; 7.415 ; Rise       ; CLOCK_27        ;
+;  HEX2[2]     ; CLOCK_27   ; 8.160 ; 8.160 ; Rise       ; CLOCK_27        ;
+;  HEX2[3]     ; CLOCK_27   ; 7.914 ; 7.914 ; Rise       ; CLOCK_27        ;
+;  HEX2[4]     ; CLOCK_27   ; 7.986 ; 7.986 ; Rise       ; CLOCK_27        ;
+;  HEX2[5]     ; CLOCK_27   ; 7.703 ; 7.703 ; Rise       ; CLOCK_27        ;
+;  HEX2[6]     ; CLOCK_27   ; 7.984 ; 7.984 ; Rise       ; CLOCK_27        ;
+; HEX3[*]      ; CLOCK_27   ; 9.461 ; 9.461 ; Rise       ; CLOCK_27        ;
+;  HEX3[0]     ; CLOCK_27   ; 8.053 ; 8.053 ; Rise       ; CLOCK_27        ;
+;  HEX3[1]     ; CLOCK_27   ; 8.009 ; 8.009 ; Rise       ; CLOCK_27        ;
+;  HEX3[2]     ; CLOCK_27   ; 8.773 ; 8.773 ; Rise       ; CLOCK_27        ;
+;  HEX3[3]     ; CLOCK_27   ; 8.449 ; 8.449 ; Rise       ; CLOCK_27        ;
+;  HEX3[4]     ; CLOCK_27   ; 9.275 ; 9.275 ; Rise       ; CLOCK_27        ;
+;  HEX3[5]     ; CLOCK_27   ; 7.936 ; 7.936 ; Rise       ; CLOCK_27        ;
+;  HEX3[6]     ; CLOCK_27   ; 9.461 ; 9.461 ; Rise       ; CLOCK_27        ;
+; HEX4[*]      ; CLOCK_27   ; 7.845 ; 7.845 ; Rise       ; CLOCK_27        ;
+;  HEX4[0]     ; CLOCK_27   ; 7.267 ; 7.267 ; Rise       ; CLOCK_27        ;
+;  HEX4[1]     ; CLOCK_27   ; 7.012 ; 7.012 ; Rise       ; CLOCK_27        ;
+;  HEX4[2]     ; CLOCK_27   ; 7.845 ; 7.845 ; Rise       ; CLOCK_27        ;
+;  HEX4[3]     ; CLOCK_27   ; 7.203 ; 7.203 ; Rise       ; CLOCK_27        ;
+;  HEX4[4]     ; CLOCK_27   ; 7.393 ; 7.393 ; Rise       ; CLOCK_27        ;
+;  HEX4[5]     ; CLOCK_27   ; 7.250 ; 7.250 ; Rise       ; CLOCK_27        ;
+;  HEX4[6]     ; CLOCK_27   ; 7.611 ; 7.611 ; Rise       ; CLOCK_27        ;
+; HEX5[*]      ; CLOCK_27   ; 7.345 ; 7.345 ; Rise       ; CLOCK_27        ;
+;  HEX5[0]     ; CLOCK_27   ; 6.747 ; 6.747 ; Rise       ; CLOCK_27        ;
+;  HEX5[1]     ; CLOCK_27   ; 6.508 ; 6.508 ; Rise       ; CLOCK_27        ;
+;  HEX5[2]     ; CLOCK_27   ; 6.610 ; 6.610 ; Rise       ; CLOCK_27        ;
+;  HEX5[3]     ; CLOCK_27   ; 6.268 ; 6.268 ; Rise       ; CLOCK_27        ;
+;  HEX5[4]     ; CLOCK_27   ; 7.286 ; 7.286 ; Rise       ; CLOCK_27        ;
+;  HEX5[5]     ; CLOCK_27   ; 7.345 ; 7.345 ; Rise       ; CLOCK_27        ;
+;  HEX5[6]     ; CLOCK_27   ; 6.537 ; 6.537 ; Rise       ; CLOCK_27        ;
+; HEX6[*]      ; CLOCK_27   ; 8.259 ; 8.259 ; Rise       ; CLOCK_27        ;
+;  HEX6[0]     ; CLOCK_27   ; 7.708 ; 7.708 ; Rise       ; CLOCK_27        ;
+;  HEX6[1]     ; CLOCK_27   ; 6.709 ; 6.709 ; Rise       ; CLOCK_27        ;
+;  HEX6[2]     ; CLOCK_27   ; 7.253 ; 7.253 ; Rise       ; CLOCK_27        ;
+;  HEX6[3]     ; CLOCK_27   ; 8.007 ; 8.007 ; Rise       ; CLOCK_27        ;
+;  HEX6[4]     ; CLOCK_27   ; 7.256 ; 7.256 ; Rise       ; CLOCK_27        ;
+;  HEX6[5]     ; CLOCK_27   ; 8.127 ; 8.127 ; Rise       ; CLOCK_27        ;
+;  HEX6[6]     ; CLOCK_27   ; 8.259 ; 8.259 ; Rise       ; CLOCK_27        ;
+; HEX7[*]      ; CLOCK_27   ; 8.269 ; 8.269 ; Rise       ; CLOCK_27        ;
+;  HEX7[0]     ; CLOCK_27   ; 7.859 ; 7.859 ; Rise       ; CLOCK_27        ;
+;  HEX7[1]     ; CLOCK_27   ; 7.851 ; 7.851 ; Rise       ; CLOCK_27        ;
+;  HEX7[2]     ; CLOCK_27   ; 8.083 ; 8.083 ; Rise       ; CLOCK_27        ;
+;  HEX7[3]     ; CLOCK_27   ; 7.843 ; 7.843 ; Rise       ; CLOCK_27        ;
+;  HEX7[4]     ; CLOCK_27   ; 7.671 ; 7.671 ; Rise       ; CLOCK_27        ;
+;  HEX7[5]     ; CLOCK_27   ; 8.269 ; 8.269 ; Rise       ; CLOCK_27        ;
+;  HEX7[6]     ; CLOCK_27   ; 7.562 ; 7.562 ; Rise       ; CLOCK_27        ;
+; LCD_DATA[*]  ; CLOCK_27   ; 9.060 ; 9.060 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[0] ; CLOCK_27   ; 7.625 ; 7.625 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[1] ; CLOCK_27   ; 8.581 ; 8.581 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[2] ; CLOCK_27   ; 8.304 ; 8.304 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[3] ; CLOCK_27   ; 8.061 ; 8.061 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[4] ; CLOCK_27   ; 8.262 ; 8.262 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[5] ; CLOCK_27   ; 8.757 ; 8.757 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[6] ; CLOCK_27   ; 8.676 ; 8.676 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[7] ; CLOCK_27   ; 9.060 ; 9.060 ; Rise       ; CLOCK_27        ;
+; LCD_EN       ; CLOCK_27   ; 8.332 ; 8.332 ; Rise       ; CLOCK_27        ;
+; LCD_ON       ; CLOCK_27   ; 8.819 ; 8.819 ; Rise       ; CLOCK_27        ;
+; LCD_RS       ; CLOCK_27   ; 8.205 ; 8.205 ; Rise       ; CLOCK_27        ;
+; LCD_RW       ; CLOCK_27   ; 7.962 ; 7.962 ; Rise       ; CLOCK_27        ;
+; LEDG[*]      ; CLOCK_27   ; 9.905 ; 9.905 ; Rise       ; CLOCK_27        ;
+;  LEDG[0]     ; CLOCK_27   ; 9.465 ; 9.465 ; Rise       ; CLOCK_27        ;
+;  LEDG[1]     ; CLOCK_27   ; 9.905 ; 9.905 ; Rise       ; CLOCK_27        ;
+;  LEDG[2]     ; CLOCK_27   ; 8.335 ; 8.335 ; Rise       ; CLOCK_27        ;
+;  LEDG[3]     ; CLOCK_27   ; 9.314 ; 9.314 ; Rise       ; CLOCK_27        ;
+;  LEDG[4]     ; CLOCK_27   ; 8.926 ; 8.926 ; Rise       ; CLOCK_27        ;
+;  LEDG[5]     ; CLOCK_27   ; 8.770 ; 8.770 ; Rise       ; CLOCK_27        ;
+;  LEDG[6]     ; CLOCK_27   ; 9.031 ; 9.031 ; Rise       ; CLOCK_27        ;
+;  LEDG[7]     ; CLOCK_27   ; 8.192 ; 8.192 ; Rise       ; CLOCK_27        ;
+; LEDR[*]      ; CLOCK_27   ; 9.716 ; 9.716 ; Rise       ; CLOCK_27        ;
+;  LEDR[0]     ; CLOCK_27   ; 8.597 ; 8.597 ; Rise       ; CLOCK_27        ;
+;  LEDR[1]     ; CLOCK_27   ; 8.730 ; 8.730 ; Rise       ; CLOCK_27        ;
+;  LEDR[2]     ; CLOCK_27   ; 8.797 ; 8.797 ; Rise       ; CLOCK_27        ;
+;  LEDR[3]     ; CLOCK_27   ; 8.976 ; 8.976 ; Rise       ; CLOCK_27        ;
+;  LEDR[4]     ; CLOCK_27   ; 9.247 ; 9.247 ; Rise       ; CLOCK_27        ;
+;  LEDR[5]     ; CLOCK_27   ; 9.716 ; 9.716 ; Rise       ; CLOCK_27        ;
+;  LEDR[6]     ; CLOCK_27   ; 7.990 ; 7.990 ; Rise       ; CLOCK_27        ;
+;  LEDR[7]     ; CLOCK_27   ; 8.885 ; 8.885 ; Rise       ; CLOCK_27        ;
+;  LEDR[8]     ; CLOCK_27   ; 8.890 ; 8.890 ; Rise       ; CLOCK_27        ;
+;  LEDR[9]     ; CLOCK_27   ; 7.931 ; 7.931 ; Rise       ; CLOCK_27        ;
+;  LEDR[10]    ; CLOCK_27   ; 7.606 ; 7.606 ; Rise       ; CLOCK_27        ;
+;  LEDR[11]    ; CLOCK_27   ; 7.751 ; 7.751 ; Rise       ; CLOCK_27        ;
+;  LEDR[12]    ; CLOCK_27   ; 7.997 ; 7.997 ; Rise       ; CLOCK_27        ;
+;  LEDR[13]    ; CLOCK_27   ; 7.744 ; 7.744 ; Rise       ; CLOCK_27        ;
+;  LEDR[14]    ; CLOCK_27   ; 8.037 ; 8.037 ; Rise       ; CLOCK_27        ;
+;  LEDR[15]    ; CLOCK_27   ; 7.761 ; 7.761 ; Rise       ; CLOCK_27        ;
+;  LEDR[16]    ; CLOCK_27   ; 7.508 ; 7.508 ; Rise       ; CLOCK_27        ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                            ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; HEX0[*]      ; CLOCK_27   ; 3.929 ; 3.929 ; Rise       ; CLOCK_27        ;
+;  HEX0[0]     ; CLOCK_27   ; 4.479 ; 4.479 ; Rise       ; CLOCK_27        ;
+;  HEX0[1]     ; CLOCK_27   ; 3.929 ; 3.929 ; Rise       ; CLOCK_27        ;
+;  HEX0[2]     ; CLOCK_27   ; 4.573 ; 4.573 ; Rise       ; CLOCK_27        ;
+;  HEX0[3]     ; CLOCK_27   ; 4.684 ; 4.684 ; Rise       ; CLOCK_27        ;
+;  HEX0[4]     ; CLOCK_27   ; 4.361 ; 4.361 ; Rise       ; CLOCK_27        ;
+;  HEX0[5]     ; CLOCK_27   ; 4.066 ; 4.066 ; Rise       ; CLOCK_27        ;
+;  HEX0[6]     ; CLOCK_27   ; 4.329 ; 4.329 ; Rise       ; CLOCK_27        ;
+; HEX1[*]      ; CLOCK_27   ; 4.323 ; 4.323 ; Rise       ; CLOCK_27        ;
+;  HEX1[0]     ; CLOCK_27   ; 4.796 ; 4.796 ; Rise       ; CLOCK_27        ;
+;  HEX1[1]     ; CLOCK_27   ; 4.586 ; 4.586 ; Rise       ; CLOCK_27        ;
+;  HEX1[2]     ; CLOCK_27   ; 4.804 ; 4.804 ; Rise       ; CLOCK_27        ;
+;  HEX1[3]     ; CLOCK_27   ; 4.723 ; 4.723 ; Rise       ; CLOCK_27        ;
+;  HEX1[4]     ; CLOCK_27   ; 4.323 ; 4.323 ; Rise       ; CLOCK_27        ;
+;  HEX1[5]     ; CLOCK_27   ; 5.361 ; 5.361 ; Rise       ; CLOCK_27        ;
+;  HEX1[6]     ; CLOCK_27   ; 4.615 ; 4.615 ; Rise       ; CLOCK_27        ;
+; HEX2[*]      ; CLOCK_27   ; 4.129 ; 4.129 ; Rise       ; CLOCK_27        ;
+;  HEX2[0]     ; CLOCK_27   ; 4.454 ; 4.454 ; Rise       ; CLOCK_27        ;
+;  HEX2[1]     ; CLOCK_27   ; 4.129 ; 4.129 ; Rise       ; CLOCK_27        ;
+;  HEX2[2]     ; CLOCK_27   ; 4.448 ; 4.448 ; Rise       ; CLOCK_27        ;
+;  HEX2[3]     ; CLOCK_27   ; 4.359 ; 4.359 ; Rise       ; CLOCK_27        ;
+;  HEX2[4]     ; CLOCK_27   ; 4.424 ; 4.424 ; Rise       ; CLOCK_27        ;
+;  HEX2[5]     ; CLOCK_27   ; 4.265 ; 4.265 ; Rise       ; CLOCK_27        ;
+;  HEX2[6]     ; CLOCK_27   ; 4.397 ; 4.397 ; Rise       ; CLOCK_27        ;
+; HEX3[*]      ; CLOCK_27   ; 4.363 ; 4.363 ; Rise       ; CLOCK_27        ;
+;  HEX3[0]     ; CLOCK_27   ; 4.436 ; 4.436 ; Rise       ; CLOCK_27        ;
+;  HEX3[1]     ; CLOCK_27   ; 4.419 ; 4.419 ; Rise       ; CLOCK_27        ;
+;  HEX3[2]     ; CLOCK_27   ; 4.844 ; 4.844 ; Rise       ; CLOCK_27        ;
+;  HEX3[3]     ; CLOCK_27   ; 4.625 ; 4.625 ; Rise       ; CLOCK_27        ;
+;  HEX3[4]     ; CLOCK_27   ; 4.930 ; 4.930 ; Rise       ; CLOCK_27        ;
+;  HEX3[5]     ; CLOCK_27   ; 4.363 ; 4.363 ; Rise       ; CLOCK_27        ;
+;  HEX3[6]     ; CLOCK_27   ; 5.201 ; 5.201 ; Rise       ; CLOCK_27        ;
+; HEX4[*]      ; CLOCK_27   ; 3.911 ; 3.911 ; Rise       ; CLOCK_27        ;
+;  HEX4[0]     ; CLOCK_27   ; 3.997 ; 3.997 ; Rise       ; CLOCK_27        ;
+;  HEX4[1]     ; CLOCK_27   ; 3.911 ; 3.911 ; Rise       ; CLOCK_27        ;
+;  HEX4[2]     ; CLOCK_27   ; 4.275 ; 4.275 ; Rise       ; CLOCK_27        ;
+;  HEX4[3]     ; CLOCK_27   ; 3.961 ; 3.961 ; Rise       ; CLOCK_27        ;
+;  HEX4[4]     ; CLOCK_27   ; 4.048 ; 4.048 ; Rise       ; CLOCK_27        ;
+;  HEX4[5]     ; CLOCK_27   ; 3.995 ; 3.995 ; Rise       ; CLOCK_27        ;
+;  HEX4[6]     ; CLOCK_27   ; 4.170 ; 4.170 ; Rise       ; CLOCK_27        ;
+; HEX5[*]      ; CLOCK_27   ; 3.544 ; 3.544 ; Rise       ; CLOCK_27        ;
+;  HEX5[0]     ; CLOCK_27   ; 3.757 ; 3.757 ; Rise       ; CLOCK_27        ;
+;  HEX5[1]     ; CLOCK_27   ; 3.632 ; 3.632 ; Rise       ; CLOCK_27        ;
+;  HEX5[2]     ; CLOCK_27   ; 3.684 ; 3.684 ; Rise       ; CLOCK_27        ;
+;  HEX5[3]     ; CLOCK_27   ; 3.544 ; 3.544 ; Rise       ; CLOCK_27        ;
+;  HEX5[4]     ; CLOCK_27   ; 3.998 ; 3.998 ; Rise       ; CLOCK_27        ;
+;  HEX5[5]     ; CLOCK_27   ; 4.037 ; 4.037 ; Rise       ; CLOCK_27        ;
+;  HEX5[6]     ; CLOCK_27   ; 3.658 ; 3.658 ; Rise       ; CLOCK_27        ;
+; HEX6[*]      ; CLOCK_27   ; 3.764 ; 3.764 ; Rise       ; CLOCK_27        ;
+;  HEX6[0]     ; CLOCK_27   ; 4.196 ; 4.196 ; Rise       ; CLOCK_27        ;
+;  HEX6[1]     ; CLOCK_27   ; 3.764 ; 3.764 ; Rise       ; CLOCK_27        ;
+;  HEX6[2]     ; CLOCK_27   ; 4.019 ; 4.019 ; Rise       ; CLOCK_27        ;
+;  HEX6[3]     ; CLOCK_27   ; 4.409 ; 4.409 ; Rise       ; CLOCK_27        ;
+;  HEX6[4]     ; CLOCK_27   ; 4.046 ; 4.046 ; Rise       ; CLOCK_27        ;
+;  HEX6[5]     ; CLOCK_27   ; 4.461 ; 4.461 ; Rise       ; CLOCK_27        ;
+;  HEX6[6]     ; CLOCK_27   ; 4.488 ; 4.488 ; Rise       ; CLOCK_27        ;
+; HEX7[*]      ; CLOCK_27   ; 4.226 ; 4.226 ; Rise       ; CLOCK_27        ;
+;  HEX7[0]     ; CLOCK_27   ; 4.359 ; 4.359 ; Rise       ; CLOCK_27        ;
+;  HEX7[1]     ; CLOCK_27   ; 4.329 ; 4.329 ; Rise       ; CLOCK_27        ;
+;  HEX7[2]     ; CLOCK_27   ; 4.411 ; 4.411 ; Rise       ; CLOCK_27        ;
+;  HEX7[3]     ; CLOCK_27   ; 4.316 ; 4.316 ; Rise       ; CLOCK_27        ;
+;  HEX7[4]     ; CLOCK_27   ; 4.236 ; 4.236 ; Rise       ; CLOCK_27        ;
+;  HEX7[5]     ; CLOCK_27   ; 4.537 ; 4.537 ; Rise       ; CLOCK_27        ;
+;  HEX7[6]     ; CLOCK_27   ; 4.226 ; 4.226 ; Rise       ; CLOCK_27        ;
+; LCD_DATA[*]  ; CLOCK_27   ; 4.211 ; 4.211 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[0] ; CLOCK_27   ; 4.211 ; 4.211 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[1] ; CLOCK_27   ; 4.635 ; 4.635 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[2] ; CLOCK_27   ; 4.564 ; 4.564 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[3] ; CLOCK_27   ; 4.456 ; 4.456 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[4] ; CLOCK_27   ; 4.566 ; 4.566 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[5] ; CLOCK_27   ; 4.723 ; 4.723 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[6] ; CLOCK_27   ; 4.714 ; 4.714 ; Rise       ; CLOCK_27        ;
+;  LCD_DATA[7] ; CLOCK_27   ; 4.869 ; 4.869 ; Rise       ; CLOCK_27        ;
+; LCD_EN       ; CLOCK_27   ; 4.542 ; 4.542 ; Rise       ; CLOCK_27        ;
+; LCD_ON       ; CLOCK_27   ; 4.759 ; 4.759 ; Rise       ; CLOCK_27        ;
+; LCD_RS       ; CLOCK_27   ; 4.513 ; 4.513 ; Rise       ; CLOCK_27        ;
+; LCD_RW       ; CLOCK_27   ; 4.398 ; 4.398 ; Rise       ; CLOCK_27        ;
+; LEDG[*]      ; CLOCK_27   ; 4.533 ; 4.533 ; Rise       ; CLOCK_27        ;
+;  LEDG[0]     ; CLOCK_27   ; 5.142 ; 5.142 ; Rise       ; CLOCK_27        ;
+;  LEDG[1]     ; CLOCK_27   ; 5.376 ; 5.376 ; Rise       ; CLOCK_27        ;
+;  LEDG[2]     ; CLOCK_27   ; 4.638 ; 4.638 ; Rise       ; CLOCK_27        ;
+;  LEDG[3]     ; CLOCK_27   ; 5.094 ; 5.094 ; Rise       ; CLOCK_27        ;
+;  LEDG[4]     ; CLOCK_27   ; 4.870 ; 4.870 ; Rise       ; CLOCK_27        ;
+;  LEDG[5]     ; CLOCK_27   ; 4.824 ; 4.824 ; Rise       ; CLOCK_27        ;
+;  LEDG[6]     ; CLOCK_27   ; 5.001 ; 5.001 ; Rise       ; CLOCK_27        ;
+;  LEDG[7]     ; CLOCK_27   ; 4.533 ; 4.533 ; Rise       ; CLOCK_27        ;
+; LEDR[*]      ; CLOCK_27   ; 4.182 ; 4.182 ; Rise       ; CLOCK_27        ;
+;  LEDR[0]     ; CLOCK_27   ; 4.736 ; 4.736 ; Rise       ; CLOCK_27        ;
+;  LEDR[1]     ; CLOCK_27   ; 4.826 ; 4.826 ; Rise       ; CLOCK_27        ;
+;  LEDR[2]     ; CLOCK_27   ; 4.790 ; 4.790 ; Rise       ; CLOCK_27        ;
+;  LEDR[3]     ; CLOCK_27   ; 4.954 ; 4.954 ; Rise       ; CLOCK_27        ;
+;  LEDR[4]     ; CLOCK_27   ; 5.029 ; 5.029 ; Rise       ; CLOCK_27        ;
+;  LEDR[5]     ; CLOCK_27   ; 5.201 ; 5.201 ; Rise       ; CLOCK_27        ;
+;  LEDR[6]     ; CLOCK_27   ; 4.453 ; 4.453 ; Rise       ; CLOCK_27        ;
+;  LEDR[7]     ; CLOCK_27   ; 4.833 ; 4.833 ; Rise       ; CLOCK_27        ;
+;  LEDR[8]     ; CLOCK_27   ; 4.900 ; 4.900 ; Rise       ; CLOCK_27        ;
+;  LEDR[9]     ; CLOCK_27   ; 4.355 ; 4.355 ; Rise       ; CLOCK_27        ;
+;  LEDR[10]    ; CLOCK_27   ; 4.269 ; 4.269 ; Rise       ; CLOCK_27        ;
+;  LEDR[11]    ; CLOCK_27   ; 4.313 ; 4.313 ; Rise       ; CLOCK_27        ;
+;  LEDR[12]    ; CLOCK_27   ; 4.395 ; 4.395 ; Rise       ; CLOCK_27        ;
+;  LEDR[13]    ; CLOCK_27   ; 4.282 ; 4.282 ; Rise       ; CLOCK_27        ;
+;  LEDR[14]    ; CLOCK_27   ; 4.431 ; 4.431 ; Rise       ; CLOCK_27        ;
+;  LEDR[15]    ; CLOCK_27   ; 4.305 ; 4.305 ; Rise       ; CLOCK_27        ;
+;  LEDR[16]    ; CLOCK_27   ; 4.182 ; 4.182 ; Rise       ; CLOCK_27        ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------+
+; Setup Transfers                                                       ;
++------------+----------+--------------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths     ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+--------------+----------+----------+----------+
+; CLOCK_27   ; CLOCK_27 ; > 2147483647 ; 1984     ; 12896    ; 0        ;
++------------+----------+--------------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-----------------------------------------------------------------------+
+; Hold Transfers                                                        ;
++------------+----------+--------------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths     ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+--------------+----------+----------+----------+
+; CLOCK_27   ; CLOCK_27 ; > 2147483647 ; 1984     ; 12896    ; 0        ;
++------------+----------+--------------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths                            ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 17    ; 17   ;
+; Unconstrained Input Port Paths  ; 3302  ; 3302 ;
+; Unconstrained Output Ports      ; 93    ; 93   ;
+; Unconstrained Output Port Paths ; 93    ; 93   ;
++---------------------------------+-------+------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed May 08 18:46:28 2024
+Info: Command: quartus_sta wrapper -c wrapper
+Info: qsta_default_script.tcl version: #1
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
+Critical Warning (332012): Synopsys Design Constraints File file not found: 'wrapper.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name CLOCK_27 CLOCK_27
+Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
+Info: Analyzing Slow Model
+Critical Warning (332148): Timing requirements not met
+Info (332146): Worst-case setup slack is -35.023
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):   -35.023   -266727.535 CLOCK_27 
+Info (332146): Worst-case hold slack is 0.391
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.391         0.000 CLOCK_27 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -1.380
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    -1.380    -19671.380 CLOCK_27 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info: Analyzing Fast Model
+Critical Warning (332148): Timing requirements not met
+Info (332146): Worst-case setup slack is -14.773
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):   -14.773   -111881.169 CLOCK_27 
+Info (332146): Worst-case hold slack is 0.215
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):     0.215         0.000 CLOCK_27 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is -1.380
+    Info (332119):     Slack End Point TNS Clock 
+    Info (332119): ========= ============= =====================
+    Info (332119):    -1.380    -19671.380 CLOCK_27 
+Info (332001): The selected device family is not supported by the report_metastability command.
+Info (332102): Design is not fully constrained for setup requirements
+Info (332102): Design is not fully constrained for hold requirements
+Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 4958 megabytes
+    Info: Processing ended: Wed May 08 18:46:40 2024
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:12
+
+

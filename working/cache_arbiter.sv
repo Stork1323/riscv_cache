@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 import cache_def::*;
 
 module cache_arbiter(
@@ -21,9 +22,7 @@ module cache_arbiter(
     output mem_req_type l1_cache_request_o
 );
 
-    typedef enum {IDLE, I_CACHE, D_CACHE, VC_ICACHE, VC_DCACHE} arbiter_state_type;
-    // VC_ICACHE: access victim cache with request from instruction cache
-    // VC_DCACHE: access victim cache with request from data cache
+    typedef enum {IDLE, I_CACHE, D_CACHE} arbiter_state_type;
     arbiter_state_type next_state, state;
 
     always_comb begin
@@ -32,8 +31,6 @@ module cache_arbiter(
             IDLE: begin
                 if (i_cache_request_i.valid) next_state = I_CACHE;
                 else if ((~i_cache_request_i.valid) & d_cache_request_i.valid) next_state = D_CACHE;
-                // else if (i_cache_request_i.valid & (~vc_miss_i)) next_state = VC_ICACHE;
-                // else if ((~i_cache_request_i.valid) & d_cache_request_i.valid & (~vc_miss_i)) next_state = VC_DCACHE;
             end
             I_CACHE: begin
                 if ((~i_cache_request_i.valid) & (~d_cache_request_i.valid)) next_state = IDLE;
@@ -43,67 +40,36 @@ module cache_arbiter(
                 if ((~i_cache_request_i.valid) & (~d_cache_request_i.valid)) next_state = IDLE;
                 else if (i_cache_request_i.valid & (~d_cache_request_i.valid)) next_state = I_CACHE;
             end
-            // VC_ICACHE: begin
-            //     if ((~i_cache_request_i.valid) & (~d_cache_request_i.valid) & vc_miss_i) next_state = IDLE;
-            //     else if (i_cache_request_i.valid & (~d_cache_request_i.valid) & vc_miss_i) next_state = I_CACHE;
-            // end
-            // VC_DCACHE: begin
-            //     if ((~i_cache_request_i.valid) & (~d_cache_request_i.valid) & vc_miss_i) next_state = IDLE;
-            //     else if ((~i_cache_request_i.valid) & d_cache_request_i.valid & vc_miss_i) next_state = D_CACHE;
-            // end
             default: next_state = IDLE;
         endcase
     end
 
     always_comb begin
-        case (state)
-            I_CACHE: begin
-                /* fix address request for L2 */
-                l1_cache_request_o.addr  = {i_cache_request_i.addr[31:4], 4'b0}; // fetch data from block 0
-                l1_cache_request_o.data  = i_cache_request_i.data;
-                l1_cache_request_o.rw    = i_cache_request_i.rw;
-                l1_cache_request_o.valid = i_cache_request_i.valid;
-                /* -------------------------- */
-                i_cache_data_o = l1_cache_result_i;
-                d_cache_data_o = '{0, 0};
-                //evict_data_o = '{0, 0, 0, 0};
+        if (state == I_CACHE) begin
+            /* fix address request for L2 */
+            l1_cache_request_o.addr  = {i_cache_request_i.addr[31:4], 4'b0}; // fetch data from block 0
+            l1_cache_request_o.data  = i_cache_request_i.data;
+            l1_cache_request_o.rw    = i_cache_request_i.rw;
+            l1_cache_request_o.valid = i_cache_request_i.valid;
+            /* -------------------------- */
+            i_cache_data_o = l1_cache_result_i;
+            d_cache_data_o = '{0, 0};
         end
-            D_CACHE: begin
-                /* fix address request for L2 */
-                l1_cache_request_o.addr  = {d_cache_request_i.addr[31:4], 4'b0}; // fetch data from block 0
-                l1_cache_request_o.data  = d_cache_request_i.data;
-                l1_cache_request_o.rw    = d_cache_request_i.rw;
-                l1_cache_request_o.valid = d_cache_request_i.valid;
-                /* -------------------------- */
-                i_cache_data_o = '{0, 0};
-                d_cache_data_o = l1_cache_result_i;
-                //evict_data_o = '{0, 0, 0, 0};
+        else if (state == D_CACHE) begin
+            /* fix address request for L2 */
+            l1_cache_request_o.addr  = {d_cache_request_i.addr[31:4], 4'b0}; // fetch data from block 0
+            l1_cache_request_o.data  = d_cache_request_i.data;
+            l1_cache_request_o.rw    = d_cache_request_i.rw;
+            l1_cache_request_o.valid = d_cache_request_i.valid;
+            /* -------------------------- */
+            i_cache_data_o = '{0, 0};
+            d_cache_data_o = l1_cache_result_i;
         end
-        //     VC_ICACHE: begin
-        //         l1_cache_request_o.addr  = i_cache_request_i.addr;
-        //         l1_cache_request_o.data  = '0;
-        //         l1_cache_request_o.rw    = '0;
-        //         l1_cache_request_o.valid = i_cache_request_i.valid;
-        //         i_cache_data_o = victim_result_i;
-        //         d_cache_data_o = '{0, 0};
-        //         //evict_data_o = ins_evict_data_i;
-        // end
-        //     VC_DCACHE: begin
-        //         l1_cache_request_o.addr  = d_cache_request_i.addr;
-        //         l1_cache_request_o.data  = '0;
-        //         l1_cache_request_o.rw    = '0;
-        //         l1_cache_request_o.valid = d_cache_request_i.valid;
-        //         i_cache_data_o = '{0, 0};
-        //         d_cache_data_o = victim_result_i;
-        //         //evict_data_o = data_evict_data_i;
-        // end
-            default: begin 
-                l1_cache_request_o = '{0, 0, 0, 0};
-                i_cache_data_o = '{0, 0};
-                d_cache_data_o = '{0, 0};
-                //evict_data_o = '{0, 0, 0, 0};
+        else begin 
+            l1_cache_request_o = '{0, 0, 0, 0};
+            i_cache_data_o = '{0, 0};
+            d_cache_data_o = '{0, 0};
         end
-        endcase
     end
 
     always_ff @(posedge clk_i, negedge rst_ni) begin
@@ -134,7 +100,10 @@ module cache_arbiter(
     //     end
     // end
     logic debug_r;
-    always_ff @(posedge clk_i) begin
+    always_ff @(posedge clk_i, negedge rst_ni) begin
+      if (!rst_ni) begin
+        debug_r <= 1'b1;
+      end else begin
         if (cpu_req_dcache_i.valid) begin
             debug_r <= 1'b0;
         end
@@ -144,12 +113,18 @@ module cache_arbiter(
         else begin
             debug_r <= 1'b1;
         end
+      end
     end
     logic delay_valid_icache_req; // the signal delay 1 cycle of icache_req_valid
     logic delay_valid_dcache_req; // the signal delay 1 cycle of dcache_req_valid
-    always_ff @(posedge clk_i) begin
+    always_ff @(posedge clk_i, negedge rst_ni) begin
+      if (!rst_ni) begin
+        delay_valid_icache_req <= 1'b0;
+        delay_valid_dcache_req <= 1'b0;
+      end else begin
         delay_valid_icache_req <= cpu_req_icache_i.valid;
         delay_valid_dcache_req <= cpu_req_dcache_i.valid;
+      end
     end
 
     /*----------*/
@@ -172,26 +147,22 @@ module cache_arbiter(
     end
 
     always_comb begin
-        case ({cpu_req_icache_i.valid, cpu_req_dcache_i.valid})
-            2'b10, 2'b11: begin 
+        case ({cpu_req_icache_i.valid, cpu_req_dcache_i.valid, debug_r})
+            3'b101, 3'b111: begin 
                 cpu_request_o = cpu_req_icache_i;
-                // inst_swap_o = victim_result_i;
-                // data_swap_o = '{0, 0, 0, 0};
             end
-            2'b01: begin
+            3'b010: begin
                 cpu_request_o = cpu_req_dcache_i;
-                // inst_swap_o = '{0, 0, 0, 0};
-                // data_swap_o = victim_result_i;
             end
             default: begin
-                if (debug_r == 1'b0) cpu_request_o.addr = cpu_req_dcache_i.addr;
-                else if (debug_r == 1'b1) cpu_request_o.addr = cpu_req_icache_i.addr;
-                else cpu_request_o.addr = '0;
-                //cpu_request_o.addr = cpu_req_r.addr; // debuging
-                cpu_request_o.valid = '0;
-                cpu_request_o.data = '0;
-                cpu_request_o.rw = '0;
-                // cpu_request_o = '{0, 0, 0, 0};
+                //if (debug_r == 1'b0) cpu_request_o.addr = cpu_req_dcache_i.addr;
+                //else if (debug_r == 1'b1) cpu_request_o.addr = cpu_req_icache_i.addr;
+                //else cpu_request_o.addr = '0;
+                ////cpu_request_o.addr = cpu_req_r.addr; // debuging
+                //cpu_request_o.valid = '0;
+                //cpu_request_o.data = '0;
+                //cpu_request_o.rw = '0;
+                cpu_request_o = '{0, 0, 0, 0};
                 // inst_swap_o = '{0, 0, 0, 0};
                 // data_swap_o = '{0, 0, 0, 0};
             end
