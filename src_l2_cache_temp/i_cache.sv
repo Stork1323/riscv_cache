@@ -1,6 +1,6 @@
 import cache_def::*;
 
-module d_cache(
+module i_cache(
     input logic clk_i,
     input logic rst_ni,
     input cpu_req_type cpu_req_i,
@@ -9,7 +9,8 @@ module d_cache(
     output mem_req_type mem_req_o,
     output logic [31:0] no_acc_o,
     output logic [31:0] no_hit_o,
-    output logic [31:0] no_miss_o
+    output logic [31:0] no_miss_o,
+    output logic accessing_o
 );
 
     /* signal enable lru load */
@@ -35,7 +36,7 @@ module d_cache(
 
 
     /* choose address */
-    cache_pLRU LRU(
+    cache_LRU LRU(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .valid_i(lru_valid),
@@ -62,7 +63,7 @@ module d_cache(
         .data_read_o(data_read)
     );
     /* FSM cache controller */
-    cache_fsm cache_controller(
+    icache_controller cache_controller(
         .clk_i(clk_i),
         .rst_ni(rst_ni),
         .cpu_req_i(cpu_req_i),
@@ -80,7 +81,7 @@ module d_cache(
         .no_hit_o(no_hit_o),
         .no_miss_o(no_miss_o),
         .lru_valid_o(lru_valid),
-        .accessing_o()
+        .accessing_o(accessing_o)
     );
 
 endmodule

@@ -1,10 +1,16 @@
+import cache_def::*;
+
 module lsu( // A memory for loading(read) or storing(write) data words
-	input logic [31:0] addr_i, dataW_i,
+	input logic [31:0] addr_i,
+	input logic [127:0] dataW_i,
 	input logic MemRW_i,
 	input logic clk_i,
 	input logic rst_ni,
 	input logic [31:0] io_sw_i,
-	output logic [31:0] dataR_o,
+	/* valid signal memory request */
+	input logic mem_req_valid_i,
+	output mem_data_type lsu_data_o,
+	//output logic [127:0] dataR_o,
 	output logic [31:0] io_lcd_o,
 	output logic [31:0] io_ledr_o,
 	output logic [31:0] io_ledg_o,
@@ -16,41 +22,38 @@ module lsu( // A memory for loading(read) or storing(write) data words
 	output logic [31:0] io_hex5_o,
 	output logic [31:0] io_hex6_o,
 	output logic [31:0] io_hex7_o
+	/* valid signal that memory response to cache */
+	//output logic Valid_memory2cache_o
 	);
 	
-	logic [31:0] mem [2048]; //4KB,  1KB for data memory, 256B for output peripherals, 256B for input peripherals, 2.5KB for reserved
+	logic [31:0] mem [512]; //2KB,  1KB for data memory, 256B for output peripherals, 256B for input peripherals, 512B for reserved
 	
 	/*
 			mem[0:255] for data memory
 			mem[256:319] for output peripherals
 			mem[320:383] for input peripherals
-			mem[384:1023] for reserved
+			mem[384:511] for reserved
 	*/
 	
 	logic input_region;
 	logic output_region;
 	logic data_region;
-	logic [31:0] temp1, temp2, temp3, temp4;
+	logic [31:0] temp1, temp2, temp3;
 	
 	set_less_than_unsign SLTU0(
-		.rs1_i({2'b0, addr_i[31:2]}),
-		.rs2_i(32'd768),
+		.rs1_i(addr_i),
+		.rs2_i(32'd256),
 		.rd_o(temp1)
 		);
 	set_less_than_unsign SLTU1(
-		.rs1_i({2'b0, addr_i[31:2]}),
-		.rs2_i(32'd832),
+		.rs1_i(addr_i),
+		.rs2_i(32'd320),
 		.rd_o(temp2)
 		);
 	set_less_than_unsign SLTU2(
-		.rs1_i({2'b0, addr_i[31:2]}),
-		.rs2_i(32'd896),
+		.rs1_i(addr_i),
+		.rs2_i(32'd384),
 		.rd_o(temp3)
-		);
-	set_less_than_unsign SLTU3(
-		.rs1_i({2'b0, addr_i[31:2]}),
-		.rs2_i(32'd512),
-		.rd_o(temp4) // compare address for imem
 		);
 		
 	assign input_region = (temp2 == 32'b0 & temp3 == 32'b1) ? 1'b1 : 1'b0;
@@ -60,18 +63,19 @@ module lsu( // A memory for loading(read) or storing(write) data words
 	//assign mem[320] = io_sw_i; 
 	
 	always_ff @(posedge clk_i) begin
-		if (MemRW_i & (~input_region) & (temp4 == 32'b0)) begin
-			mem[addr_i[31:2]-512] <= dataW_i;
+		if (MemRW_i & (~input_region) & (mem_req_valid_i)) begin
+			mem[addr_i] <= dataW_i[31:0];
+			mem[addr_i+1] <= dataW_i[63:32];
+			mem[addr_i+2] <= dataW_i[95:64];
+			mem[addr_i+3] <= dataW_i[127:96];
 		end
 	end
-	
-	//assign dataR_o = (rst_ni == 1'b0) ? 32'b0 : (input_region) ? {{15{1'b0}}, io_sw_i[16:0]} : mem[addr_i[31:2]-512];
-  always_comb begin
-    if (!rst_ni) dataR_o = 128'b0;
-    else if (input_region) dataR_o = {{15{1'b0}}, io_sw_i[16:0]};
-    else if (temp4 == 32'b1) dataR_o = 32'b0;
-    else dataR_o = mem[addr_i[31:2]-512];
-  end
+
+	/* valid signal that memory response to cache */
+	assign lsu_data_o.ready = (rst_ni == 1'b0) ? 1'b0 : 1'b1;
+	/* fixing */
+	//assign dataR_o = (rst_ni == 1'b0 | mem_req_valid_i == 1'b0) ? 32'b0 : (input_region) ? {{15{1'b0}}, io_sw_i[16:0]} : mem[addr_i];
+	assign lsu_data_o.data = (rst_ni == 1'b0) ? 128'b0 : (input_region) ? {{111{1'b0}}, io_sw_i[16:0]} : {mem[addr_i], mem[addr_i+1], mem[addr_i+2], mem[addr_i+3]};
 	assign io_hex0_o = mem[256];
 	assign io_hex1_o = mem[257];
 	assign io_hex2_o = mem[258];

@@ -35,7 +35,7 @@ module lsu( // A memory for loading(read) or storing(write) data words
 	logic input_region;
 	logic output_region;
 	logic data_region;
-	logic [31:0] temp1, temp2, temp3;
+	logic [31:0] temp1, temp2, temp3, temp4;
 	
 	set_less_than_unsign SLTU0(
 		.rs1_i({2'b0, addr_i[31:2]}),
@@ -52,6 +52,11 @@ module lsu( // A memory for loading(read) or storing(write) data words
 		.rs2_i(32'd896),
 		.rd_o(temp3)
 		);
+	set_less_than_unsign SLTU3(
+		.rs1_i({2'b0, addr_i[31:2]}),
+		.rs2_i(32'd512),
+		.rd_o(temp4) // compare address for imem
+		);
 		
 	assign input_region = (temp2 == 32'b0 & temp3 == 32'b1) ? 1'b1 : 1'b0;
 	//assign output_region = (temp1 == 32'b0 & temp2 == 32'b1) ? 1'b1 : 1'b0;
@@ -60,7 +65,7 @@ module lsu( // A memory for loading(read) or storing(write) data words
 	//assign mem[320] = io_sw_i; 
 	
 	always_ff @(posedge clk_i) begin
-		if (MemRW_i & (~input_region) & (mem_req_valid_i)) begin
+		if (MemRW_i & (~input_region) & (mem_req_valid_i) & (temp4 == 32'b0)) begin
 			mem[addr_i[31:2]-512] <= dataW_i[31:0];
 			mem[addr_i[31:2]-512+1] <= dataW_i[63:32];
 			mem[addr_i[31:2]-512+2] <= dataW_i[95:64];
@@ -72,7 +77,13 @@ module lsu( // A memory for loading(read) or storing(write) data words
 	assign Valid_memory2cache_o = (rst_ni == 1'b0) ? 1'b0 : 1'b1;
 	/* fixing */
 	//assign dataR_o = (rst_ni == 1'b0 | mem_req_valid_i == 1'b0) ? 32'b0 : (input_region) ? {{15{1'b0}}, io_sw_i[16:0]} : mem[addr_i];
-	assign dataR_o = (rst_ni == 1'b0) ? 128'b0 : (input_region) ? {{111{1'b0}}, io_sw_i[16:0]} : {mem[addr_i[31:2]-512+3], mem[addr_i[31:2]-512+2], mem[addr_i[31:2]-512+1], mem[addr_i[31:2]-512]};
+	//assign dataR_o = (rst_ni == 1'b0) ? 128'b0 : (input_region) ? {{111{1'b0}}, io_sw_i[16:0]} : {mem[addr_i[31:2]-512+3], mem[addr_i[31:2]-512+2], mem[addr_i[31:2]-512+1], mem[addr_i[31:2]-512]};
+  always_comb begin
+    if (!rst_ni) dataR_o = 128'b0;
+    else if (input_region) dataR_o = {{111{1'b0}}, io_sw_i[16:0]};
+    else if (temp4 == 32'b1) dataR_o = 128'b0;
+    else dataR_o = {mem[addr_i[31:2]-512+3], mem[addr_i[31:2]-512+2], mem[addr_i[31:2]-512+1], mem[addr_i[31:2]-512]};
+  end
 	assign io_hex0_o = mem[256];
 	assign io_hex1_o = mem[257];
 	assign io_hex2_o = mem[258];
