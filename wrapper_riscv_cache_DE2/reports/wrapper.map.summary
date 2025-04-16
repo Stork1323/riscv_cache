@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Thu Apr 10 21:08:04 2025
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : wrapper
+Top-level Entity Name : wrapper
+Family : Cyclone II
+Total logic elements : 29,299
+    Total combinational functions : 19,550
+    Dedicated logic registers : 10,985
+Total registers : 10985
+Total pins : 152
+Total virtual pins : 0
+Total memory bits : 20,480
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0
